@@ -1,368 +1,889 @@
-<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>EcoFluidSystem S.A. | Tratamiento de Aguas</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@500;600&amp;family=Hanken+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "primary": "#00a94f",
-                        "secondary": "#2f5cad",
-                        "surface": "#fbf9f8",
-                        "surface-dim": "#dbdad9",
-                        "surface-bright": "#fbf9f8",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-low": "#f5f3f3",
-                        "surface-container-high": "#e9e8e7",
-                        "on-surface": "#1b1c1c",
-                        "on-surface-variant": "#3d4a3e",
-                        "outline": "#6d7b6c",
-                        "outline-variant": "#bccaba",
-                        "on-primary": "#ffffff",
-                        "on-secondary": "#ffffff",
-                        "primary-container": "#00a94f",
-                        "on-primary-container": "#003313",
-                        "secondary-container": "#7fa7fd",
-                        "on-secondary-container": "#003a85",
-                        "tertiary": "#006591"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "xl": "80px",
-                        "md": "24px",
-                        "lg": "48px",
-                        "sm": "12px",
-                        "xs": "4px",
-                        "margin-mobile": "16px",
-                        "base": "8px",
-                        "gutter": "24px",
-                        "margin-desktop": "64px"
-                    },
-                    "fontFamily": {
-                        "sans": ["Montserrat", "sans-serif"],
-                        "headline": ["Montserrat", "sans-serif"],
-                        "body": ["Montserrat", "sans-serif"]
-                    }
-                },
-            },
-        }
-    </script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary":    "#34A853",
+          "primary-dark": "#1C9F52",
+          "primary-light": "#f2f7f3",
+          "secondary":  "#1561ad",
+          "secondary-dark": "#134F8C",
+          "secondary-light": "#d6e8ff",
+          "surface":    "#f2f7f3",
+          "surface-dim":"#E9F6EF",
+          "on-surface": "#15395E",
+          "on-surface-variant": "#2E5475",
+          "outline":    "#8FB8DC",
+          "outline-variant": "#D7EAF7",
+          "accent":     "#34A853",
+        },
+        fontFamily: {
+          sans: ["Montserrat", "sans-serif"],
+          mono: ["IBM Plex Mono", "monospace"],
+        },
+        borderRadius: {
+          DEFAULT: "4px",
+          lg: "8px",
+          xl: "16px",
+          "2xl": "24px",
+          full: "9999px",
+        },
+      }
+    }
+  }
+</script>
 <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #fbf9f8; color: #1b1c1c; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(0, 169, 79, 0.05) 0%, rgba(255, 255, 255, 0) 70%); }
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); border: 1px solid rgba(188, 202, 186, 0.3); }
-        .video-placeholder { background: linear-gradient(135deg, #e4e2e2 0%, #dbdad9 100%); position: relative; overflow: hidden; }
-        .video-placeholder::after { content: 'PLAY'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 700; color: rgba(27, 28, 28, 0.3); letter-spacing: 0.2em; }
-    </style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: #f2f7f3; color: #15395E; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: #15395E;
+    color: #BFE0F5;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    padding: .45rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  .topbar a { color: #BFE0F5; transition: color .2s; text-decoration: none; }
+  .topbar a:hover { color: #6FE6A0; }
+  .topbar-left { display: flex; gap: 1.5rem; }
+  .topbar-left span { display: inline-flex; align-items: center; gap: .4rem; }
+  .topbar-left .material-symbols-outlined { font-size: 1rem; }
+  .topbar-right { display: flex; gap: .6rem; }
+  .topbar-right a {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    display: grid; place-items: center; font-size: .72rem;
+    transition: background .2s;
+  }
+  .topbar-right a:hover { background: #34A853; color: #fff; }
+
+  /* ── NAV ── */
+  nav.main-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid #D7EAF7;
+    box-shadow: 0 1px 12px rgba(21,57,94,.08);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 72px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: .65rem; text-decoration: none; }
+  .nav-logo-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: #fff; display: grid; place-items: center; overflow: hidden;
+    flex-shrink: 0; border: 1px solid #D7EAF7;
+  }
+  .nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; padding: 3px; }
+  .nav-brand { font-size: 1.15rem; font-weight: 800; color: #15395E; line-height: 1.1; }
+  .nav-brand span { color: #34A853; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: .82rem; font-weight: 600; color: #2E5475;
+    text-decoration: none; position: relative; padding-bottom: 3px;
+    transition: color .2s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: #34A853; transition: width .25s;
+  }
+  .nav-links a:hover { color: #34A853; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: #1561ad; color: #fff;
+    font-size: .82rem; font-weight: 700;
+    padding: .6rem 1.4rem; border-radius: 6px;
+    text-decoration: none; transition: background .2s, transform .15s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: #134F8C; transform: translateY(-1px); }
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: .3rem; }
+  .burger span { width: 24px; height: 2px; background: #15395E; border-radius: 2px; display: block; transition: .3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 90vh;
+    background:
+      linear-gradient(140deg, rgba(15,75,138,.85) 0%, rgba(46,189,114,.55) 100%),
+      url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1600&q=80') center/cover no-repeat;
+    display: flex; align-items: center;
+    padding: 5rem 2rem; position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; right: -10%; top: 50%;
+    transform: translateY(-50%);
+    width: 50vw; height: 50vw; max-width: 700px; max-height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52,168,83,.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 680px; position: relative; z-index: 1; animation: fadeUp .8s ease both; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
+    color: #fff; font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; padding: .3rem .85rem; border-radius: 20px;
+    margin-bottom: 1.4rem;
+  }
+  .hero-badge::before { content: '●'; font-size: .45rem; color: #6FE6A0; }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1;
+    color: #fff; margin-bottom: 1.3rem;
+  }
+  .hero h1 em { font-style: normal; color: #6FE6A0; }
+  .hero p {
+    font-size: 1.05rem; line-height: 1.7; color: rgba(255,255,255,.88);
+    max-width: 540px; margin-bottom: 2.2rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-hero-primary {
+    background: #34A853; color: #fff;
+    font-size: .88rem; font-weight: 700;
+    padding: .9rem 2rem; border-radius: 7px; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(52,168,83,.4);
+    transition: transform .2s, box-shadow .2s; display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(52,168,83,.5); }
+  .btn-hero-outline {
+    border: 1.5px solid rgba(255,255,255,.5); color: #fff;
+    font-size: .88rem; font-weight: 600;
+    padding: .9rem 2rem; border-radius: 7px; text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,.12); }
+  .hero-stats {
+    position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 1rem; z-index: 1;
+    animation: fadeLeft .8s .3s ease both;
+  }
+  .stat-card {
+    background: rgba(255,255,255,.16); backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,.25); border-radius: 14px;
+    padding: 1.1rem 1.4rem; text-align: center; min-width: 138px;
+  }
+  .stat-card strong {
+    display: block; font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1;
+    margin-bottom: .3rem;
+  }
+  .stat-card span { font-size: .72rem; color: rgba(255,255,255,.85); line-height: 1.3; display: block; }
+
+  /* ── SECTIONS COMMON ── */
+  .section-pad { padding: 5rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: .72rem; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: #34A853; margin-bottom: .5rem;
+  }
+  .section-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 800; line-height: 1.12;
+    color: #15395E; margin-bottom: .9rem;
+  }
+  .section-sub {
+    font-size: .97rem; line-height: 1.72; color: #2E5475; max-width: 600px;
+  }
+
+  /* ── MISSION & VISION ── */
+  #mission { background: #f2f7f3; }
+  .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .mv-card {
+    background: #fff; border-radius: 16px;
+    padding: 2.5rem; border-left: 4px solid #34A853;
+    box-shadow: 0 4px 24px rgba(52,168,83,.1);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .mv-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(52,168,83,.16); }
+  .mv-card-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: #EAF8EF; display: grid; place-items: center;
+    color: #34A853; margin-bottom: 1.2rem;
+  }
+  .mv-card h2 { font-size: 1.4rem; font-weight: 800; color: #15395E; margin-bottom: .7rem; }
+  .mv-card p { font-size: .93rem; line-height: 1.75; color: #2E5475; }
+
+  /* ── PRODUCTS ── */
+  #products { background: #fff; }
+  .products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap; }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .product-card {
+    background: #f2f7f3; border-radius: 16px;
+    border: 1px solid #D7EAF7;
+    overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(52,168,83,.14); border-color: #34A853; }
+
+  .product-media {
+    width: 100%; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-media video,
+  .product-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .product-media .media-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    color: #3FAE6B; font-size: .75rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .product-media .media-placeholder .material-symbols-outlined { font-size: 2.5rem; opacity: .5; }
+
+  .product-body { padding: 1.5rem; }
+  .product-body h3 { font-size: 1.25rem; font-weight: 800; color: #15395E; margin-bottom: .4rem; }
+  .product-body p { font-size: .85rem; color: #2E5475; margin-bottom: 1.1rem; line-height: 1.6; }
+  .product-tags { display: flex; flex-wrap: wrap; gap: .4rem; padding-top: 1rem; border-top: 1px solid #D7EAF7; }
+  .product-tag {
+    background: #fff; border: 1px solid #D7EAF7;
+    font-size: .72rem; font-weight: 700; color: #2E5475;
+    padding: .25rem .6rem; border-radius: 5px;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .product-tag:hover { background: #34A853; color: #fff; border-color: #34A853; }
+  .product-tags-label { font-size: .68rem; font-weight: 700; color: #34A853; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; width: 100%; }
+
+  /* ── RESULTS ── */
+  #results { background: #f2f7f3; }
+  .results-intro { text-align: center; margin-bottom: 3.5rem; }
+  .results-divider { width: 56px; height: 3px; background: #34A853; margin: 1.2rem auto 0; border-radius: 2px; }
+  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .result-card {
+    background: #fff; border-radius: 16px;
+    border: 1px solid #D7EAF7; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(21,57,94,.06);
+    display: flex; flex-direction: column;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .result-card:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(21,86,173,.14); }
+
+  .result-media {
+    width: 100%; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #EAF4FC 0%, #D2EAFB 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .result-media video,
+  .result-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .result-media .media-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    color: #3E8FC4; font-size: .72rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .result-media .media-placeholder .material-symbols-outlined { font-size: 2.2rem; opacity: .5; }
+
+  .result-body { padding: 1.5rem 1.6rem; flex-grow: 1; }
+  .result-body h4 { font-size: 1.1rem; font-weight: 800; color: #15395E; margin-bottom: 1rem; }
+  .result-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .result-list li { display: flex; align-items: center; gap: .6rem; font-size: .85rem; color: #2E5475; }
+  .result-list li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #34A853; flex-shrink: 0; }
+  .result-body p { font-size: .85rem; line-height: 1.65; color: #2E5475; }
+  .result-link { display: inline-flex; align-items: center; gap: .3rem; margin-top: 1rem; font-size: .82rem; font-weight: 700; color: #34A853; text-decoration: none; transition: color .2s; }
+  .result-link:hover { color: #1561ad; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: #15395E; padding: 3rem 2rem;
+  }
+  .stats-bar-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+  .stat-item { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 1.8rem 1.2rem; text-align: center; transition: background .25s; }
+  .stat-item:hover { background: rgba(52,168,83,.18); }
+  .stat-item .icon { font-size: 1.8rem; margin-bottom: .6rem; color: #6FE6A0; }
+  .stat-item strong { display: block; font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: .3rem; }
+  .stat-item span { font-size: .78rem; color: rgba(255,255,255,.75); line-height: 1.4; display: block; }
+
+  /* ── CONTACT ── */
+  #contact { background: #fff; }
+  .contact-box {
+    background: linear-gradient(135deg, #34A853 0%, #1E9E7A 50%, #1561ad 100%);
+    border-radius: 24px; padding: 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem;
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(21,86,173,.25);
+  }
+  .contact-box::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: rgba(255,255,255,.08); pointer-events: none;
+  }
+  .contact-box::after {
+    content: ''; position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(255,255,255,.06); pointer-events: none;
+  }
+  .contact-info { position: relative; z-index: 1; }
+  .contact-info h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 1rem; line-height: 1.15; }
+  .contact-info p { font-size: .97rem; color: rgba(255,255,255,.88); line-height: 1.7; margin-bottom: 2rem; }
+  .contact-details { display: flex; flex-direction: column; gap: 1.1rem; }
+  .contact-detail { display: flex; align-items: flex-start; gap: 1rem; }
+  .contact-detail-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,.18); display: grid; place-items: center; flex-shrink: 0; color: #fff; }
+  .contact-detail-text h5 { font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.75); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .15rem; }
+  .contact-detail-text p, .contact-detail-text a { font-size: .93rem; color: #fff; text-decoration: none; }
+  .contact-form-wrap { background: #fff; border-radius: 16px; padding: 2.2rem; box-shadow: 0 8px 40px rgba(21,57,94,.18); position: relative; z-index: 1; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; margin-bottom: .85rem; }
+  .form-group { display: flex; flex-direction: column; gap: .35rem; }
+  .form-group label { font-size: .7rem; font-weight: 700; color: #2E5475; text-transform: uppercase; letter-spacing: .08em; }
+  .form-group input,
+  .form-group textarea {
+    width: 100%; border: 1.5px solid #D7EAF7; border-radius: 7px;
+    padding: .65rem .85rem; font-family: 'Montserrat', sans-serif;
+    font-size: .88rem; color: #15395E; background: #F7FBF9;
+    transition: border-color .2s, box-shadow .2s; outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: #34A853; box-shadow: 0 0 0 3px rgba(52,168,83,.12); }
+  .form-group textarea { resize: vertical; min-height: 100px; grid-column: 1 / -1; }
+  .form-submit {
+    width: 100%; background: #1561ad; color: #fff;
+    font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 700;
+    padding: .9rem; border: none; border-radius: 7px; cursor: pointer;
+    margin-top: .5rem; transition: background .2s, transform .15s; grid-column: 1 / -1;
+  }
+  .form-submit:hover { background: #134F8C; transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer { background: #15395E; padding: 4rem 2rem 2rem; }
+  .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1.2fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: .7rem; }
+  .footer-brand span { color: #6FE6A0; }
+  .footer-desc { font-size: .85rem; line-height: 1.7; color: rgba(255,255,255,.65); margin-bottom: 1.2rem; }
+  .footer-socials { display: flex; gap: .6rem; }
+  .footer-social { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.08); display: grid; place-items: center; color: rgba(255,255,255,.75); text-decoration: none; font-size: .8rem; transition: background .2s, color .2s; }
+  .footer-social:hover { background: #34A853; color: #fff; }
+  footer h4 { font-size: .8rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  footer ul li a { font-size: .85rem; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
+  footer ul li a:hover { color: #6FE6A0; }
+  .footer-contact-list { display: flex; flex-direction: column; gap: .7rem; }
+  .footer-contact-item { display: flex; align-items: flex-start; gap: .7rem; font-size: .84rem; color: rgba(255,255,255,.65); line-height: 1.4; }
+  .footer-contact-item .material-symbols-outlined { font-size: 1.1rem; color: #6FE6A0; flex-shrink: 0; margin-top: 1px; }
+  .footer-contact-item a { color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
+  .footer-contact-item a:hover { color: #6FE6A0; }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .76rem; color: rgba(255,255,255,.5); }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 200;
+    width: 54px; height: 54px; border-radius: 50%;
+    background: #25D366; display: grid; place-items: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,.55);
+    transition: transform .2s, box-shadow .2s; text-decoration: none;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,.65); }
+  .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @keyframes fadeUp   { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeLeft { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 1024px) {
+    .hero-stats { display: none; }
+    .products-grid, .results-grid { grid-template-columns: 1fr 1fr; }
+    .stats-bar-inner { grid-template-columns: 1fr !important; }
+    .contact-box { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width: 768px) {
+    .mv-grid, .products-grid, .results-grid { grid-template-columns: 1fr; }
+    nav .nav-links, nav .nav-cta { display: none; }
+    .burger { display: flex; }
+    nav.open .nav-links {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: #fff; padding: 1.2rem 2rem;
+      border-bottom: 1px solid #D7EAF7; gap: 1rem;
+      box-shadow: 0 8px 20px rgba(21,57,94,.12);
+    }
+    nav.main-nav { flex-wrap: wrap; position: relative; }
+    .form-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .contact-box { padding: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .topbar { font-size: .72rem; }
+    .hero { min-height: 70vh; }
+    .section-pad { padding: 3rem 2rem; }
+  }
+</style>
 </head>
-<body class="bg-surface text-on-surface" data-mode="connect">
-<!-- TopNavBar -->
-<nav class="w-full sticky top-0 z-50 bg-white border-b border-surface-container-high shadow-sm">
-<div class="flex justify-between items-center w-full px-margin-desktop max-w-[1200px] mx-auto h-20">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 overflow-hidden">
-<img alt="Icono Droplet" class="w-full h-full object-contain scale-[2.5] origin-top-left" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQMU--X2MnzGejT3n3Rca8y2ZFwSe8JThgvOjmZKaHgDqX09s_z6XTWoZP8UFlM4-lQ6wVl7zwjyuYuHay1udagKT3v6klMxOxE8YhlJnuD3D7w_14kHud71bfRFPAfymGsiniIi9_jx24VdIIqDQdYwt9JuXeX5QR_F-pr_AZYFrYn0Bm34Ar0gtXwNG7fCDcuRpxkG17blSyhZIc3YakEGRjgAAANe-BWX7bPMX9dhGWs3V3YCYDtCgZm4XO_cg7Ihgh7C9hHMM">
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span><span class="material-symbols-outlined">mail</span>ecofluidsystemec@gmail.com</span>
+    <span><span class="material-symbols-outlined">call</span>+593 96-320-0034</span>
+  </div>
+  <div class="topbar-right">
+    <a href="https://instagram.com/ecofluidsystem" target="_blank" aria-label="Instagram">IG</a>
+    <a href="https://wa.me/593963200034" target="_blank" aria-label="WhatsApp">WA</a>
+  </div>
 </div>
-<span class="text-xl font-bold text-[#1b1c1c]">New Technology EcoFluidSystem S.A.</span>
-</div>
-<div class="hidden md:flex items-center gap-8">
-<a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#hero">Inicio</a>
-<a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#mission">Misión &amp; Visión</a>
-<a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#products">Productos</a>
-<a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#results">Resultados</a>
-<a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contacto</a>
-<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded font-semibold hover:bg-on-secondary-container transition-all active:scale-95">Cotizar Ahora</button>
-</div>
-<button class="md:hidden text-primary">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
+
+<!-- NAV -->
+<nav class="main-nav" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#34A853;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#1561ad;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="45" fill="url(#logoGrad)" opacity="0.1"/>
+          <path d="M50 25 L65 40 L60 60 L50 70 L40 60 L35 40 Z" fill="url(#logoGrad)"/>
+          <circle cx="50" cy="50" r="8" fill="url(#logoGrad)"/>
+        </svg>
+      </div>
+      <div class="nav-brand">Eco<span>Fluid</span></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#mission">Quiénes Somos</a></li>
+      <li><a href="#products">Productos</a></li>
+      <li><a href="#results">Soluciones</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+    <a class="nav-cta" href="https://wa.me/593963200034" target="_blank">Cotizar Ahora</a>
+    <button class="burger" id="burger" onclick="document.getElementById('navbar').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
-<!-- Brand Hero Section -->
-<header class="relative w-full overflow-hidden bg-white hero-gradient py-24" id="hero">
-<div class="max-w-[1200px] mx-auto px-margin-desktop flex flex-col items-center text-center">
-<div class="mb-12 animate-fade-in w-full max-w-md">
-<img alt="EcoFluidSystem Full Logo" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvXjHO3jvbh_lEvmRzhsRHGb61WEmDEfuxk1NNv05AXneURmQMxVlaJj4izwEGdnpRIyjl9Gm2Ig6gK31SC7fGuFrzgQ-mIeqc-uJQUySodG0_bOyYIFx9C0n3b1Uy-7khCmPj1fqtHGKn_aPhq-6EzxbM-NLuv6INYB29An7naO9nfTfqIfGFswRa_uaa4P1iMtphBoqdrP98E1JeTE7GkJeB0q5UhXh_8UiJ4a5CexMZzqCGyCs4C4Yc">
-</div>
-<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1b1c1c] mb-6 max-w-4xl tracking-tight leading-tight">Liderando la Innovación en el Tratamiento de Aguas</h1>
-<p class="text-lg md:text-xl text-on-surface-variant max-w-2xl mb-10 leading-relaxed">Soluciones de tratamiento de lodos, relaves y aguas residuales para la industria minera y mediambiental.<br></p>
-<div class="flex flex-col sm:flex-row gap-4">
-<button class="bg-primary text-white px-8 py-4 rounded font-bold flex items-center gap-2 hover:shadow-lg transition-all">
-                    Explorar Soluciones <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<button class="border border-outline text-[#1b1c1c] px-8 py-4 rounded font-bold hover:bg-surface-container-low transition-all">
-                    Nuestros Resultados
-                </button>
-</div>
-</div>
-</header>
-<!-- Mission & Vision -->
-<section class="py-xl bg-surface-container-low" id="mission">
-<div class="max-w-[1200px] mx-auto px-margin-desktop">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<div class="bg-white p-10 rounded-lg shadow-sm border border-outline-variant hover:border-primary transition-colors group">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary">
-<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">eco</span>
-</div>
-<h2 class="text-3xl font-bold text-on-surface mb-4">Misión</h2>
-<p class="text-on-surface-variant leading-relaxed">Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable<br></p>
-</div>
-<div class="bg-white p-10 rounded-lg shadow-sm border border-outline-variant hover:border-secondary transition-colors group">
-<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-6 text-secondary">
-<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">visibility</span>
-</div>
-<h2 class="text-3xl font-bold text-on-surface mb-4">Visión</h2>
-<p class="text-on-surface-variant leading-relaxed">Consolidarnos como un socio estratégico para la industria minera, petrolera y ambiental, liderando la transformación hacia una gestión sostenible del agua y los residuos mediante soluciones tecnológicas innovadoras y de alto desempeño.<br></p>
-</div>
-</div>
-</div>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Soluciones Ambientales</div>
+    <h1>Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</h1>
+    <p>Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación.</p>
+    <div class="hero-btns">
+      <a class="btn-hero-primary" href="#contact">
+        <span class="material-symbols-outlined">arrow_forward</span>
+        Solicitar Demo
+      </a>
+      <a class="btn-hero-outline" href="#products">Conocer Productos</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <strong>500+</strong>
+      <span>Proyectos Completados</span>
+    </div>
+    <div class="stat-card">
+      <strong>15+</strong>
+      <span>Años de Experiencia</span>
+    </div>
+    <div class="stat-card">
+      <strong>98%</strong>
+      <span>Eficiencia Comprobada</span>
+    </div>
+  </div>
 </section>
-<!-- Products & Solutions -->
-<section class="py-xl bg-white" id="products">
-<div class="max-w-[1200px] mx-auto px-margin-desktop">
-<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-<div>
-<span class="text-sm font-bold text-primary uppercase tracking-[0.2em]">Portafolio</span>
-<h2 class="text-4xl font-bold text-on-surface mt-2">Productos y Soluciones</h2>
-</div>
-<p class="max-w-md text-on-surface-variant leading-relaxed">Tecnología de precisión aplicada a la remoción de contaminantes y optimización de recursos hídricos.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- BS Tech -->
-<div class="group bg-surface-container-low rounded-lg p-6 border border-outline-variant hover:shadow-xl transition-all">
-<div class="h-48 video-placeholder rounded mb-6 flex items-center justify-center bg-surface-dim">
-<span class="material-symbols-outlined text-4xl opacity-20">memory</span>
-</div>
-<h3 class="text-2xl font-bold mb-2">BS Tech</h3>
-<p class="text-sm text-on-surface-variant mb-6">Monitoreo inteligente y automatización.</p>
-<div class="space-y-2 border-t pt-4 border-outline-variant">
-<p class="text-xs font-bold text-primary uppercase">Subproductos:</p>
-<div class="flex gap-2">
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">AB</span>
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">ES</span>
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">FS</span>
-</div>
-</div>
-</div>
-<!-- Floculantes -->
-<div class="group bg-surface-container-low rounded-lg p-6 border border-outline-variant hover:shadow-xl transition-all">
-<div class="h-48 video-placeholder rounded mb-6 flex items-center justify-center bg-surface-dim">
-<span class="material-symbols-outlined text-4xl opacity-20">science</span>
-</div>
-<h3 class="text-2xl font-bold mb-2">Floculantes</h3>
-<p class="text-sm text-on-surface-variant mb-6">Sedimentación acelerada de sólidos.</p>
-<div class="space-y-2 border-t pt-4 border-outline-variant">
-<p class="text-xs font-bold text-primary uppercase">Subproductos:</p>
-<div class="flex flex-wrap gap-2">
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">32</span>
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">24</span>
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">33</span>
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">53</span>
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">54</span>
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">60</span>
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">68</span>
-</div>
-</div>
-</div>
-<!-- Coagulantes -->
-<div class="group bg-surface-container-low rounded-lg p-6 border border-outline-variant hover:shadow-xl transition-all">
-<div class="h-48 video-placeholder rounded mb-6 flex items-center justify-center bg-surface-dim">
-<span class="material-symbols-outlined text-4xl opacity-20">water_drop</span>
-</div>
-<h3 class="text-2xl font-bold mb-2">Coagulantes</h3>
-<p class="text-sm text-on-surface-variant mb-6">Clarificación avanzada de aguas turbias.</p>
-<div class="space-y-2 border-t pt-4 border-outline-variant">
-<p class="text-xs font-bold text-primary uppercase">Subproductos:</p>
-<div class="flex gap-2">
-<span class="bg-white px-2 py-1 rounded border border-outline-variant text-[10px] font-bold">C-01</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+
+<!-- MISSION & VISION -->
+<section id="mission" class="section-pad">
+  <div class="container">
+    <div style="margin-bottom: 3rem;">
+      <p class="section-eyebrow">Nuestra Identidad</p>
+      <h2 class="section-title">Quiénes Somos</h2>
+      <p class="section-sub">EcoFluidSystem es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.</p>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card">
+        <div class="mv-card-icon">
+          <span class="material-symbols-outlined">target</span>
+        </div>
+        <h2>Nuestra Misión</h2>
+        <p>Proporcionar soluciones tecnológicas eficientes y sostenibles para el tratamiento de aguas residuales, contribuyendo a la protección del medio ambiente y al desarrollo responsable de la industria ecuatoriana.</p>
+      </div>
+      <div class="mv-card">
+        <div class="mv-card-icon">
+          <span class="material-symbols-outlined">visibility</span>
+        </div>
+        <h2>Nuestra Visión</h2>
+        <p>Ser el proveedor líder de tecnología ambiental en Latinoamérica, reconocido por la calidad de nuestros sistemas, la excelencia en el servicio y nuestro compromiso con la sostenibilidad.</p>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- Results & Success Cases -->
-<section class="py-xl bg-surface-container-high/30" id="results">
-<div class="max-w-[1200px] mx-auto px-margin-desktop">
-<div class="text-center mb-16">
-<span class="text-sm font-bold text-secondary uppercase tracking-[0.2em]">Impacto Real</span>
-<h2 class="text-4xl font-bold text-on-surface mt-2">Resultados y Casos de Éxito</h2>
-<div class="w-20 h-1 bg-primary mx-auto mt-6"></div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-<!-- Industria Minera -->
-<div class="bg-white rounded-lg overflow-hidden shadow-md border border-outline-variant flex flex-col">
-<div class="h-48 video-placeholder"></div>
-<div class="p-8 flex-grow">
-<h4 class="text-2xl font-bold mb-4">Industria Minera</h4>
-<div class="space-y-3">
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Concentrados
-                            </div>
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Molinos Chilenos
-                            </div>
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Relaves de Lixiviación
-                            </div>
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Relaves de Flotación
-                            </div>
-</div>
-</div>
-</div>
-<!-- Plantas PTAR -->
-<div class="bg-white rounded-lg overflow-hidden shadow-md border border-outline-variant flex flex-col">
-<div class="h-48 video-placeholder"></div>
-<div class="p-8 flex-grow">
-<h4 class="text-2xl font-bold mb-4">Plantas PTAR</h4>
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Eficiencia en la remoción biológica de contaminantes urbanos e industriales, superando los estándares ambientales vigentes.</p>
-<button class="text-primary font-bold text-sm flex items-center gap-1">Ver Proyecto <span class="material-symbols-outlined text-base">open_in_new</span></button>
-</div>
-</div>
-<!-- Camales -->
-<div class="bg-white rounded-lg overflow-hidden shadow-md border border-outline-variant flex flex-col">
-<div class="h-48 video-placeholder"></div>
-<div class="p-8 flex-grow">
-<h4 class="text-2xl font-bold mb-4">Camales</h4>
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Soluciones DAF específicas para la eliminación de grasas y alta carga orgánica en la industria cárnica.</p>
-<button class="text-primary font-bold text-sm flex items-center gap-1">Ver Proyecto <span class="material-symbols-outlined text-base">open_in_new</span></button>
-</div>
-</div>
-</div>
-</div>
+
+<!-- PRODUCTS - FLOCULANTES -->
+<section id="products" class="section-pad">
+  <div class="container">
+    <div class="products-header">
+      <div>
+        <p class="section-eyebrow">Catálogo Completo</p>
+        <h2 class="section-title">Productos Floculantes</h2>
+        <p class="section-sub">7 soluciones especializadas para diferentes aplicaciones industriales y ambientales.</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">water_drop</span>
+            Floculante Aniónico
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>FL-100 Aniónico</h3>
+          <p>Floculante de alto rendimiento para aguas con sólidos suspendidos finos. Ideal para minería y plantas de tratamiento.</p>
+          <div class="product-tags">
+            <span class="product-tags-label">Características</span>
+            <span class="product-tag">Alta Densidad</span>
+            <span class="product-tag">Rápida Sedimentación</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">water_drop</span>
+            Floculante Catiónico
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>FL-200 Catiónico</h3>
+          <p>Especializado en aguas ácidas y procesos de potabilización. Excelente para neutralización de pH.</p>
+          <div class="product-tags">
+            <span class="product-tags-label">Características</span>
+            <span class="product-tag">Neutralización pH</span>
+            <span class="product-tag">Larga Vida Útil</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">water_drop</span>
+            Floculante Neutro
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>FL-300 Neutro</h3>
+          <p>Solución universal para múltiples aplicaciones. Compatible con diversos tipos de aguas industriales.</p>
+          <div class="product-tags">
+            <span class="product-tags-label">Características</span>
+            <span class="product-tag">Multifuncional</span>
+            <span class="product-tag">Eco-Amigable</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">water_drop</span>
+            Floculante Premium
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>FL-400 Premium</h3>
+          <p>Formulación avanzada para aplicaciones críticas. Máxima eficiencia de coagulación y clarificación.</p>
+          <div class="product-tags">
+            <span class="product-tags-label">Características</span>
+            <span class="product-tag">Máxima Eficiencia</span>
+            <span class="product-tag">Bajo Costo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">water_drop</span>
+            Floculante Minería
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>FL-500 Minería</h3>
+          <p>Diseñado específicamente para operaciones mineras. Maneja altos volúmenes de relaves con eficiencia.</p>
+          <div class="product-tags">
+            <span class="product-tags-label">Características</span>
+            <span class="product-tag">Alto Volumen</span>
+            <span class="product-tag">Certificado</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">water_drop</span>
+            Floculante Industrial
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>FL-600 Industrial</h3>
+          <p>Para plantas de tratamiento de aguas residuales. Excelente clarificación y reducción de turbidez.</p>
+          <div class="product-tags">
+            <span class="product-tags-label">Características</span>
+            <span class="product-tag">Clarificación</span>
+            <span class="product-tag">Económico</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">water_drop</span>
+            Floculante Potabilización
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>FL-700 Potabilización</h3>
+          <p>Especialmente formulado para agua de consumo humano. Cumple normas internacionales de potabilidad.</p>
+          <div class="product-tags">
+            <span class="product-tags-label">Características</span>
+            <span class="product-tag">Potable</span>
+            <span class="product-tag">Seguro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- Contact Section -->
-<section class="py-xl bg-white" id="contact">
-<div class="max-w-[1200px] mx-auto px-margin-desktop">
-<div class="bg-primary rounded-lg p-8 md:p-16 flex flex-col lg:flex-row gap-12 relative overflow-hidden text-white shadow-2xl">
-<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-<div class="lg:w-1/2 z-10">
-<h2 class="text-4xl md:text-5xl font-bold mb-6">¿Listo para transformar su gestión de agua?</h2>
-<p class="text-lg mb-10 opacity-90 leading-relaxed">Nuestro equipo de ingenieros especializados está a su disposición para realizar un diagnóstico técnico exhaustivo de sus operaciones.</p>
-<div class="space-y-6">
-<div class="flex items-start gap-4">
-<span class="material-symbols-outlined bg-white/20 p-3 rounded-full">location_on</span>
-<div>
-<h5 class="font-bold">Oficina Central</h5>
-<p class="opacity-80">Guayaquil, Ecuador</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<span class="material-symbols-outlined bg-white/20 p-3 rounded-full">mail</span>
-<div>
-<h5 class="font-bold">Email</h5>
-<p class="opacity-80 text-white">info@ecofluidsystem.com</p>
-</div>
-</div>
-</div>
-</div>
-<div class="lg:w-1/2 z-10">
-<form class="bg-white p-8 rounded shadow-xl space-y-4">
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-<div class="space-y-1">
-<label class="text-xs font-bold text-on-surface-variant uppercase">Nombre Completo</label>
-<input class="w-full border-outline-variant rounded focus:ring-primary focus:border-primary text-on-surface" placeholder="Ej. Juan Pérez" type="text">
-</div>
-<div class="space-y-1">
-<label class="text-xs font-bold text-on-surface-variant uppercase">Empresa</label>
-<input class="w-full border-outline-variant rounded focus:ring-primary focus:border-primary text-on-surface" placeholder="Nombre de su industria" type="text">
-</div>
-</div>
-<div class="space-y-1">
-<label class="text-xs font-bold text-on-surface-variant uppercase">Correo Electrónico</label>
-<input class="w-full border-outline-variant rounded focus:ring-primary focus:border-primary text-on-surface" placeholder="correo@ejemplo.com" type="email">
-</div>
-<div class="space-y-1">
-<label class="text-xs font-bold text-on-surface-variant uppercase">Mensaje / Requerimiento</label>
-<textarea class="w-full border-outline-variant rounded focus:ring-primary focus:border-primary text-on-surface" placeholder="Describa brevemente su consulta técnica..." rows="4"></textarea>
-</div>
-<button class="w-full bg-secondary text-white font-bold py-4 rounded hover:bg-[#1a3a7a] transition-all">Enviar Solicitud</button>
-</form>
-</div>
-</div>
-</div>
+
+<!-- SOLUCIONES - PTAR -->
+<section id="results" class="section-pad">
+  <div class="container">
+    <div class="results-intro">
+      <p class="section-eyebrow">Sistemas Completos</p>
+      <h2 class="section-title">Plantas de Tratamiento (PTAR)</h2>
+      <div class="results-divider"></div>
+      <p class="section-sub" style="margin: 1.5rem auto 0;">Soluciones integradas para tratamiento de aguas residuales y efluentes industriales.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">engineering</span>
+            PTAR Modular
+          </div>
+        </div>
+        <div class="result-body">
+          <h4>PTAR Modular Compacta</h4>
+          <ul class="result-list">
+            <li>Instalación rápida</li>
+            <li>Bajo consumo energético</li>
+            <li>Mantenimiento simple</li>
+            <li>Escalable según necesidad</li>
+          </ul>
+          <p style="margin-top: 1rem;">Perfecta para pequeños y medianos proyectos con espacio limitado.</p>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">engineering</span>
+            PTAR Industrial
+          </div>
+        </div>
+        <div class="result-body">
+          <h4>PTAR Industrial Completa</h4>
+          <ul class="result-list">
+            <li>Capacidad 100-500 m³/día</li>
+            <li>Tratamiento primario y secundario</li>
+            <li>Control automatizado</li>
+            <li>Monitoreo 24/7</li>
+          </ul>
+          <p style="margin-top: 1rem;">Diseñada para operaciones industriales de gran escala con máximo rendimiento.</p>
+        </div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-media">
+          <div class="media-placeholder">
+            <span class="material-symbols-outlined">engineering</span>
+            PTAR Minería
+          </div>
+        </div>
+        <div class="result-body">
+          <h4>PTAR Especializada Minería</h4>
+          <ul class="result-list">
+            <li>Manejo de relaves</li>
+            <li>Recuperación de agua</li>
+            <li>Cumplimiento ambiental</li>
+            <li>Capacidad 500+ m³/día</li>
+          </ul>
+          <p style="margin-top: 1rem;">Conforme a regulaciones mineras, con máxima eficiencia en reciclaje de agua.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- Footer -->
-<footer class="bg-surface-container-low border-t border-outline-variant py-xl">
-<div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-desktop max-w-[1200px] mx-auto gap-12">
-<div class="max-w-xs">
-<span class="text-2xl font-bold text-primary block mb-4">EcoFluidSystem S.A.</span>
-<p class="text-sm text-on-surface-variant leading-relaxed">
-                    Soluciones integrales de tratamiento de aguas con ingeniería de clase mundial.
-                </p>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
-<div>
-<h5 class="text-xs font-bold text-on-surface uppercase tracking-widest mb-4">Contacto</h5>
-<ul class="space-y-2 text-sm text-on-surface-variant">
-<li class="">Tel: <a href="tel:+593 96-320-0034" class="">+593 96-320-0034</a></li>
-<li class="">Email: info@ecofluidsystem.com</li>
-<li class="">IG: @ecofluidsystem</li>
-</ul>
-</div>
-<div>
-<h5 class="text-xs font-bold text-on-surface uppercase tracking-widest mb-4">Legal</h5>
-<ul class="space-y-2 text-sm text-on-surface-variant">
-<li class=""><a class="hover:text-primary underline-offset-4 hover:underline" href="#">Políticas de Privacidad</a></li>
-<li class=""><a class="hover:text-primary underline-offset-4 hover:underline" href="#">Términos de Servicio</a></li>
-</ul>
-</div>
-</div>
-<div class="flex flex-col items-center md:items-end gap-4 w-full md:w-auto">
-<div class="flex gap-4">
-<a class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant hover:bg-primary/10 hover:text-primary transition-all" href="https://instagram.com/ecofluidsystem">
-<span class="material-symbols-outlined">photo_camera</span>
-</a>
-</div>
-<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">
-                    Todos los derechos reservados © EcoFluidSystem
-                </p>
-</div>
-</div>
+
+<!-- STATS BAR -->
+<section class="stats-bar">
+  <div class="stats-bar-inner" style="grid-template-columns: 1fr 1fr;">
+    <div class="stat-item">
+      <div class="icon">
+        <span class="material-symbols-outlined">eco</span>
+      </div>
+      <strong>30+</strong>
+      <span>Años de Experiencia</span>
+    </div>
+    <div class="stat-item">
+      <div class="icon">
+        <span class="material-symbols-outlined">engineering</span>
+      </div>
+      <strong>100%</strong>
+      <span>Asesoramiento Técnico Integral</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="contact-box">
+      <div class="contact-info">
+        <h2>¿Listo para Mejorar tu Tratamiento de Aguas?</h2>
+        <p>Nuestro equipo de expertos está disponible para asesorarte en la solución más adecuada para tu proyecto.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <span class="material-symbols-outlined">mail</span>
+            </div>
+            <div class="contact-detail-text">
+              <h5>Correo</h5>
+              <a href="mailto:ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <span class="material-symbols-outlined">phone</span>
+            </div>
+            <div class="contact-detail-text">
+              <h5>Teléfono</h5>
+              <a href="tel:+593963200034">+593 96-320-0034</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <div class="contact-detail-text">
+              <h5>Ubicación</h5>
+              <p>Ecuador - Disponible en toda la región</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <form onsubmit="return handleForm(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="form-group">
+              <label>Empresa</label>
+              <input type="text" placeholder="Nombre de tu empresa" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="tu@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="+593 9XX-XXX-XXXX" required>
+            </div>
+            <div class="form-group">
+              <label>Mensaje</label>
+              <textarea placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">Enviar Consulta</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Eco<span>Fluid</span></div>
+      <p class="footer-desc">Soluciones de tratamiento de aguas para la industria moderna. Compromiso con la sostenibilidad y la excelencia técnica.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/ecofluidsystem" class="footer-social" target="_blank">IG</a>
+        <a href="https://wa.me/593963200034" class="footer-social" target="_blank">WA</a>
+      </div>
+    </div>
+    <div>
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#mission">Quiénes Somos</a></li>
+        <li><a href="#products">Productos</a></li>
+        <li><a href="#results">Soluciones</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <div class="footer-contact-list">
+        <div class="footer-contact-item">
+          <span class="material-symbols-outlined">mail</span>
+          <a href="mailto:ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <span class="material-symbols-outlined">phone</span>
+          <a href="tel:+593963200034">+593 96-320-0034</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 EcoFluidSystem S.A. Todos los derechos reservados.</p>
+    <p>Hecho con <span style="color: #6FE6A0;">♻</span> para el medio ambiente</p>
+  </div>
 </footer>
-<!-- WhatsApp Button -->
-<a aria-label="WhatsApp" class="fixed bottom-6 right-6 z-[60] bg-[#25D366] text-white p-3 rounded-full shadow-2xl hover:scale-110 active:scale-90 transition-all flex items-center justify-center" href="https://wa.me/593963200034" target="_blank">
-<svg fill="currentColor" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
-<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
-</svg>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/593963200034" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.781 1.149l-.335-.214-3.48.646.659-2.409c-.795-1.371-1.251-2.961-1.251-4.666 0-5.335 4.27-9.67 9.543-9.67 2.554 0 4.943.994 6.743 2.76 1.8 1.766 2.791 4.115 2.791 6.6 0 5.332-4.27 9.67-9.543 9.67-1.564 0-3.051-.3-4.434-.893l-.244-.152-2.582.480z"/></svg>
 </a>
+
 <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+function handleForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const name = form.querySelector('input[type="text"]').value;
+  const message = form.querySelector('textarea').value;
+  const whatsappMessage = `Hola, soy ${name}. ${message}`;
+  window.open(`https://wa.me/593963200034?text=${encodeURIComponent(whatsappMessage)}`);
+  return false;
+}
+</script>
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 20) {
-                nav.classList.add('shadow-md');
-            } else {
-                nav.classList.remove('shadow-md');
-            }
-        });
-    </script>
-
-
-</body></html>
+</body>
+</html>
