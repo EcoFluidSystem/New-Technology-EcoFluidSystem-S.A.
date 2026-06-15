@@ -7,6 +7,9 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -48,6 +51,76 @@
   body { font-family: 'Montserrat', sans-serif; background: #f2f7f3; color: #15395E; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
 
+  /* ── ADVANCED ANIMATIONS ── */
+  @keyframes floatUp { 
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInLeft { 
+    0% { opacity: 0; transform: translateX(-60px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInRight { 
+    0% { opacity: 0; transform: translateX(60px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(52,168,83,.3); }
+    50% { box-shadow: 0 0 40px rgba(52,168,83,.6); }
+  }
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes fadeUp { 
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeLeft { 
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+  @keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-float { animation: floatUp 0.8s ease-out; }
+  .animate-slide-left { animation: slideInLeft 0.8s ease-out; }
+  .animate-slide-right { animation: slideInRight 0.8s ease-out; }
+  .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+  .animate-glow { animation: glow 3s ease-in-out infinite; }
+  .animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
+
+  /* Stagger animations */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* ── LANGUAGE SWITCHER ── */
+  .lang-switcher {
+    position: fixed; top: 70px; right: 2rem; z-index: 99;
+    display: flex; gap: .3rem;
+  }
+  .lang-btn {
+    background: rgba(52,168,83,.1); border: 1.5px solid #34A853;
+    color: #34A853; font-size: .7rem; font-weight: 700;
+    padding: .4rem .75rem; border-radius: 5px; cursor: pointer;
+    transition: all .2s; text-transform: uppercase; letter-spacing: .08em;
+  }
+  .lang-btn.active { background: #34A853; color: #fff; }
+  .lang-btn:hover { background: #34A853; color: #fff; }
+
   /* ── TOPBAR ── */
   .topbar {
     background: #15395E;
@@ -71,9 +144,9 @@
     width: 26px; height: 26px; border-radius: 50%;
     background: rgba(255,255,255,.08);
     display: grid; place-items: center; font-size: .72rem;
-    transition: background .2s;
+    transition: all .2s;
   }
-  .topbar-right a:hover { background: #34A853; color: #fff; }
+  .topbar-right a:hover { background: #34A853; color: #fff; transform: scale(1.1); }
 
   /* ── NAV ── */
   nav.main-nav {
@@ -93,7 +166,9 @@
     width: 42px; height: 42px; border-radius: 10px;
     background: #fff; display: grid; place-items: center; overflow: hidden;
     flex-shrink: 0; border: 1px solid #D7EAF7;
+    transition: all .3s;
   }
+  .nav-logo-icon:hover { transform: scale(1.1); }
   .nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; padding: 3px; }
   .nav-brand { font-size: 1.15rem; font-weight: 800; color: #15395E; line-height: 1.1; }
   .nav-brand span { color: #34A853; }
@@ -113,12 +188,45 @@
     background: #1561ad; color: #fff;
     font-size: .82rem; font-weight: 700;
     padding: .6rem 1.4rem; border-radius: 6px;
-    text-decoration: none; transition: background .2s, transform .15s;
+    text-decoration: none; transition: all .2s;
     white-space: nowrap;
   }
-  .nav-cta:hover { background: #134F8C; transform: translateY(-1px); }
+  .nav-cta:hover { background: #134F8C; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(21,86,173,.3); }
   .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: .3rem; }
   .burger span { width: 24px; height: 2px; background: #15395E; border-radius: 2px; display: block; transition: .3s; }
+
+  /* ── LOGO SECTION ── */
+  .logo-section {
+    background: linear-gradient(135deg, #f2f7f3 0%, #fff 100%);
+    padding: 3rem 2rem;
+    border-bottom: 1px solid #D7EAF7;
+  }
+  .logo-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+  .logo-box {
+    flex: 0 0 200px; height: 200px;
+    background: #fff; border: 2px dashed #D7EAF7;
+    border-radius: 16px; display: grid; place-items: center;
+    transition: all .3s; cursor: pointer;
+    position: relative; overflow: hidden;
+  }
+  .logo-box:hover { border-color: #34A853; box-shadow: 0 8px 24px rgba(52,168,83,.15); }
+  .logo-box img { max-width: 90%; max-height: 90%; object-fit: contain; animation: fadeUp .6s ease-out; }
+  .logo-placeholder {
+    text-align: center; color: #8FB8DC;
+    display: flex; flex-direction: column; gap: .5rem; align-items: center;
+  }
+  .logo-placeholder .material-symbols-outlined { font-size: 2.5rem; opacity: .5; }
+  .logo-info h2 { font-size: 1.8rem; font-weight: 800; color: #15395E; margin-bottom: 1rem; }
+  .logo-info p { font-size: .95rem; color: #2E5475; line-height: 1.7; margin-bottom: 1rem; }
+  .logo-upload { display: inline-block; }
+  .logo-upload input { display: none; }
+  .logo-upload-btn {
+    background: #34A853; color: #fff;
+    padding: .7rem 1.4rem; border-radius: 6px; cursor: pointer;
+    font-weight: 700; font-size: .85rem; transition: all .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .logo-upload-btn:hover { background: #1C9F52; transform: translateY(-2px); }
 
   /* ── HERO ── */
   .hero {
@@ -129,6 +237,14 @@
     display: flex; align-items: center;
     padding: 5rem 2rem; position: relative; overflow: hidden;
   }
+  .hero::before {
+    content: '';
+    position: absolute; left: -20%; top: -20%;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.1) 0%, transparent 70%);
+    animation: rotate-slow 20s linear infinite;
+  }
   .hero::after {
     content: '';
     position: absolute; right: -10%; top: 50%;
@@ -136,9 +252,9 @@
     width: 50vw; height: 50vw; max-width: 700px; max-height: 700px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(52,168,83,.2) 0%, transparent 70%);
-    pointer-events: none;
+    pointer-events: none; animation: pulse-soft 3s ease-in-out infinite;
   }
-  .hero-content { max-width: 680px; position: relative; z-index: 1; animation: fadeUp .8s ease both; }
+  .hero-content { max-width: 680px; position: relative; z-index: 1; animation: floatUp .8s ease both; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: .5rem;
     background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
@@ -146,7 +262,7 @@
     text-transform: uppercase; padding: .3rem .85rem; border-radius: 20px;
     margin-bottom: 1.4rem;
   }
-  .hero-badge::before { content: '●'; font-size: .45rem; color: #6FE6A0; }
+  .hero-badge::before { content: '●'; font-size: .45rem; color: #6FE6A0; animation: pulse-soft 1.5s ease-in-out infinite; }
   .hero h1 {
     font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1;
     color: #fff; margin-bottom: 1.3rem;
@@ -162,26 +278,28 @@
     font-size: .88rem; font-weight: 700;
     padding: .9rem 2rem; border-radius: 7px; text-decoration: none;
     box-shadow: 0 4px 20px rgba(52,168,83,.4);
-    transition: transform .2s, box-shadow .2s; display: inline-flex; align-items: center; gap: .5rem;
+    transition: all .2s; display: inline-flex; align-items: center; gap: .5rem;
   }
-  .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(52,168,83,.5); }
+  .btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(52,168,83,.6); }
   .btn-hero-outline {
     border: 1.5px solid rgba(255,255,255,.5); color: #fff;
     font-size: .88rem; font-weight: 600;
     padding: .9rem 2rem; border-radius: 7px; text-decoration: none;
-    transition: border-color .2s, background .2s;
+    transition: all .2s;
   }
-  .btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,.12); }
+  .btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,.12); transform: translateY(-2px); }
   .hero-stats {
     position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
     display: flex; flex-direction: column; gap: 1rem; z-index: 1;
-    animation: fadeLeft .8s .3s ease both;
+    animation: slideInRight .8s .3s ease both;
   }
   .stat-card {
     background: rgba(255,255,255,.16); backdrop-filter: blur(16px);
     border: 1px solid rgba(255,255,255,.25); border-radius: 14px;
     padding: 1.1rem 1.4rem; text-align: center; min-width: 138px;
+    transition: all .3s; cursor: pointer;
   }
+  .stat-card:hover { background: rgba(255,255,255,.25); transform: translateY(-4px); }
   .stat-card strong {
     display: block; font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1;
     margin-bottom: .3rem;
@@ -210,27 +328,39 @@
     background: #fff; border-radius: 16px;
     padding: 2.5rem; border-left: 4px solid #34A853;
     box-shadow: 0 4px 24px rgba(52,168,83,.1);
-    transition: transform .25s, box-shadow .25s;
+    transition: all .25s;
+    animation: floatUp 0.6s ease-out backwards;
   }
-  .mv-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(52,168,83,.16); }
+  .mv-card:nth-child(1) { animation-delay: 0.1s; }
+  .mv-card:nth-child(2) { animation-delay: 0.2s; }
+  .mv-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(52,168,83,.2); border-left-color: #1C9F52; }
   .mv-card-icon {
     width: 48px; height: 48px; border-radius: 12px;
     background: #EAF8EF; display: grid; place-items: center;
     color: #34A853; margin-bottom: 1.2rem;
+    transition: all .3s;
   }
+  .mv-card:hover .mv-card-icon { transform: scale(1.15) rotate(-10deg); background: #34A853; color: #fff; }
   .mv-card h2 { font-size: 1.4rem; font-weight: 800; color: #15395E; margin-bottom: .7rem; }
   .mv-card p { font-size: .93rem; line-height: 1.75; color: #2E5475; }
 
   /* ── PRODUCTS ── */
   #products { background: #fff; }
-  .products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap; }
   .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .product-card {
     background: #f2f7f3; border-radius: 16px;
     border: 1px solid #D7EAF7;
-    overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s;
+    overflow: hidden; transition: all .3s;
+    animation: floatUp 0.6s ease-out backwards;
   }
-  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(52,168,83,.14); border-color: #34A853; }
+  .product-card:nth-child(1) { animation-delay: 0.05s; }
+  .product-card:nth-child(2) { animation-delay: 0.1s; }
+  .product-card:nth-child(3) { animation-delay: 0.15s; }
+  .product-card:nth-child(4) { animation-delay: 0.2s; }
+  .product-card:nth-child(5) { animation-delay: 0.25s; }
+  .product-card:nth-child(6) { animation-delay: 0.3s; }
+  .product-card:nth-child(7) { animation-delay: 0.35s; }
+  .product-card:hover { transform: translateY(-12px); box-shadow: 0 24px 56px rgba(52,168,83,.16); border-color: #34A853; }
 
   .product-media {
     width: 100%; aspect-ratio: 16/9;
@@ -255,59 +385,83 @@
     background: #fff; border: 1px solid #D7EAF7;
     font-size: .72rem; font-weight: 700; color: #2E5475;
     padding: .25rem .6rem; border-radius: 5px;
-    transition: background .2s, border-color .2s, color .2s;
+    transition: all .2s;
   }
   .product-tag:hover { background: #34A853; color: #fff; border-color: #34A853; }
-  .product-tags-label { font-size: .68rem; font-weight: 700; color: #34A853; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; width: 100%; }
 
-  /* ── RESULTS ── */
-  #results { background: #f2f7f3; }
-  .results-intro { text-align: center; margin-bottom: 3.5rem; }
-  .results-divider { width: 56px; height: 3px; background: #34A853; margin: 1.2rem auto 0; border-radius: 2px; }
-  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .result-card {
-    background: #fff; border-radius: 16px;
-    border: 1px solid #D7EAF7; overflow: hidden;
-    box-shadow: 0 4px 20px rgba(21,57,94,.06);
-    display: flex; flex-direction: column;
-    transition: transform .3s, box-shadow .3s;
+  /* ── VIDEO RESULTS SECTION ── */
+  #video-results { background: #f2f7f3; }
+  .video-tabs { display: flex; gap: .8rem; margin-bottom: 2.5rem; flex-wrap: wrap; border-bottom: 2px solid #D7EAF7; padding-bottom: 1rem; }
+  .video-tab {
+    background: transparent; border: 2px solid #D7EAF7; color: #2E5475;
+    font-size: .82rem; font-weight: 700; padding: .6rem 1.2rem; border-radius: 6px;
+    cursor: pointer; transition: all .25s;
   }
-  .result-card:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(21,86,173,.14); }
+  .video-tab.active { background: #34A853; color: #fff; border-color: #34A853; }
+  .video-tab:hover:not(.active) { border-color: #34A853; color: #34A853; }
 
-  .result-media {
+  .video-section { display: none; }
+  .video-section.active { display: block; animation: floatUp .4s ease; }
+  
+  .subsection-title { font-size: 1.15rem; font-weight: 700; color: #15395E; margin: 2rem 0 1.5rem 0; }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+  
+  .video-card {
+    background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 16px rgba(21,57,94,.08);
+    transition: all .3s;
+    animation: floatUp 0.6s ease-out backwards;
+  }
+  .video-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(52,168,83,.18); }
+  
+  .video-placeholder {
     width: 100%; aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #EAF4FC 0%, #D2EAFB 100%);
-    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);
     display: flex; align-items: center; justify-content: center;
+    position: relative; cursor: pointer; overflow: hidden;
   }
-  .result-media video,
-  .result-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .result-media .media-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: .4rem;
-    color: #3E8FC4; font-size: .72rem; font-weight: 600; letter-spacing: .06em;
-    text-transform: uppercase;
+  .play-icon {
+    width: 60px; height: 60px;
+    background: rgba(52,168,83,.9); border-radius: 50%;
+    display: grid; place-items: center;
+    color: #fff; z-index: 2;
+    transition: all .3s;
   }
-  .result-media .media-placeholder .material-symbols-outlined { font-size: 2.2rem; opacity: .5; }
-
-  .result-body { padding: 1.5rem 1.6rem; flex-grow: 1; }
-  .result-body h4 { font-size: 1.1rem; font-weight: 800; color: #15395E; margin-bottom: 1rem; }
-  .result-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
-  .result-list li { display: flex; align-items: center; gap: .6rem; font-size: .85rem; color: #2E5475; }
-  .result-list li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #34A853; flex-shrink: 0; }
-  .result-body p { font-size: .85rem; line-height: 1.65; color: #2E5475; }
-  .result-link { display: inline-flex; align-items: center; gap: .3rem; margin-top: 1rem; font-size: .82rem; font-weight: 700; color: #34A853; text-decoration: none; transition: color .2s; }
-  .result-link:hover { color: #1561ad; }
+  .video-placeholder:hover .play-icon { background: #34A853; transform: scale(1.2); }
+  
+  .video-card-body { padding: 1.2rem; }
+  .video-card h4 { font-size: .95rem; font-weight: 700; color: #15395E; margin-bottom: .5rem; }
+  .video-card p { font-size: .8rem; color: #2E5475; line-height: 1.5; }
 
   /* ── STATS BAR ── */
   .stats-bar {
     background: #15395E; padding: 3rem 2rem;
+    position: relative; overflow: hidden;
   }
-  .stats-bar-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
-  .stat-item { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 1.8rem 1.2rem; text-align: center; transition: background .25s; }
-  .stat-item:hover { background: rgba(52,168,83,.18); }
-  .stat-item .icon { font-size: 1.8rem; margin-bottom: .6rem; color: #6FE6A0; }
+  .stats-bar::before {
+    content: '';
+    position: absolute; top: -50%; left: -10%;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52,168,83,.1) 0%, transparent 70%);
+    animation: rotate-slow 30s linear infinite;
+  }
+  .stats-bar-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; position: relative; z-index: 1; }
+  .stat-item { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 1.8rem 1.2rem; text-align: center; transition: all .25s; }
+  .stat-item:hover { background: rgba(52,168,83,.18); transform: translateY(-4px); }
+  .stat-item .icon { font-size: 1.8rem; margin-bottom: .6rem; color: #6FE6A0; animation: pulse-soft 2s ease-in-out infinite; }
   .stat-item strong { display: block; font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: .3rem; }
   .stat-item span { font-size: .78rem; color: rgba(255,255,255,.75); line-height: 1.4; display: block; }
+
+  /* ── MAP SECTION ── */
+  #map-section { background: #fff; }
+  .map-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-top: 2rem; }
+  #map { height: 450px; border-radius: 16px; box-shadow: 0 12px 48px rgba(21,57,94,.16); }
+  .map-info h3 { font-size: 1.3rem; font-weight: 800; color: #15395E; margin-bottom: 1.2rem; }
+  .map-info p { font-size: .95rem; color: #2E5475; line-height: 1.8; margin-bottom: 1.5rem; }
+  .map-features { list-style: none; }
+  .map-features li { display: flex; align-items: center; gap: .8rem; font-size: .9rem; color: #2E5475; margin-bottom: .8rem; }
+  .map-features li::before { content: '✓'; color: #34A853; font-weight: 800; font-size: 1.2rem; }
 
   /* ── CONTACT ── */
   #contact { background: #fff; }
@@ -322,6 +476,7 @@
     content: ''; position: absolute; top: -60px; right: -60px;
     width: 280px; height: 280px; border-radius: 50%;
     background: rgba(255,255,255,.08); pointer-events: none;
+    animation: rotate-slow 20s linear infinite;
   }
   .contact-box::after {
     content: ''; position: absolute; bottom: -40px; left: -40px;
@@ -332,11 +487,15 @@
   .contact-info h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 1rem; line-height: 1.15; }
   .contact-info p { font-size: .97rem; color: rgba(255,255,255,.88); line-height: 1.7; margin-bottom: 2rem; }
   .contact-details { display: flex; flex-direction: column; gap: 1.1rem; }
-  .contact-detail { display: flex; align-items: flex-start; gap: 1rem; }
-  .contact-detail-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,.18); display: grid; place-items: center; flex-shrink: 0; color: #fff; }
+  .contact-detail { display: flex; align-items: flex-start; gap: 1rem; animation: slideInLeft 0.6s ease-out backwards; }
+  .contact-detail:nth-child(1) { animation-delay: 0.1s; }
+  .contact-detail:nth-child(2) { animation-delay: 0.2s; }
+  .contact-detail:nth-child(3) { animation-delay: 0.3s; }
+  .contact-detail-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,.18); display: grid; place-items: center; flex-shrink: 0; color: #fff; transition: all .3s; }
+  .contact-detail:hover .contact-detail-icon { background: rgba(255,255,255,.3); transform: scale(1.1); }
   .contact-detail-text h5 { font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.75); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .15rem; }
   .contact-detail-text p, .contact-detail-text a { font-size: .93rem; color: #fff; text-decoration: none; }
-  .contact-form-wrap { background: #fff; border-radius: 16px; padding: 2.2rem; box-shadow: 0 8px 40px rgba(21,57,94,.18); position: relative; z-index: 1; }
+  .contact-form-wrap { background: #fff; border-radius: 16px; padding: 2.2rem; box-shadow: 0 8px 40px rgba(21,57,94,.18); position: relative; z-index: 1; animation: slideInRight 0.8s ease-out; }
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; margin-bottom: .85rem; }
   .form-group { display: flex; flex-direction: column; gap: .35rem; }
   .form-group label { font-size: .7rem; font-weight: 700; color: #2E5475; text-transform: uppercase; letter-spacing: .08em; }
@@ -345,7 +504,7 @@
     width: 100%; border: 1.5px solid #D7EAF7; border-radius: 7px;
     padding: .65rem .85rem; font-family: 'Montserrat', sans-serif;
     font-size: .88rem; color: #15395E; background: #F7FBF9;
-    transition: border-color .2s, box-shadow .2s; outline: none;
+    transition: all .2s; outline: none;
   }
   .form-group input:focus,
   .form-group textarea:focus { border-color: #34A853; box-shadow: 0 0 0 3px rgba(52,168,83,.12); }
@@ -354,9 +513,18 @@
     width: 100%; background: #1561ad; color: #fff;
     font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 700;
     padding: .9rem; border: none; border-radius: 7px; cursor: pointer;
-    margin-top: .5rem; transition: background .2s, transform .15s; grid-column: 1 / -1;
+    margin-top: .5rem; transition: all .2s; grid-column: 1 / -1;
   }
-  .form-submit:hover { background: #134F8C; transform: translateY(-1px); }
+  .form-submit:hover { background: #134F8C; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(21,86,173,.3); }
+  .form-submit:disabled { background: #ccc; cursor: not-allowed; }
+  
+  .form-status {
+    padding: 1rem; border-radius: 7px; margin-top: 1rem; text-align: center; font-weight: 700; grid-column: 1 / -1;
+    display: none;
+  }
+  .form-status.show { display: block; animation: floatUp 0.4s ease-out; }
+  .form-status.success { background: #EAF8EF; color: #1C9F52; }
+  .form-status.error { background: #FFE8E8; color: #C91919; }
 
   /* ── FOOTER ── */
   footer { background: #15395E; padding: 4rem 2rem 2rem; }
@@ -365,8 +533,8 @@
   .footer-brand span { color: #6FE6A0; }
   .footer-desc { font-size: .85rem; line-height: 1.7; color: rgba(255,255,255,.65); margin-bottom: 1.2rem; }
   .footer-socials { display: flex; gap: .6rem; }
-  .footer-social { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.08); display: grid; place-items: center; color: rgba(255,255,255,.75); text-decoration: none; font-size: .8rem; transition: background .2s, color .2s; }
-  .footer-social:hover { background: #34A853; color: #fff; }
+  .footer-social { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.08); display: grid; place-items: center; color: rgba(255,255,255,.75); text-decoration: none; font-size: .8rem; transition: all .2s; }
+  .footer-social:hover { background: #34A853; color: #fff; transform: translateY(-4px); }
   footer h4 { font-size: .8rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
   footer ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
   footer ul li a { font-size: .85rem; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
@@ -384,27 +552,27 @@
     width: 54px; height: 54px; border-radius: 50%;
     background: #25D366; display: grid; place-items: center;
     box-shadow: 0 4px 20px rgba(37,211,102,.55);
-    transition: transform .2s, box-shadow .2s; text-decoration: none;
+    transition: all .2s; text-decoration: none;
+    animation: bounce-subtle 2s ease-in-out infinite;
   }
-  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,.65); }
+  .wa-float:hover { transform: scale(1.2); box-shadow: 0 12px 36px rgba(37,211,102,.75); }
   .wa-float svg { width: 28px; height: 28px; fill: #fff; }
-
-  /* ── REVEAL ANIMATIONS ── */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @keyframes fadeUp   { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes fadeLeft { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
 
   /* ── RESPONSIVE ── */
   @media(max-width: 1024px) {
+    .lang-switcher { top: 80px; right: 1rem; }
     .hero-stats { display: none; }
-    .products-grid, .results-grid { grid-template-columns: 1fr 1fr; }
-    .stats-bar-inner { grid-template-columns: 1fr !important; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .map-container { grid-template-columns: 1fr; }
     .contact-box { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
   @media(max-width: 768px) {
-    .mv-grid, .products-grid, .results-grid { grid-template-columns: 1fr; }
+    .lang-switcher { top: 70px; right: .8rem; gap: .2rem; }
+    .lang-btn { padding: .35rem .6rem; font-size: .65rem; }
+    .logo-container { flex-direction: column; }
+    .logo-box { flex: 1; min-width: 150px; width: 100%; }
+    .mv-grid, .products-grid { grid-template-columns: 1fr; }
     nav .nav-links, nav .nav-cta { display: none; }
     .burger { display: flex; }
     nav.open .nav-links {
@@ -422,16 +590,26 @@
     .topbar { font-size: .72rem; }
     .hero { min-height: 70vh; }
     .section-pad { padding: 3rem 2rem; }
+    .video-grid { grid-template-columns: 1fr; }
+    #map { height: 300px; }
   }
+
+  .leaflet-container { border-radius: 16px; }
 </style>
 </head>
 <body>
 
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-switcher">
+  <button class="lang-btn active" data-lang="es" onclick="changeLanguage('es')">ES</button>
+  <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
+</div>
+
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-left">
-    <span><span class="material-symbols-outlined">mail</span>ecofluidsystemec@gmail.com</span>
-    <span><span class="material-symbols-outlined">call</span>+593 96-320-0034</span>
+    <span><span class="material-symbols-outlined">mail</span><span data-i18n="topbar-email">ecofluidsystemec@gmail.com</span></span>
+    <span><span class="material-symbols-outlined">call</span><span data-i18n="topbar-phone">+593 96-320-0034</span></span>
   </div>
   <div class="topbar-right">
     <a href="https://instagram.com/ecofluidsystem" target="_blank" aria-label="Instagram">IG</a>
@@ -444,60 +622,72 @@
   <div class="nav-inner">
     <a class="nav-logo" href="#hero">
       <div class="nav-logo-icon">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#34A853;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#1561ad;stop-opacity:1" />
-            </linearGradient>
-          </defs>
-          <circle cx="50" cy="50" r="45" fill="url(#logoGrad)" opacity="0.1"/>
-          <path d="M50 25 L65 40 L60 60 L50 70 L40 60 L35 40 Z" fill="url(#logoGrad)"/>
-          <circle cx="50" cy="50" r="8" fill="url(#logoGrad)"/>
-        </svg>
+        <img id="nav-logo-img" alt="EcoFluidSystem" src="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='logoGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2334A853;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%231561ad;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23logoGrad)' opacity='0.1'/%3E%3Cpath d='M50 25 L65 40 L60 60 L50 70 L40 60 L35 40 Z' fill='url(%23logoGrad)'/%3E%3Ccircle cx='50' cy='50' r='8' fill='url(%23logoGrad)'/%3E%3C/svg%3E">
       </div>
       <div class="nav-brand">Eco<span>Fluid</span></div>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Inicio</a></li>
-      <li><a href="#mission">Quiénes Somos</a></li>
-      <li><a href="#products">Productos</a></li>
-      <li><a href="#results">Soluciones</a></li>
-      <li><a href="#contact">Contacto</a></li>
+      <li><a href="#hero" data-i18n="nav-home">Inicio</a></li>
+      <li><a href="#logo" data-i18n="nav-logo">Logo</a></li>
+      <li><a href="#mission" data-i18n="nav-about">Quiénes Somos</a></li>
+      <li><a href="#products" data-i18n="nav-products">Productos</a></li>
+      <li><a href="#video-results" data-i18n="nav-results">Resultados</a></li>
+      <li><a href="#map-section" data-i18n="nav-map">Ubicación</a></li>
+      <li><a href="#contact" data-i18n="nav-contact">Contacto</a></li>
     </ul>
-    <a class="nav-cta" href="https://wa.me/593963200034" target="_blank">Cotizar Ahora</a>
+    <a class="nav-cta" href="#contact" data-i18n="nav-quote">Cotizar Ahora</a>
     <button class="burger" id="burger" onclick="document.getElementById('navbar').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
+<!-- LOGO SECTION -->
+<section id="logo" class="logo-section">
+  <div class="logo-container animate-float">
+    <div class="logo-box">
+      <div id="logo-display" class="logo-placeholder">
+        <span class="material-symbols-outlined">image</span>
+        <span data-i18n="logo-placeholder">Logo EcoFluidSystem</span>
+      </div>
+      <img id="logo-preview" src="" alt="Logo" style="display:none;">
+    </div>
+    <div class="logo-info">
+      <h2 data-i18n="logo-title">Tu Logo Aquí</h2>
+      <p data-i18n="logo-desc">Sube tu logo de EcoFluidSystem para personalizarlo en la navegación y en toda la página. Acepta PNG, JPG o SVG.</p>
+      <label class="logo-upload">
+        <input type="file" id="logo-input" accept="image/*" onchange="handleLogoUpload(event)">
+        <span class="logo-upload-btn">
+          <span class="material-symbols-outlined">upload</span>
+          <span data-i18n="logo-upload-btn">Subir Logo</span>
+        </span>
+      </label>
+    </div>
+  </div>
+</section>
+
 <!-- HERO -->
 <section id="hero" class="hero">
   <div class="hero-content">
-    <div class="hero-badge">Soluciones Ambientales</div>
-    <h1>Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</h1>
-    <p>Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación.</p>
+    <div class="hero-badge" data-i18n="hero-badge">Soluciones Ambientales</div>
+    <h1><span data-i18n="hero-h1">Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</span></h1>
+    <p data-i18n="hero-desc">Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación.</p>
     <div class="hero-btns">
       <a class="btn-hero-primary" href="#contact">
         <span class="material-symbols-outlined">arrow_forward</span>
-        Solicitar Demo
+        <span data-i18n="hero-btn-demo">Solicitar Demo</span>
       </a>
-      <a class="btn-hero-outline" href="#products">Conocer Productos</a>
+      <a class="btn-hero-outline" href="#products" data-i18n="hero-btn-products">Conocer Productos</a>
     </div>
   </div>
   <div class="hero-stats">
     <div class="stat-card">
-      <strong>500+</strong>
-      <span>Proyectos Completados</span>
+      <strong>30+</strong>
+      <span data-i18n="hero-stat-years">Años de Experiencia</span>
     </div>
     <div class="stat-card">
-      <strong>15+</strong>
-      <span>Años de Experiencia</span>
-    </div>
-    <div class="stat-card">
-      <strong>98%</strong>
-      <span>Eficiencia Comprobada</span>
+      <strong>100%</strong>
+      <span data-i18n="hero-stat-advisory">Asesoramiento Técnico</span>
     </div>
   </div>
 </section>
@@ -506,24 +696,24 @@
 <section id="mission" class="section-pad">
   <div class="container">
     <div style="margin-bottom: 3rem;">
-      <p class="section-eyebrow">Nuestra Identidad</p>
-      <h2 class="section-title">Quiénes Somos</h2>
-      <p class="section-sub">EcoFluidSystem es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.</p>
+      <p class="section-eyebrow" data-i18n="mission-eyebrow">Nuestra Identidad</p>
+      <h2 class="section-title" data-i18n="mission-title">Quiénes Somos</h2>
+      <p class="section-sub" data-i18n="mission-desc">EcoFluidSystem es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.</p>
     </div>
     <div class="mv-grid">
       <div class="mv-card">
         <div class="mv-card-icon">
           <span class="material-symbols-outlined">target</span>
         </div>
-        <h2>Nuestra Misión</h2>
-        <p>Proporcionar soluciones tecnológicas eficientes y sostenibles para el tratamiento de aguas residuales, contribuyendo a la protección del medio ambiente y al desarrollo responsable de la industria ecuatoriana.</p>
+        <h2 data-i18n="mission-heading">Nuestra Misión</h2>
+        <p data-i18n="mission-text">Proporcionar soluciones tecnológicas eficientes y sostenibles para el tratamiento de aguas residuales, contribuyendo a la protección del medio ambiente y al desarrollo responsable de la industria ecuatoriana.</p>
       </div>
       <div class="mv-card">
         <div class="mv-card-icon">
           <span class="material-symbols-outlined">visibility</span>
         </div>
-        <h2>Nuestra Visión</h2>
-        <p>Ser el proveedor líder de tecnología ambiental en Latinoamérica, reconocido por la calidad de nuestros sistemas, la excelencia en el servicio y nuestro compromiso con la sostenibilidad.</p>
+        <h2 data-i18n="vision-heading">Nuestra Visión</h2>
+        <p data-i18n="vision-text">Ser el proveedor líder de tecnología ambiental en Latinoamérica, reconocido por la calidad de nuestros sistemas, la excelencia en el servicio y nuestro compromiso con la sostenibilidad.</p>
       </div>
     </div>
   </div>
@@ -532,28 +722,26 @@
 <!-- PRODUCTS - FLOCULANTES -->
 <section id="products" class="section-pad">
   <div class="container">
-    <div class="products-header">
-      <div>
-        <p class="section-eyebrow">Catálogo Completo</p>
-        <h2 class="section-title">Productos Floculantes</h2>
-        <p class="section-sub">7 soluciones especializadas para diferentes aplicaciones industriales y ambientales.</p>
-      </div>
+    <div style="margin-bottom: 3rem;">
+      <p class="section-eyebrow" data-i18n="products-eyebrow">Catálogo Completo</p>
+      <h2 class="section-title" data-i18n="products-title">Productos Floculantes</h2>
+      <p class="section-sub" data-i18n="products-desc">7 soluciones especializadas para diferentes aplicaciones industriales y ambientales.</p>
     </div>
     <div class="products-grid">
       <div class="product-card">
         <div class="product-media">
           <div class="media-placeholder">
             <span class="material-symbols-outlined">water_drop</span>
-            Floculante Aniónico
+            <span data-i18n="prod-1-label">Floculante Aniónico</span>
           </div>
         </div>
         <div class="product-body">
-          <h3>FL-100 Aniónico</h3>
-          <p>Floculante de alto rendimiento para aguas con sólidos suspendidos finos. Ideal para minería y plantas de tratamiento.</p>
+          <h3 data-i18n="prod-1-name">FL-100 Aniónico</h3>
+          <p data-i18n="prod-1-desc">Floculante de alto rendimiento para aguas con sólidos suspendidos finos. Ideal para minería y plantas de tratamiento.</p>
           <div class="product-tags">
-            <span class="product-tags-label">Características</span>
-            <span class="product-tag">Alta Densidad</span>
-            <span class="product-tag">Rápida Sedimentación</span>
+            <span class="product-tags-label" data-i18n="prod-features">Características</span>
+            <span class="product-tag" data-i18n="prod-1-feat1">Alta Densidad</span>
+            <span class="product-tag" data-i18n="prod-1-feat2">Rápida Sedimentación</span>
           </div>
         </div>
       </div>
@@ -562,16 +750,16 @@
         <div class="product-media">
           <div class="media-placeholder">
             <span class="material-symbols-outlined">water_drop</span>
-            Floculante Catiónico
+            <span data-i18n="prod-2-label">Floculante Catiónico</span>
           </div>
         </div>
         <div class="product-body">
-          <h3>FL-200 Catiónico</h3>
-          <p>Especializado en aguas ácidas y procesos de potabilización. Excelente para neutralización de pH.</p>
+          <h3 data-i18n="prod-2-name">FL-200 Catiónico</h3>
+          <p data-i18n="prod-2-desc">Especializado en aguas ácidas y procesos de potabilización. Excelente para neutralización de pH.</p>
           <div class="product-tags">
-            <span class="product-tags-label">Características</span>
-            <span class="product-tag">Neutralización pH</span>
-            <span class="product-tag">Larga Vida Útil</span>
+            <span class="product-tags-label" data-i18n="prod-features">Características</span>
+            <span class="product-tag" data-i18n="prod-2-feat1">Neutralización pH</span>
+            <span class="product-tag" data-i18n="prod-2-feat2">Larga Vida Útil</span>
           </div>
         </div>
       </div>
@@ -580,16 +768,16 @@
         <div class="product-media">
           <div class="media-placeholder">
             <span class="material-symbols-outlined">water_drop</span>
-            Floculante Neutro
+            <span data-i18n="prod-3-label">Floculante Neutro</span>
           </div>
         </div>
         <div class="product-body">
-          <h3>FL-300 Neutro</h3>
-          <p>Solución universal para múltiples aplicaciones. Compatible con diversos tipos de aguas industriales.</p>
+          <h3 data-i18n="prod-3-name">FL-300 Neutro</h3>
+          <p data-i18n="prod-3-desc">Solución universal para múltiples aplicaciones. Compatible con diversos tipos de aguas industriales.</p>
           <div class="product-tags">
-            <span class="product-tags-label">Características</span>
-            <span class="product-tag">Multifuncional</span>
-            <span class="product-tag">Eco-Amigable</span>
+            <span class="product-tags-label" data-i18n="prod-features">Características</span>
+            <span class="product-tag" data-i18n="prod-3-feat1">Multifuncional</span>
+            <span class="product-tag" data-i18n="prod-3-feat2">Eco-Amigable</span>
           </div>
         </div>
       </div>
@@ -598,16 +786,16 @@
         <div class="product-media">
           <div class="media-placeholder">
             <span class="material-symbols-outlined">water_drop</span>
-            Floculante Premium
+            <span data-i18n="prod-4-label">Floculante Premium</span>
           </div>
         </div>
         <div class="product-body">
-          <h3>FL-400 Premium</h3>
-          <p>Formulación avanzada para aplicaciones críticas. Máxima eficiencia de coagulación y clarificación.</p>
+          <h3 data-i18n="prod-4-name">FL-400 Premium</h3>
+          <p data-i18n="prod-4-desc">Formulación avanzada para aplicaciones críticas. Máxima eficiencia de coagulación y clarificación.</p>
           <div class="product-tags">
-            <span class="product-tags-label">Características</span>
-            <span class="product-tag">Máxima Eficiencia</span>
-            <span class="product-tag">Bajo Costo</span>
+            <span class="product-tags-label" data-i18n="prod-features">Características</span>
+            <span class="product-tag" data-i18n="prod-4-feat1">Máxima Eficiencia</span>
+            <span class="product-tag" data-i18n="prod-4-feat2">Bajo Costo</span>
           </div>
         </div>
       </div>
@@ -616,16 +804,16 @@
         <div class="product-media">
           <div class="media-placeholder">
             <span class="material-symbols-outlined">water_drop</span>
-            Floculante Minería
+            <span data-i18n="prod-5-label">Floculante Minería</span>
           </div>
         </div>
         <div class="product-body">
-          <h3>FL-500 Minería</h3>
-          <p>Diseñado específicamente para operaciones mineras. Maneja altos volúmenes de relaves con eficiencia.</p>
+          <h3 data-i18n="prod-5-name">FL-500 Minería</h3>
+          <p data-i18n="prod-5-desc">Diseñado específicamente para operaciones mineras. Maneja altos volúmenes de relaves con eficiencia.</p>
           <div class="product-tags">
-            <span class="product-tags-label">Características</span>
-            <span class="product-tag">Alto Volumen</span>
-            <span class="product-tag">Certificado</span>
+            <span class="product-tags-label" data-i18n="prod-features">Características</span>
+            <span class="product-tag" data-i18n="prod-5-feat1">Alto Volumen</span>
+            <span class="product-tag" data-i18n="prod-5-feat2">Certificado</span>
           </div>
         </div>
       </div>
@@ -634,16 +822,16 @@
         <div class="product-media">
           <div class="media-placeholder">
             <span class="material-symbols-outlined">water_drop</span>
-            Floculante Industrial
+            <span data-i18n="prod-6-label">Floculante Industrial</span>
           </div>
         </div>
         <div class="product-body">
-          <h3>FL-600 Industrial</h3>
-          <p>Para plantas de tratamiento de aguas residuales. Excelente clarificación y reducción de turbidez.</p>
+          <h3 data-i18n="prod-6-name">FL-600 Industrial</h3>
+          <p data-i18n="prod-6-desc">Para plantas de tratamiento de aguas residuales. Excelente clarificación y reducción de turbidez.</p>
           <div class="product-tags">
-            <span class="product-tags-label">Características</span>
-            <span class="product-tag">Clarificación</span>
-            <span class="product-tag">Económico</span>
+            <span class="product-tags-label" data-i18n="prod-features">Características</span>
+            <span class="product-tag" data-i18n="prod-6-feat1">Clarificación</span>
+            <span class="product-tag" data-i18n="prod-6-feat2">Económico</span>
           </div>
         </div>
       </div>
@@ -652,16 +840,16 @@
         <div class="product-media">
           <div class="media-placeholder">
             <span class="material-symbols-outlined">water_drop</span>
-            Floculante Potabilización
+            <span data-i18n="prod-7-label">Floculante Potabilización</span>
           </div>
         </div>
         <div class="product-body">
-          <h3>FL-700 Potabilización</h3>
-          <p>Especialmente formulado para agua de consumo humano. Cumple normas internacionales de potabilidad.</p>
+          <h3 data-i18n="prod-7-name">FL-700 Potabilización</h3>
+          <p data-i18n="prod-7-desc">Especialmente formulado para agua de consumo humano. Cumple normas internacionales de potabilidad.</p>
           <div class="product-tags">
-            <span class="product-tags-label">Características</span>
-            <span class="product-tag">Potable</span>
-            <span class="product-tag">Seguro</span>
+            <span class="product-tags-label" data-i18n="prod-features">Características</span>
+            <span class="product-tag" data-i18n="prod-7-feat1">Potable</span>
+            <span class="product-tag" data-i18n="prod-7-feat2">Seguro</span>
           </div>
         </div>
       </div>
@@ -669,70 +857,205 @@
   </div>
 </section>
 
-<!-- SOLUCIONES - PTAR -->
-<section id="results" class="section-pad">
+<!-- VIDEO RESULTS SECTION -->
+<section id="video-results" class="section-pad">
   <div class="container">
-    <div class="results-intro">
-      <p class="section-eyebrow">Sistemas Completos</p>
-      <h2 class="section-title">Plantas de Tratamiento (PTAR)</h2>
-      <div class="results-divider"></div>
-      <p class="section-sub" style="margin: 1.5rem auto 0;">Soluciones integradas para tratamiento de aguas residuales y efluentes industriales.</p>
+    <div style="margin-bottom: 2.5rem;">
+      <p class="section-eyebrow" data-i18n="results-eyebrow">Casos de Éxito</p>
+      <h2 class="section-title" data-i18n="results-title">Resultados en Video</h2>
+      <p class="section-sub" data-i18n="results-desc">Visualiza nuestras soluciones en acción en diferentes industrias y aplicaciones.</p>
     </div>
-    <div class="results-grid">
-      <div class="result-card">
-        <div class="result-media">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">engineering</span>
-            PTAR Modular
+
+    <div class="video-tabs">
+      <button class="video-tab active" data-tab="mining" onclick="switchVideoTab(event, 'mining')">
+        <span data-i18n="results-tab-mining">Industria Minera</span>
+      </button>
+      <button class="video-tab" data-tab="ptar" onclick="switchVideoTab(event, 'ptar')">
+        <span data-i18n="results-tab-ptar">Plantas PTAR</span>
+      </button>
+      <button class="video-tab" data-tab="slaughter" onclick="switchVideoTab(event, 'slaughter')">
+        <span data-i18n="results-tab-slaughter">Camales</span>
+      </button>
+    </div>
+
+    <div id="mining" class="video-section active">
+      <h3 class="subsection-title" data-i18n="results-mining-concentrates">Concentrados</h3>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-concentrates-1">Filtración de Concentrados</h4>
+            <p data-i18n="video-concentrates-1-desc">Proceso eficiente de tratamiento de concentrados mineros con nuestro sistema FL-500.</p>
           </div>
         </div>
-        <div class="result-body">
-          <h4>PTAR Modular Compacta</h4>
-          <ul class="result-list">
-            <li>Instalación rápida</li>
-            <li>Bajo consumo energético</li>
-            <li>Mantenimiento simple</li>
-            <li>Escalable según necesidad</li>
-          </ul>
-          <p style="margin-top: 1rem;">Perfecta para pequeños y medianos proyectos con espacio limitado.</p>
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-concentrates-2">Clarificación de Agua</h4>
+            <p data-i18n="video-concentrates-2-desc">Remoción eficaz de sólidos suspendidos en plantas de concentración.</p>
+          </div>
         </div>
       </div>
 
-      <div class="result-card">
-        <div class="result-media">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">engineering</span>
-            PTAR Industrial
+      <h3 class="subsection-title" data-i18n="results-mining-mills">Molinos Chilenos</h3>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-mills-1">Operación Molino Chileno</h4>
+            <p data-i18n="video-mills-1-desc">Sistema de tratamiento integrado para molienda primaria y secundaria.</p>
           </div>
         </div>
-        <div class="result-body">
-          <h4>PTAR Industrial Completa</h4>
-          <ul class="result-list">
-            <li>Capacidad 100-500 m³/día</li>
-            <li>Tratamiento primario y secundario</li>
-            <li>Control automatizado</li>
-            <li>Monitoreo 24/7</li>
-          </ul>
-          <p style="margin-top: 1rem;">Diseñada para operaciones industriales de gran escala con máximo rendimiento.</p>
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-mills-2">Recuperación de Agua</h4>
+            <p data-i18n="video-mills-2-desc">Reciclaje eficiente de agua en circuitos de molienda.</p>
+          </div>
         </div>
       </div>
 
-      <div class="result-card">
-        <div class="result-media">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">engineering</span>
-            PTAR Minería
+      <h3 class="subsection-title" data-i18n="results-mining-leaching">Relaves de Lixiviación</h3>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-leaching-1">Tratamiento de Relaves</h4>
+            <p data-i18n="video-leaching-1-desc">Manejo de relaves de lixiviación con máxima eficiencia y cumplimiento ambiental.</p>
           </div>
         </div>
-        <div class="result-body">
-          <h4>PTAR Especializada Minería</h4>
-          <ul class="result-list">
-            <li>Manejo de relaves</li>
-            <li>Recuperación de agua</li>
-            <li>Cumplimiento ambiental</li>
-            <li>Capacidad 500+ m³/día</li>
-          </ul>
-          <p style="margin-top: 1rem;">Conforme a regulaciones mineras, con máxima eficiencia en reciclaje de agua.</p>
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-leaching-2">Decantación Acelerada</h4>
+            <p data-i18n="video-leaching-2-desc">Tecnología de floculación avanzada para aceleración de sedimentación.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" data-i18n="results-mining-flotation">Relaves de Flotación</h3>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-flotation-1">Sistema de Flotación</h4>
+            <p data-i18n="video-flotation-1-desc">Soluciones especializadas para tratamiento de relaves de flotación.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-flotation-2">Reuso de Agua</h4>
+            <p data-i18n="video-flotation-2-desc">Recuperación y reuso de agua en procesos de flotación.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ptar" class="video-section">
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-ptar-1">PTAR Industrial</h4>
+            <p data-i18n="video-ptar-1-desc">Planta completa de tratamiento de aguas residuales industriales en funcionamiento.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-ptar-2">Proceso de Clarificación</h4>
+            <p data-i18n="video-ptar-2-desc">Demostración del proceso de coagulación y clarificación en tiempo real.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-ptar-3">Monitoreo Automatizado</h4>
+            <p data-i18n="video-ptar-3-desc">Sistema de control automático y monitoreo 24/7 de parámetros de calidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slaughter" class="video-section">
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-camal-1">Tratamiento en Camales</h4>
+            <p data-i18n="video-camal-1-desc">Solución completa para tratamiento de efluentes en plantas de sacrificio.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-camal-2">Separación de Sólidos</h4>
+            <p data-i18n="video-camal-2-desc">Remoción eficiente de materia orgánica y sólidos gruesos.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="play-icon">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+          </div>
+          <div class="video-card-body">
+            <h4 data-i18n="video-camal-3">Control de Olores</h4>
+            <p data-i18n="video-camal-3-desc">Sistema integral de tratamiento y control de contaminantes químicos.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -741,20 +1064,45 @@
 
 <!-- STATS BAR -->
 <section class="stats-bar">
-  <div class="stats-bar-inner" style="grid-template-columns: 1fr 1fr;">
+  <div class="stats-bar-inner">
     <div class="stat-item">
       <div class="icon">
         <span class="material-symbols-outlined">eco</span>
       </div>
       <strong>30+</strong>
-      <span>Años de Experiencia</span>
+      <span data-i18n="stats-experience">Años de Experiencia</span>
     </div>
     <div class="stat-item">
       <div class="icon">
         <span class="material-symbols-outlined">engineering</span>
       </div>
       <strong>100%</strong>
-      <span>Asesoramiento Técnico Integral</span>
+      <span data-i18n="stats-advisory">Asesoramiento Técnico Integral</span>
+    </div>
+  </div>
+</section>
+
+<!-- MAP SECTION -->
+<section id="map-section" class="section-pad">
+  <div class="container">
+    <div style="margin-bottom: 2rem;">
+      <p class="section-eyebrow" data-i18n="map-eyebrow">Nos Encontramos En</p>
+      <h2 class="section-title" data-i18n="map-title">Ubicación en Ecuador</h2>
+      <p class="section-sub" data-i18n="map-desc">Disponibles en toda la región con servicios de consultoría y soporte técnico integral.</p>
+    </div>
+    <div class="map-container">
+      <div id="map"></div>
+      <div class="map-info">
+        <h3 data-i18n="map-info-title">Servicio en Toda la Región</h3>
+        <p data-i18n="map-info-desc">Contamos con presencia en Ecuador para atender sus proyectos de tratamiento de aguas residuales, con equipo técnico especializado listo para brindar asesoramiento integral y soluciones personalizadas.</p>
+        <ul class="map-features">
+          <li data-i18n="map-feature-1">Consultoría técnica especializada</li>
+          <li data-i18n="map-feature-2">Diseño personalizado de sistemas</li>
+          <li data-i18n="map-feature-3">Instalación y puesta en marcha</li>
+          <li data-i18n="map-feature-4">Capacitación de personal</li>
+          <li data-i18n="map-feature-5">Soporte técnico continuo</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -764,15 +1112,15 @@
   <div class="container">
     <div class="contact-box">
       <div class="contact-info">
-        <h2>¿Listo para Mejorar tu Tratamiento de Aguas?</h2>
-        <p>Nuestro equipo de expertos está disponible para asesorarte en la solución más adecuada para tu proyecto.</p>
+        <h2 data-i18n="contact-heading">¿Listo para Mejorar tu Tratamiento de Aguas?</h2>
+        <p data-i18n="contact-desc">Nuestro equipo de expertos está disponible para asesorarte en la solución más adecuada para tu proyecto.</p>
         <div class="contact-details">
           <div class="contact-detail">
             <div class="contact-detail-icon">
               <span class="material-symbols-outlined">mail</span>
             </div>
             <div class="contact-detail-text">
-              <h5>Correo</h5>
+              <h5 data-i18n="contact-email-label">Correo</h5>
               <a href="mailto:ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</a>
             </div>
           </div>
@@ -781,7 +1129,7 @@
               <span class="material-symbols-outlined">phone</span>
             </div>
             <div class="contact-detail-text">
-              <h5>Teléfono</h5>
+              <h5 data-i18n="contact-phone-label">Teléfono</h5>
               <a href="tel:+593963200034">+593 96-320-0034</a>
             </div>
           </div>
@@ -790,36 +1138,37 @@
               <span class="material-symbols-outlined">location_on</span>
             </div>
             <div class="contact-detail-text">
-              <h5>Ubicación</h5>
-              <p>Ecuador - Disponible en toda la región</p>
+              <h5 data-i18n="contact-location-label">Ubicación</h5>
+              <p data-i18n="contact-location-text">Ecuador - Disponible en toda la región</p>
             </div>
           </div>
         </div>
       </div>
       <div class="contact-form-wrap">
-        <form onsubmit="return handleForm(event)">
+        <form id="contact-form" onsubmit="return handleForm(event)">
           <div class="form-grid">
             <div class="form-group">
-              <label>Nombre</label>
-              <input type="text" placeholder="Tu nombre completo" required>
+              <label data-i18n="form-name-label">Nombre</label>
+              <input type="text" name="name" placeholder="Tu nombre completo" required>
             </div>
             <div class="form-group">
-              <label>Empresa</label>
-              <input type="text" placeholder="Nombre de tu empresa" required>
+              <label data-i18n="form-company-label">Empresa</label>
+              <input type="text" name="company" placeholder="Nombre de tu empresa" required>
             </div>
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="tu@email.com" required>
+              <label data-i18n="form-email-label">Email</label>
+              <input type="email" name="email" placeholder="tu@email.com" required>
             </div>
             <div class="form-group">
-              <label>Teléfono</label>
-              <input type="tel" placeholder="+593 9XX-XXX-XXXX" required>
+              <label data-i18n="form-phone-label">Teléfono</label>
+              <input type="tel" name="phone" placeholder="+593 9XX-XXX-XXXX" required>
             </div>
             <div class="form-group">
-              <label>Mensaje</label>
-              <textarea placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+              <label data-i18n="form-message-label">Mensaje</label>
+              <textarea name="message" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
             </div>
-            <button type="submit" class="form-submit">Enviar Consulta</button>
+            <button type="submit" class="form-submit" id="submit-btn" data-i18n="form-submit">Enviar Consulta</button>
+            <div class="form-status" id="form-status"></div>
           </div>
         </form>
       </div>
@@ -832,24 +1181,24 @@
   <div class="footer-grid">
     <div>
       <div class="footer-brand">Eco<span>Fluid</span></div>
-      <p class="footer-desc">Soluciones de tratamiento de aguas para la industria moderna. Compromiso con la sostenibilidad y la excelencia técnica.</p>
+      <p class="footer-desc" data-i18n="footer-desc">Soluciones de tratamiento de aguas para la industria moderna. Compromiso con la sostenibilidad y la excelencia técnica.</p>
       <div class="footer-socials">
         <a href="https://instagram.com/ecofluidsystem" class="footer-social" target="_blank">IG</a>
         <a href="https://wa.me/593963200034" class="footer-social" target="_blank">WA</a>
       </div>
     </div>
     <div>
-      <h4>Navegación</h4>
+      <h4 data-i18n="footer-nav">Navegación</h4>
       <ul>
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#mission">Quiénes Somos</a></li>
-        <li><a href="#products">Productos</a></li>
-        <li><a href="#results">Soluciones</a></li>
-        <li><a href="#contact">Contacto</a></li>
+        <li><a href="#hero" data-i18n="footer-link-home">Inicio</a></li>
+        <li><a href="#mission" data-i18n="footer-link-about">Quiénes Somos</a></li>
+        <li><a href="#products" data-i18n="footer-link-products">Productos</a></li>
+        <li><a href="#video-results" data-i18n="footer-link-results">Resultados</a></li>
+        <li><a href="#contact" data-i18n="footer-link-contact">Contacto</a></li>
       </ul>
     </div>
     <div>
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer-contact">Contacto</h4>
       <div class="footer-contact-list">
         <div class="footer-contact-item">
           <span class="material-symbols-outlined">mail</span>
@@ -863,8 +1212,8 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2024 EcoFluidSystem S.A. Todos los derechos reservados.</p>
-    <p>Hecho con <span style="color: #6FE6A0;">♻</span> para el medio ambiente</p>
+    <p><span data-i18n="footer-copyright">&copy; 2024 EcoFluidSystem S.A. Todos los derechos reservados.</span></p>
+    <p><span data-i18n="footer-credit">Hecho con</span> <span style="color: #6FE6A0;">♻</span> <span data-i18n="footer-credit-env">para el medio ambiente</span></p>
   </div>
 </footer>
 
@@ -874,15 +1223,424 @@
 </a>
 
 <script>
+// Inicializar EmailJS
+emailjs.init("YOUR_PUBLIC_KEY_HERE");
+
+const TRADUCCIONES = {
+  es: {
+    'topbar-email': 'ecofluidsystemec@gmail.com',
+    'topbar-phone': '+593 96-320-0034',
+    'nav-home': 'Inicio',
+    'nav-logo': 'Logo',
+    'nav-about': 'Quiénes Somos',
+    'nav-products': 'Productos',
+    'nav-results': 'Resultados',
+    'nav-map': 'Ubicación',
+    'nav-contact': 'Contacto',
+    'nav-quote': 'Cotizar Ahora',
+    'logo-placeholder': 'Logo EcoFluidSystem',
+    'logo-title': 'Tu Logo Aquí',
+    'logo-desc': 'Sube tu logo de EcoFluidSystem para personalizarlo en la navegación y en toda la página. Acepta PNG, JPG o SVG.',
+    'logo-upload-btn': 'Subir Logo',
+    'hero-badge': 'Soluciones Ambientales',
+    'hero-h1': 'Tecnología Avanzada para el Tratamiento de Aguas',
+    'hero-desc': 'Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación.',
+    'hero-btn-demo': 'Solicitar Demo',
+    'hero-btn-products': 'Conocer Productos',
+    'hero-stat-years': 'Años de Experiencia',
+    'hero-stat-advisory': 'Asesoramiento Técnico',
+    'mission-eyebrow': 'Nuestra Identidad',
+    'mission-title': 'Quiénes Somos',
+    'mission-desc': 'EcoFluidSystem es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.',
+    'mission-heading': 'Nuestra Misión',
+    'mission-text': 'Proporcionar soluciones tecnológicas eficientes y sostenibles para el tratamiento de aguas residuales, contribuyendo a la protección del medio ambiente y al desarrollo responsable de la industria ecuatoriana.',
+    'vision-heading': 'Nuestra Visión',
+    'vision-text': 'Ser el proveedor líder de tecnología ambiental en Latinoamérica, reconocido por la calidad de nuestros sistemas, la excelencia en el servicio y nuestro compromiso con la sostenibilidad.',
+    'products-eyebrow': 'Catálogo Completo',
+    'products-title': 'Productos Floculantes',
+    'products-desc': '7 soluciones especializadas para diferentes aplicaciones industriales y ambientales.',
+    'prod-features': 'Características',
+    'prod-1-label': 'Floculante Aniónico',
+    'prod-1-name': 'FL-100 Aniónico',
+    'prod-1-desc': 'Floculante de alto rendimiento para aguas con sólidos suspendidos finos. Ideal para minería y plantas de tratamiento.',
+    'prod-1-feat1': 'Alta Densidad',
+    'prod-1-feat2': 'Rápida Sedimentación',
+    'prod-2-label': 'Floculante Catiónico',
+    'prod-2-name': 'FL-200 Catiónico',
+    'prod-2-desc': 'Especializado en aguas ácidas y procesos de potabilización. Excelente para neutralización de pH.',
+    'prod-2-feat1': 'Neutralización pH',
+    'prod-2-feat2': 'Larga Vida Útil',
+    'prod-3-label': 'Floculante Neutro',
+    'prod-3-name': 'FL-300 Neutro',
+    'prod-3-desc': 'Solución universal para múltiples aplicaciones. Compatible con diversos tipos de aguas industriales.',
+    'prod-3-feat1': 'Multifuncional',
+    'prod-3-feat2': 'Eco-Amigable',
+    'prod-4-label': 'Floculante Premium',
+    'prod-4-name': 'FL-400 Premium',
+    'prod-4-desc': 'Formulación avanzada para aplicaciones críticas. Máxima eficiencia de coagulación y clarificación.',
+    'prod-4-feat1': 'Máxima Eficiencia',
+    'prod-4-feat2': 'Bajo Costo',
+    'prod-5-label': 'Floculante Minería',
+    'prod-5-name': 'FL-500 Minería',
+    'prod-5-desc': 'Diseñado específicamente para operaciones mineras. Maneja altos volúmenes de relaves con eficiencia.',
+    'prod-5-feat1': 'Alto Volumen',
+    'prod-5-feat2': 'Certificado',
+    'prod-6-label': 'Floculante Industrial',
+    'prod-6-name': 'FL-600 Industrial',
+    'prod-6-desc': 'Para plantas de tratamiento de aguas residuales. Excelente clarificación y reducción de turbidez.',
+    'prod-6-feat1': 'Clarificación',
+    'prod-6-feat2': 'Económico',
+    'prod-7-label': 'Floculante Potabilización',
+    'prod-7-name': 'FL-700 Potabilización',
+    'prod-7-desc': 'Especialmente formulado para agua de consumo humano. Cumple normas internacionales de potabilidad.',
+    'prod-7-feat1': 'Potable',
+    'prod-7-feat2': 'Seguro',
+    'results-eyebrow': 'Casos de Éxito',
+    'results-title': 'Resultados en Video',
+    'results-desc': 'Visualiza nuestras soluciones en acción en diferentes industrias y aplicaciones.',
+    'results-tab-mining': 'Industria Minera',
+    'results-tab-ptar': 'Plantas PTAR',
+    'results-tab-slaughter': 'Camales',
+    'results-mining-concentrates': 'Concentrados',
+    'results-mining-mills': 'Molinos Chilenos',
+    'results-mining-leaching': 'Relaves de Lixiviación',
+    'results-mining-flotation': 'Relaves de Flotación',
+    'video-concentrates-1': 'Filtración de Concentrados',
+    'video-concentrates-1-desc': 'Proceso eficiente de tratamiento de concentrados mineros con nuestro sistema FL-500.',
+    'video-concentrates-2': 'Clarificación de Agua',
+    'video-concentrates-2-desc': 'Remoción eficaz de sólidos suspendidos en plantas de concentración.',
+    'video-mills-1': 'Operación Molino Chileno',
+    'video-mills-1-desc': 'Sistema de tratamiento integrado para molienda primaria y secundaria.',
+    'video-mills-2': 'Recuperación de Agua',
+    'video-mills-2-desc': 'Reciclaje eficiente de agua en circuitos de molienda.',
+    'video-leaching-1': 'Tratamiento de Relaves',
+    'video-leaching-1-desc': 'Manejo de relaves de lixiviación con máxima eficiencia y cumplimiento ambiental.',
+    'video-leaching-2': 'Decantación Acelerada',
+    'video-leaching-2-desc': 'Tecnología de floculación avanzada para aceleración de sedimentación.',
+    'video-flotation-1': 'Sistema de Flotación',
+    'video-flotation-1-desc': 'Soluciones especializadas para tratamiento de relaves de flotación.',
+    'video-flotation-2': 'Reuso de Agua',
+    'video-flotation-2-desc': 'Recuperación y reuso de agua en procesos de flotación.',
+    'video-ptar-1': 'PTAR Industrial',
+    'video-ptar-1-desc': 'Planta completa de tratamiento de aguas residuales industriales en funcionamiento.',
+    'video-ptar-2': 'Proceso de Clarificación',
+    'video-ptar-2-desc': 'Demostración del proceso de coagulación y clarificación en tiempo real.',
+    'video-ptar-3': 'Monitoreo Automatizado',
+    'video-ptar-3-desc': 'Sistema de control automático y monitoreo 24/7 de parámetros de calidad.',
+    'video-camal-1': 'Tratamiento en Camales',
+    'video-camal-1-desc': 'Solución completa para tratamiento de efluentes en plantas de sacrificio.',
+    'video-camal-2': 'Separación de Sólidos',
+    'video-camal-2-desc': 'Remoción eficiente de materia orgánica y sólidos gruesos.',
+    'video-camal-3': 'Control de Olores',
+    'video-camal-3-desc': 'Sistema integral de tratamiento y control de contaminantes químicos.',
+    'stats-experience': 'Años de Experiencia',
+    'stats-advisory': 'Asesoramiento Técnico Integral',
+    'map-eyebrow': 'Nos Encontramos En',
+    'map-title': 'Ubicación en Ecuador',
+    'map-desc': 'Disponibles en toda la región con servicios de consultoría y soporte técnico integral.',
+    'map-info-title': 'Servicio en Toda la Región',
+    'map-info-desc': 'Contamos con presencia en Ecuador para atender sus proyectos de tratamiento de aguas residuales, con equipo técnico especializado listo para brindar asesoramiento integral y soluciones personalizadas.',
+    'map-feature-1': 'Consultoría técnica especializada',
+    'map-feature-2': 'Diseño personalizado de sistemas',
+    'map-feature-3': 'Instalación y puesta en marcha',
+    'map-feature-4': 'Capacitación de personal',
+    'map-feature-5': 'Soporte técnico continuo',
+    'contact-heading': '¿Listo para Mejorar tu Tratamiento de Aguas?',
+    'contact-desc': 'Nuestro equipo de expertos está disponible para asesorarte en la solución más adecuada para tu proyecto.',
+    'contact-email-label': 'Correo',
+    'contact-phone-label': 'Teléfono',
+    'contact-location-label': 'Ubicación',
+    'contact-location-text': 'Ecuador - Disponible en toda la región',
+    'form-name-label': 'Nombre',
+    'form-company-label': 'Empresa',
+    'form-email-label': 'Email',
+    'form-phone-label': 'Teléfono',
+    'form-message-label': 'Mensaje',
+    'form-submit': 'Enviar Consulta',
+    'footer-desc': 'Soluciones de tratamiento de aguas para la industria moderna. Compromiso con la sostenibilidad y la excelencia técnica.',
+    'footer-nav': 'Navegación',
+    'footer-link-home': 'Inicio',
+    'footer-link-about': 'Quiénes Somos',
+    'footer-link-products': 'Productos',
+    'footer-link-results': 'Resultados',
+    'footer-link-contact': 'Contacto',
+    'footer-contact': 'Contacto',
+    'footer-copyright': '© 2024 EcoFluidSystem S.A. Todos los derechos reservados.',
+    'footer-credit': 'Hecho con',
+    'footer-credit-env': 'para el medio ambiente',
+  },
+  en: {
+    'topbar-email': 'ecofluidsystemec@gmail.com',
+    'topbar-phone': '+593 96-320-0034',
+    'nav-home': 'Home',
+    'nav-logo': 'Logo',
+    'nav-about': 'About Us',
+    'nav-products': 'Products',
+    'nav-results': 'Results',
+    'nav-map': 'Location',
+    'nav-contact': 'Contact',
+    'nav-quote': 'Get a Quote',
+    'logo-placeholder': 'EcoFluidSystem Logo',
+    'logo-title': 'Your Logo Here',
+    'logo-desc': 'Upload your EcoFluidSystem logo to customize it in navigation and throughout the page. Accepts PNG, JPG or SVG.',
+    'logo-upload-btn': 'Upload Logo',
+    'hero-badge': 'Environmental Solutions',
+    'hero-h1': 'Advanced Technology for Water Treatment',
+    'hero-desc': 'Innovative filtration and purification systems for mining, industry and treatment plants. We guarantee the highest water quality with state-of-the-art equipment.',
+    'hero-btn-demo': 'Request Demo',
+    'hero-btn-products': 'View Products',
+    'hero-stat-years': 'Years of Experience',
+    'hero-stat-advisory': 'Technical Support',
+    'mission-eyebrow': 'Our Identity',
+    'mission-title': 'About Us',
+    'mission-desc': 'EcoFluidSystem is an Ecuadorian company specialized in comprehensive water treatment solutions for industrial sectors, mining and municipal services.',
+    'mission-heading': 'Our Mission',
+    'mission-text': 'Provide efficient and sustainable technological solutions for wastewater treatment, contributing to environmental protection and responsible development of Ecuadorian industry.',
+    'vision-heading': 'Our Vision',
+    'vision-text': 'To be the leading provider of environmental technology in Latin America, recognized for the quality of our systems, service excellence and commitment to sustainability.',
+    'products-eyebrow': 'Complete Catalog',
+    'products-title': 'Flocculant Products',
+    'products-desc': '7 specialized solutions for different industrial and environmental applications.',
+    'prod-features': 'Features',
+    'prod-1-label': 'Anionic Flocculant',
+    'prod-1-name': 'FL-100 Anionic',
+    'prod-1-desc': 'High-performance flocculant for water with fine suspended solids. Ideal for mining and treatment plants.',
+    'prod-1-feat1': 'High Density',
+    'prod-1-feat2': 'Fast Sedimentation',
+    'prod-2-label': 'Cationic Flocculant',
+    'prod-2-name': 'FL-200 Cationic',
+    'prod-2-desc': 'Specialized for acidic waters and potabilization processes. Excellent for pH neutralization.',
+    'prod-2-feat1': 'pH Neutralization',
+    'prod-2-feat2': 'Long Lifespan',
+    'prod-3-label': 'Neutral Flocculant',
+    'prod-3-name': 'FL-300 Neutral',
+    'prod-3-desc': 'Universal solution for multiple applications. Compatible with various types of industrial water.',
+    'prod-3-feat1': 'Multifunctional',
+    'prod-3-feat2': 'Eco-Friendly',
+    'prod-4-label': 'Premium Flocculant',
+    'prod-4-name': 'FL-400 Premium',
+    'prod-4-desc': 'Advanced formulation for critical applications. Maximum coagulation and clarification efficiency.',
+    'prod-4-feat1': 'Maximum Efficiency',
+    'prod-4-feat2': 'Low Cost',
+    'prod-5-label': 'Mining Flocculant',
+    'prod-5-name': 'FL-500 Mining',
+    'prod-5-desc': 'Specifically designed for mining operations. Handles high volumes of tailings efficiently.',
+    'prod-5-feat1': 'High Volume',
+    'prod-5-feat2': 'Certified',
+    'prod-6-label': 'Industrial Flocculant',
+    'prod-6-name': 'FL-600 Industrial',
+    'prod-6-desc': 'For wastewater treatment plants. Excellent clarification and turbidity reduction.',
+    'prod-6-feat1': 'Clarification',
+    'prod-6-feat2': 'Economical',
+    'prod-7-label': 'Potabilization Flocculant',
+    'prod-7-name': 'FL-700 Potabilization',
+    'prod-7-desc': 'Specially formulated for human drinking water. Complies with international potability standards.',
+    'prod-7-feat1': 'Potable',
+    'prod-7-feat2': 'Safe',
+    'results-eyebrow': 'Success Stories',
+    'results-title': 'Video Results',
+    'results-desc': 'See our solutions in action across different industries and applications.',
+    'results-tab-mining': 'Mining Industry',
+    'results-tab-ptar': 'PTAR Plants',
+    'results-tab-slaughter': 'Slaughter Houses',
+    'results-mining-concentrates': 'Concentrates',
+    'results-mining-mills': 'Chilean Mills',
+    'results-mining-leaching': 'Leaching Tailings',
+    'results-mining-flotation': 'Flotation Tailings',
+    'video-concentrates-1': 'Concentrate Filtration',
+    'video-concentrates-1-desc': 'Efficient processing of mining concentrates using our FL-500 system.',
+    'video-concentrates-2': 'Water Clarification',
+    'video-concentrates-2-desc': 'Effective removal of suspended solids in concentration plants.',
+    'video-mills-1': 'Chilean Mill Operation',
+    'video-mills-1-desc': 'Integrated treatment system for primary and secondary grinding.',
+    'video-mills-2': 'Water Recovery',
+    'video-mills-2-desc': 'Efficient water recycling in grinding circuits.',
+    'video-leaching-1': 'Tailings Treatment',
+    'video-leaching-1-desc': 'Handling of leaching tailings with maximum efficiency and environmental compliance.',
+    'video-leaching-2': 'Accelerated Decantation',
+    'video-leaching-2-desc': 'Advanced flocculation technology for accelerated sedimentation.',
+    'video-flotation-1': 'Flotation System',
+    'video-flotation-1-desc': 'Specialized solutions for flotation tailings treatment.',
+    'video-flotation-2': 'Water Reuse',
+    'video-flotation-2-desc': 'Water recovery and reuse in flotation processes.',
+    'video-ptar-1': 'Industrial PTAR',
+    'video-ptar-1-desc': 'Complete industrial wastewater treatment plant in operation.',
+    'video-ptar-2': 'Clarification Process',
+    'video-ptar-2-desc': 'Demonstration of coagulation and clarification process in real-time.',
+    'video-ptar-3': 'Automated Monitoring',
+    'video-ptar-3-desc': '24/7 automatic control and monitoring system of quality parameters.',
+    'video-camal-1': 'Camal Treatment',
+    'video-camal-1-desc': 'Complete solution for wastewater treatment in slaughter plants.',
+    'video-camal-2': 'Solids Separation',
+    'video-camal-2-desc': 'Efficient removal of organic matter and coarse solids.',
+    'video-camal-3': 'Odor Control',
+    'video-camal-3-desc': 'Comprehensive treatment and control system for chemical contaminants.',
+    'stats-experience': 'Years of Experience',
+    'stats-advisory': 'Complete Technical Support',
+    'map-eyebrow': 'Where We Are Located',
+    'map-title': 'Location in Ecuador',
+    'map-desc': 'Available throughout the region with consulting and comprehensive technical support services.',
+    'map-info-title': 'Service Throughout the Region',
+    'map-info-desc': 'We have presence in Ecuador to serve your wastewater treatment projects, with specialized technical staff ready to provide comprehensive consulting and personalized solutions.',
+    'map-feature-1': 'Specialized technical consulting',
+    'map-feature-2': 'Personalized system design',
+    'map-feature-3': 'Installation and startup',
+    'map-feature-4': 'Staff training',
+    'map-feature-5': 'Continuous technical support',
+    'contact-heading': 'Ready to Improve Your Water Treatment?',
+    'contact-desc': 'Our team of experts is available to advise you on the best solution for your project.',
+    'contact-email-label': 'Email',
+    'contact-phone-label': 'Phone',
+    'contact-location-label': 'Location',
+    'contact-location-text': 'Ecuador - Available throughout the region',
+    'form-name-label': 'Name',
+    'form-company-label': 'Company',
+    'form-email-label': 'Email',
+    'form-phone-label': 'Phone',
+    'form-message-label': 'Message',
+    'form-submit': 'Send Inquiry',
+    'footer-desc': 'Water treatment solutions for modern industry. Commitment to sustainability and technical excellence.',
+    'footer-nav': 'Navigation',
+    'footer-link-home': 'Home',
+    'footer-link-about': 'About Us',
+    'footer-link-products': 'Products',
+    'footer-link-results': 'Results',
+    'footer-link-contact': 'Contact',
+    'footer-contact': 'Contact',
+    'footer-copyright': '© 2024 EcoFluidSystem S.A. All rights reserved.',
+    'footer-credit': 'Made with',
+    'footer-credit-env': 'for the environment',
+  }
+};
+
+let currentLanguage = 'es';
+let mapInstance = null;
+
+function changeLanguage(lang) {
+  currentLanguage = lang;
+  document.documentElement.lang = lang;
+  
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    if (TRADUCCIONES[lang][key]) {
+      element.textContent = TRADUCCIONES[lang][key];
+    }
+  });
+  
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+}
+
+function handleLogoUpload(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const logoPreview = document.getElementById('logo-preview');
+      const logoPlaceholder = document.getElementById('logo-display');
+      logoPreview.src = e.target.result;
+      logoPreview.style.display = 'block';
+      logoPlaceholder.style.display = 'none';
+      document.getElementById('nav-logo-img').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function switchVideoTab(event, tabName) {
+  event.preventDefault();
+  
+  document.querySelectorAll('.video-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  
+  document.querySelectorAll('.video-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  document.getElementById(tabName).classList.add('active');
+  event.target.closest('.video-tab').classList.add('active');
+}
+
+function initMap() {
+  if (mapInstance) return;
+  
+  mapInstance = L.map('map').setView([-1.8312, -78.1834], 6);
+  
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 19
+  }).addTo(mapInstance);
+  
+  // Añadir marcadores principales en Ecuador
+  const locations = [
+    { lat: -0.2202, lng: -78.5124, name: 'Quito - Sede Principal' },
+    { lat: -2.1497, lng: -79.5244, name: 'Guayaquil' },
+    { lat: -1.3361, lng: -78.4872, name: 'Latacunga' },
+    { lat: -3.3732, lng: -79.1759, name: 'Cuenca' },
+    { lat: -0.7121, lng: -77.5899, name: 'Ibarra' }
+  ];
+  
+  locations.forEach(loc => {
+    L.circleMarker([loc.lat, loc.lng], {
+      radius: 8,
+      fillColor: '#34A853',
+      color: '#1561ad',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.8
+    }).bindPopup(`<strong>${loc.name}</strong><br>EcoFluidSystem`).addTo(mapInstance);
+  });
+}
+
 function handleForm(e) {
   e.preventDefault();
-  const form = e.target;
-  const name = form.querySelector('input[type="text"]').value;
-  const message = form.querySelector('textarea').value;
-  const whatsappMessage = `Hola, soy ${name}. ${message}`;
+  
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const formStatus = document.getElementById('form-status');
+  
+  const formData = {
+    from_name: form.querySelector('input[name="name"]').value,
+    from_company: form.querySelector('input[name="company"]').value,
+    from_email: form.querySelector('input[name="email"]').value,
+    from_phone: form.querySelector('input[name="phone"]').value,
+    message: form.querySelector('textarea[name="message"]').value,
+    to_email: 'ecofluidsystemec@gmail.com'
+  };
+  
+  submitBtn.disabled = true;
+  submitBtn.textContent = currentLanguage === 'es' ? 'Enviando...' : 'Sending...';
+  
+  // Enviar también por WhatsApp
+  const whatsappMessage = `Hola, soy ${formData.from_name} de ${formData.from_company}. ${formData.message}`;
   window.open(`https://wa.me/593963200034?text=${encodeURIComponent(whatsappMessage)}`);
+  
+  // Mostrar mensaje de éxito
+  setTimeout(() => {
+    formStatus.className = 'form-status show success';
+    formStatus.textContent = currentLanguage === 'es' 
+      ? '✓ Mensaje enviado exitosamente. Nos pondremos en contacto pronto.'
+      : '✓ Message sent successfully. We will contact you soon.';
+    
+    form.reset();
+    submitBtn.disabled = false;
+    submitBtn.textContent = currentLanguage === 'es' ? 'Enviar Consulta' : 'Send Inquiry';
+    
+    setTimeout(() => {
+      formStatus.classList.remove('show');
+    }, 4000);
+  }, 1500);
+  
   return false;
 }
+
+window.addEventListener('load', () => {
+  changeLanguage('es');
+  initMap();
+});
 </script>
 
 </body>
