@@ -324,6 +324,71 @@
   .stat-item strong { display: block; font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: .3rem; }
   .stat-item span { font-size: .78rem; color: rgba(255,255,255,.75); line-height: 1.4; display: block; }
 
+  /* SECCIÓN RESULTADOS / CASOS DE ÉXITO */
+  #results { background: #f2f7f3; }
+  .results-accordion {
+    display: grid; gap: 1.5rem;
+  }
+  .accordion-item {
+    background: #fff; border-radius: 16px;
+    border: 1px solid #D7EAF7;
+    overflow: hidden; transition: all .3s;
+  }
+  .accordion-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 2rem; cursor: pointer; user-select: none;
+    border-bottom: 1px solid #D7EAF7;
+    transition: all .2s;
+  }
+  .accordion-item.active .accordion-header {
+    background: linear-gradient(135deg, #f0f7ff 0%, #f0fff4 100%);
+    border-bottom-color: #34A853;
+  }
+  .accordion-header:hover { background: #f9fbfd; }
+  .accordion-title {
+    font-size: 1.1rem; font-weight: 800; color: #15395E;
+    display: flex; align-items: center; gap: .8rem;
+  }
+  .accordion-icon {
+    font-size: 1.5rem; color: #34A853; transition: transform .3s;
+  }
+  .accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+  }
+  .accordion-content {
+    max-height: 0; overflow: hidden; transition: max-height .3s ease;
+  }
+  .accordion-item.active .accordion-content {
+    max-height: 500px;
+  }
+  .accordion-body {
+    padding: 2rem; display: grid; gap: 1.5rem;
+  }
+  .video-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  }
+  .video-card {
+    position: relative; overflow: hidden; border-radius: 12px;
+    aspect-ratio: 16/9; background: #e0e0e0;
+    cursor: pointer; transition: all .3s;
+  }
+  .video-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(52,168,83,.2); }
+  .video-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #D2EAFB 0%, #E1F5E8 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem; color: #34A853;
+  }
+  .video-placeholder .material-symbols-outlined {
+    font-size: 3.5rem; opacity: .6;
+  }
+  .video-card p {
+    font-size: .85rem; font-weight: 600; text-align: center;
+  }
+  .single-video-grid {
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  }
+
   #map-section { background: #fff; }
   .map-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-top: 2rem; }
   #map { height: 450px; border-radius: 16px; box-shadow: 0 12px 48px rgba(21,57,94,.16); }
@@ -351,6 +416,7 @@
     animation: bounce-subtle 2s ease-in-out infinite;
     color: white;
     font-weight: 800;
+    font-size: 1.2rem;
   }
   .wa-float:hover { transform: scale(1.2); box-shadow: 0 12px 36px rgba(37,211,102,.75); }
 
@@ -364,9 +430,20 @@
   footer ul li a { font-size: .85rem; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
   footer ul li a:hover { color: #6FE6A0; }
 
+  .social-links {
+    display: flex; gap: 1rem; margin-top: 1.5rem;
+  }
+  .social-link {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center;
+    color: #fff; text-decoration: none; transition: all .2s; font-weight: 700;
+  }
+  .social-link:hover { background: #34A853; transform: translateY(-2px); }
+
   @media(max-width: 1024px) {
     .hero-stats { display: none; }
     .products-grid { grid-template-columns: 1fr 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
     .map-container { grid-template-columns: 1fr; }
     .contact-box { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -375,6 +452,8 @@
   @media(max-width: 768px) {
     .products-grid { grid-template-columns: 1fr; }
     #map { height: 300px; }
+    .nav-links { gap: 1rem; font-size: 0.7rem; }
+    .contact-box { padding: 2rem; }
   }
 
   .leaflet-container { border-radius: 16px; }
@@ -395,8 +474,8 @@
     <span><span class="material-symbols-outlined">call</span> +593 96-320-0034</span>
   </div>
   <div class="topbar-right">
-    <a href="#" aria-label="Instagram">IG</a>
-    <a href="#" aria-label="WhatsApp">WA💬</a>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram">IG</a>
+    <a href="https://wa.me/593963200034" target="_blank" aria-label="WhatsApp">WA💬</a>
   </div>
 </div>
 
@@ -411,7 +490,7 @@
       <li><a href="#hero">Inicio</a></li>
       <li><a href="#mission">Quiénes Somos</a></li>
       <li><a href="#products">Productos</a></li>
-      <li><a href="#stats">Resultados</a></li>
+      <li><a href="#results">Resultados</a></li>
       <li><a href="#map-section">Ubicación</a></li>
       <li><a href="#contact">Contacto</a></li>
     </ul>
@@ -436,7 +515,7 @@
 </section>
 
 <!-- HERO -->
-<section id="hero" class="hero" style="background-image: url('hero.jpg');">
+<section id="hero" class="hero">
   <div class="hero-content">
     <div class="hero-badge">Soluciones Ambientales</div>
     <h1>Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</h1>
@@ -477,7 +556,7 @@
           <span class="material-symbols-outlined">target</span>
         </div>
         <h2>Nuestra Misión</h2>
-        <p>Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable</p>
+        <p>Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable.</p>
       </div>
       <div class="mv-card">
         <div class="mv-card-icon">
@@ -495,118 +574,178 @@
   <div class="container">
     <div style="margin-bottom: 3rem;">
       <p class="section-eyebrow">Catálogo Completo</p>
-      <h2 class="section-title">Productos Floculantes</h2>
-      <p class="section-sub">7 soluciones especializadas para diferentes aplicaciones 
-         industriales y ambientales.</p>
+      <h2 class="section-title">Nuestros Productos</h2>
+      <p class="section-sub">Soluciones especializadas en tratamiento de aguas residuales, floculantes y coagulantes para aplicaciones industriales y ambientales.</p>
     </div>
-    <div class="products-grid">
 
-      <!-- PRODUCTO 1 -->
-      <div class="product-card">
-        <div class="product-media" style="background-image: url('producto1.jpg'); 
-             background-size: cover; background-position: center;">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">water_drop</span>
-            <span>Floculante No iónico</span>
+    <!-- CATEGORÍA 1: BS TECH -->
+    <div style="margin-bottom: 4rem;">
+      <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: #15395E; margin-bottom: 0.5rem;">
+          <span style="color: #34A853;">●</span> BS Tech
+        </h3>
+        <p style="font-size: 0.95rem; color: #2E5475; line-height: 1.6;">Sistemas innovadores de filtración y tratamiento especializados para aplicaciones mineras y ambientales.</p>
+      </div>
+      <div class="products-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>BS Tech</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>AB</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Sistema de Filtración Avanzada</p>
           </div>
         </div>
-        <div class="product-body">
-          <h3>N3218</h3>
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>BS Tech</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>ES</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Equipo Especializado</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>BS Tech</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>FS</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Filtración Sostenible</p>
           </div>
         </div>
       </div>
-
-      <!-- PRODUCTO 2 -->
-      <div class="product-card">
-        <div class="product-media" style="background-image: url('producto2.jpg'); 
-             background-size: cover; background-position: center;">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">water_drop</span>
-            <span>Floculante No iónico</span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>N3326</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUCTO 3 -->
-      <div class="product-card">
-        <div class="product-media" style="background-image: url('producto3.jpg'); 
-             background-size: cover; background-position: center;">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">water_drop</span>
-            <span>Floculante No iónico</span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>N3415</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUCTO 4 -->
-      <div class="product-card">
-        <div class="product-media" style="background-image: url('producto4.jpg'); 
-             background-size: cover; background-position: center;">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">water_drop</span>
-            <span>Floculante Aniónico</span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>A5270</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUCTO 5 -->
-      <div class="product-card">
-        <div class="product-media" style="background-image: url('producto5.jpg'); 
-             background-size: cover; background-position: center;">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">water_drop</span>
-            <span>Floculante Aniónico</span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>A5477</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUCTO 6 -->
-      <div class="product-card">
-        <div class="product-media" style="background-image: url('producto6.jpg'); 
-             background-size: cover; background-position: center;">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">water_drop</span>
-            <span>Floculante Catiónico</span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>C6010</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUCTO 7 -->
-      <div class="product-card">
-        <div class="product-media" style="background-image: url('producto7.jpg'); 
-             background-size: cover; background-position: center;">
-          <div class="media-placeholder">
-            <span class="material-symbols-outlined">water_drop</span>
-            <span>Floculante Catiónico</span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>C6810</h3>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- CATEGORÍA 2: FLOCULANTES -->
+    <div style="margin-bottom: 4rem;">
+      <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: #15395E; margin-bottom: 0.5rem;">
+          <span style="color: #34A853;">●</span> Floculantes
+        </h3>
+        <p style="font-size: 0.95rem; color: #2E5475; line-height: 1.6;">7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones.</p>
+      </div>
+      <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>Floculante No iónico</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>N3218</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">No Iónico</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>Floculante No iónico</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>N3326</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">No Iónico</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>Floculante No iónico</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>N3415</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">No Iónico</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>Floculante Aniónico</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>A5270</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Aniónico</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>Floculante Aniónico</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>A5477</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Aniónico</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>Floculante Catiónico</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>C6010</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Catiónico</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>Floculante Catiónico</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>C6810</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Catiónico</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORÍA 3: COAGULANTES -->
+    <div>
+      <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: #15395E; margin-bottom: 0.5rem;">
+          <span style="color: #34A853;">●</span> Coagulantes
+        </h3>
+        <p style="font-size: 0.95rem; color: #2E5475; line-height: 1.6;">Solución especializada para procesos de coagulación en tratamiento de aguas.</p>
+      </div>
+      <div class="products-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="product-card">
+          <div class="product-media" style="background: linear-gradient(135deg, #FFE8E8 0%, #FFD2D2 100%);">
+            <div class="media-placeholder">
+              <span class="material-symbols-outlined">water_drop</span>
+              <span>Coagulante</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>C-01</h3>
+            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Coagulante Premium</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -630,6 +769,180 @@
   </div>
 </section>
 
+<!-- RESULTADOS - CASOS DE ÉXITO -->
+<section id="results" class="section-pad">
+  <div class="container">
+    <div style="margin-bottom: 3rem;">
+      <p class="section-eyebrow">Nuestro Trabajo</p>
+      <h2 class="section-title">Casos de Éxito & Resultados</h2>
+      <p class="section-sub">Visualiza los resultados reales de nuestras soluciones en diferentes sectores industriales y aplicaciones ambientales.</p>
+    </div>
+
+    <div class="results-accordion">
+      
+      <!-- INDUSTRIA MINERA -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">
+            <span class="material-symbols-outlined" style="color: #34A853; font-size: 1.8rem;">minerals</span>
+            Industria Minera
+          </div>
+          <span class="accordion-icon material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <div style="margin-bottom: 1.5rem;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: #15395E; margin-bottom: 0.5rem;">Subsecciones</h4>
+              <p style="font-size: 0.85rem; color: #2E5475; line-height: 1.6;">Explora nuestras soluciones especializadas para diferentes procesos mineros.</p>
+            </div>
+            
+            <!-- Concentrados -->
+            <div style="margin-bottom: 2rem;">
+              <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Concentrados</h5>
+              <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Video de Concentrados</p>
+                  </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Proceso de Concentración</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Molinos Chilenos -->
+            <div style="margin-bottom: 2rem;">
+              <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Molinos Chilenos</h5>
+              <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Molino Chileno</p>
+                  </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Operación del Molino</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Relaves de Lixiviación -->
+            <div style="margin-bottom: 2rem;">
+              <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Relaves de Lixiviación</h5>
+              <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Relaves de Lixiviación</p>
+                  </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Clarificación de Relaves</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Relaves de Flotación -->
+            <div>
+              <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Relaves de Flotación</h5>
+              <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Relaves de Flotación</p>
+                  </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Tratamiento de Relaves</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLANTAS PTAR -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">
+            <span class="material-symbols-outlined" style="color: #1561ad; font-size: 1.8rem;">water</span>
+            Plantas PTAR
+          </div>
+          <span class="accordion-icon material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <div style="margin-bottom: 2rem;">
+              <p style="font-size: 0.9rem; color: #2E5475; line-height: 1.6; margin-bottom: 1.5rem;">Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura.</p>
+              <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>PTAR Completa</p>
+                  </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Procesos PTAR</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAMALES -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title">
+            <span class="material-symbols-outlined" style="color: #E85D75; font-size: 1.8rem;">factory</span>
+            Camales
+          </div>
+          <span class="accordion-icon material-symbols-outlined">expand_more</span>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <div style="margin-bottom: 2rem;">
+              <p style="font-size: 0.9rem; color: #2E5475; line-height: 1.6; margin-bottom: 1.5rem;">Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales.</p>
+              <div class="video-grid">
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Sistema Camal</p>
+                  </div>
+                </div>
+                <div class="video-card" onclick="playVideo(this)">
+                  <div class="video-placeholder">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <p>Depuración de Aguas Camal</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- MAP SECTION -->
 <section id="map-section" class="section-pad">
   <div class="container">
@@ -642,6 +955,7 @@
       <div id="map"></div>
       <div class="map-info">
         <h3>Presencia en América Latina</h3>
+        <p>EcoFluidSystem cuenta con una presencia estratégica en múltiples ubicaciones a lo largo de América Latina, proporcionando soporte técnico especializado, consultoría en proyectos y suministro de productos en toda la región.</p>
       </div>
     </div>
   </div>
@@ -659,22 +973,26 @@
             <span class="material-symbols-outlined" style="color: #6FE6A0;">mail</span>
             <div>
               <div style="font-size: 0.75rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em;">Correo</div>
-              <div>ecofluidsystemec@gmail.com</div>
+              <a href="mailto:ecofluidsystemec@gmail.com" style="color: white; text-decoration: none; font-weight: 600;">ecofluidsystemec@gmail.com</a>
             </div>
           </div>
           <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; color: white;">
             <span class="material-symbols-outlined" style="color: #6FE6A0;">phone</span>
             <div>
               <div style="font-size: 0.75rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em;">Teléfono</div>
-              <div>+593 96-320-0034</div>
+              <a href="tel:+593963200034" style="color: white; text-decoration: none; font-weight: 600;">+593 96-320-0034</a>
             </div>
           </div>
-          <div style="display: flex; align-items: center; gap: 1rem; color: white;">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; color: white;">
             <span class="material-symbols-outlined" style="color: #6FE6A0;">location_on</span>
             <div>
               <div style="font-size: 0.75rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em;">Ubicación</div>
               <div>Ecuador - Disponible en toda la región</div>
             </div>
+          </div>
+          <div class="social-links">
+            <a href="https://wa.me/593963200034" target="_blank" class="social-link" title="WhatsApp">WA</a>
+            <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram">IG</a>
           </div>
         </div>
       </div>
@@ -720,7 +1038,7 @@
         <li><a href="#hero">Inicio</a></li>
         <li><a href="#mission">Quiénes Somos</a></li>
         <li><a href="#products">Productos</a></li>
-        <li><a href="#stats">Resultados</a></li>
+        <li><a href="#results">Resultados</a></li>
         <li><a href="#contact">Contacto</a></li>
       </ul>
     </div>
@@ -735,6 +1053,10 @@
           <span class="material-symbols-outlined" style="color: #6FE6A0; flex-shrink: 0; margin-top: 1px;">phone</span>
           <a href="tel:+593963200034" style="color: rgba(255,255,255,.65); text-decoration: none;">+593 96-320-0034</a>
         </div>
+        <div style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.84rem; color: rgba(255,255,255,.65); line-height: 1.4;">
+          <span class="material-symbols-outlined" style="color: #6FE6A0; flex-shrink: 0; margin-top: 1px;">language</span>
+          <a href="https://instagram.com" target="_blank" style="color: rgba(255,255,255,.65); text-decoration: none;">@ecofluidsystem</a>
+        </div>
       </div>
     </div>
   </div>
@@ -745,12 +1067,35 @@
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/593963200034" class="wa-float" target="_blank" aria-label="WhatsApp">WA</a>
+<a href="https://wa.me/593963200034" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <span class="material-symbols-outlined" style="font-size: 1.8rem;">whatsapp</span>
+</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+// Accordion functionality
+function toggleAccordion(element) {
+  const item = element.parentElement;
+  const isActive = item.classList.contains('active');
+  
+  // Close all other items
+  document.querySelectorAll('.accordion-item').forEach(el => {
+    el.classList.remove('active');
+  });
+  
+  // Toggle current item
+  if (!isActive) {
+    item.classList.add('active');
+  }
+}
+
+// Video play functionality
+function playVideo(element) {
+  alert('Video player: Esta funcionalidad puede ser reemplazada con un reproductor de video real (YouTube, Vimeo, etc.)');
+}
+
+// Map initialization
 window.addEventListener('load', () => {
-  // Vista centrada en América Central y del Sur
   const mapInstance = L.map('map').setView([2.5, -77], 5);
   
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -767,7 +1112,7 @@ window.addEventListener('load', () => {
     { lat: -3.6961, lng: -79.6061, name: 'Zaruma', type: 'Ciudad - Ecuador' },
     { lat: -3.6833, lng: -79.7319, name: 'Portovelo', type: 'Ciudad - Ecuador' },
     { lat: -3.4583, lng: -79.2833, name: 'Ponce Enríquez', type: 'Ciudad - Ecuador' },
-    { lat: -12.0462, lng: -77.0369, name: 'Lima', type: 'Cuidad - Perú' },
+    { lat: -12.0462, lng: -77.0369, name: 'Lima', type: 'Ciudad - Perú' },
     { lat: -6.7735, lng: -79.8473, name: 'Chiclayo', type: 'Ciudad - Perú' },
     { lat: -16.3988, lng: -71.5350, name: 'Arequipa', type: 'Ciudad - Perú' }
   ];
