@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>New Technology EcoFluidSystem S.A. | Tratamiento de Aguas</title>
+<title>EcoFluidSystem S.A. | Tratamiento de Aguas</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -499,15 +499,15 @@
 </nav>
 
 <!-- LOGO SECTION -->
-<section id="logo" class="logo-section"> 
-    <div class="logo-container animate-float"> 
-        <div class="logo-box"> 
-            <div class="logo-placeholder"> 
-                <img src="logo.png" alt="Logo EcoFluidSystem" class="logo-img">
-                <span>EcoFluidSystem</span> 
-            </div> 
-        </div> 
-    </div> 
+<section id="logo" class="logo-section">
+  <div class="logo-container animate-float" style="justify-content: center;">
+    <div class="logo-box">
+      <div class="logo-placeholder">
+        <span class="material-symbols-outlined" style="font-size: 4rem;">image</span>
+        <span style="font-size: 0.9rem;">logo.png</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- HERO -->
@@ -547,19 +547,32 @@
       <p class="section-sub">New Techology EcoFluidSystem Ecuador es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.</p>
     </div>
     <div class="mv-grid">
-      <div class="mv-card">
-        <div class="mv-card-icon">
-          <span class="material-symbols-outlined">target</span>
+      <!-- MISIÓN ACORDEÓN -->
+      <div class="mv-card" style="border-left: none; padding: 2rem; cursor: pointer;" onclick="toggleMissionVision(this)">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="mv-card-icon">
+              <span class="material-symbols-outlined">target</span>
+            </div>
+            <h2 style="margin: 0;">Nuestra Misión</h2>
+          </div>
+          <span class="material-symbols-outlined" style="color: #34A853; font-size: 1.8rem; transition: transform 0.3s;">expand_more</span>
         </div>
-        <h2>Nuestra Misión</h2>
-        <p>Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable.</p>
+        <p style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; margin: 0; margin-top: 1rem;">Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable.</p>
       </div>
-      <div class="mv-card">
-        <div class="mv-card-icon">
-          <span class="material-symbols-outlined">visibility</span>
+
+      <!-- VISIÓN ACORDEÓN -->
+      <div class="mv-card" style="border-left: none; padding: 2rem; cursor: pointer;" onclick="toggleMissionVision(this)">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="mv-card-icon">
+              <span class="material-symbols-outlined">visibility</span>
+            </div>
+            <h2 style="margin: 0;">Nuestra Visión</h2>
+          </div>
+          <span class="material-symbols-outlined" style="color: #34A853; font-size: 1.8rem; transition: transform 0.3s;">expand_more</span>
         </div>
-        <h2>Nuestra Visión</h2>
-        <p>Consolidarnos como un socio estratégico para la industria minera, petrolera y ambiental, liderando la transformación hacia una gestión sostenible del agua y los residuos mediante soluciones tecnológicas innovadoras y de alto desempeño.</p>
+        <p style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; margin: 0; margin-top: 1rem; font-size: .93rem; line-height: 1.75; color: #2E5475;">Consolidarnos como un socio estratégico para la industria minera, petrolera y ambiental, liderando la transformación hacia una gestión sostenible del agua y los residuos mediante soluciones tecnológicas innovadoras y de alto desempeño.</p>
       </div>
     </div>
   </div>
@@ -796,16 +809,20 @@
             <div style="margin-bottom: 2rem;">
               <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Concentrados</h5>
               <div class="video-grid">
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Video de Concentrados</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">concentrados.mp4</p>
                   </div>
                 </div>
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Proceso de Concentración</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">concentrados2.mp4</p>
                   </div>
                 </div>
               </div>
@@ -815,16 +832,20 @@
             <div style="margin-bottom: 2rem;">
               <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Molinos Chilenos</h5>
               <div class="video-grid">
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Molino Chileno</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">molino.mp4</p>
                   </div>
                 </div>
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Operación del Molino</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">molino2.mp4</p>
                   </div>
                 </div>
               </div>
@@ -834,16 +855,20 @@
             <div style="margin-bottom: 2rem;">
               <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Relaves de Lixiviación</h5>
               <div class="video-grid">
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Relaves de Lixiviación</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">lixiviacion.mp4</p>
                   </div>
                 </div>
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Clarificación de Relaves</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">lixiviacion2.mp4</p>
                   </div>
                 </div>
               </div>
@@ -853,16 +878,20 @@
             <div>
               <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Relaves de Flotación</h5>
               <div class="video-grid">
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Relaves de Flotación</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">flotacion.mp4</p>
                   </div>
                 </div>
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Tratamiento de Relaves</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">flotacion2.mp4</p>
                   </div>
                 </div>
               </div>
@@ -885,16 +914,20 @@
             <div style="margin-bottom: 2rem;">
               <p style="font-size: 0.9rem; color: #2E5475; line-height: 1.6; margin-bottom: 1.5rem;">Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura.</p>
               <div class="video-grid">
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>PTAR Completa</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">ptar.mp4</p>
                   </div>
                 </div>
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Procesos PTAR</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">ptar2.mp4</p>
                   </div>
                 </div>
               </div>
@@ -917,16 +950,20 @@
             <div style="margin-bottom: 2rem;">
               <p style="font-size: 0.9rem; color: #2E5475; line-height: 1.6; margin-bottom: 1.5rem;">Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales.</p>
               <div class="video-grid">
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Sistema Camal</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">camal.mp4</p>
                   </div>
                 </div>
-                <div class="video-card" onclick="playVideo(this)">
-                  <div class="video-placeholder">
+                <div class="video-card" onclick="handleVideoUpload(event)">
+                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
+                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
                     <span class="material-symbols-outlined">play_circle</span>
-                    <p>Depuración de Aguas Camal</p>
+                    <p>Subir Video</p>
+                    <p style="font-size: 0.7rem; opacity: 0.7;">camal2.mp4</p>
                   </div>
                 </div>
               </div>
@@ -951,7 +988,7 @@
       <div id="map"></div>
       <div class="map-info">
         <h3>Presencia en América Latina</h3>
-        <p>EcoFluidSystem cuenta con una presencia estratégica en múltiples ubicaciones a lo largo de América Latina, proporcionando soporte técnico especializado, consultoría en proyectos y suministro de productos en toda la región.</p>
+        <p>New Technology EcoFluidSystem S.A. proporciona soporte técnico especializado, consultoría en proyectos y suministro de productos en toda la región</p>
       </div>
     </div>
   </div>
@@ -1063,12 +1100,28 @@
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/593963200034" class="wa-float" target="_blank" aria-label="WhatsApp">
-  <span class="material-symbols-outlined" style="font-size: 1.8rem;">whatsapp</span>
+<a href="https://wa.me/593963200034" class="wa-float" target="_blank" aria-label="Contactar por WhatsApp" title="Contáctanos por WhatsApp">
+  <svg style="width: 28px; height: 28px; fill: white;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-9.746 9.798c0 2.657.738 5.25 2.124 7.512L2.88 21.994l8.05-2.11a9.877 9.877 0 004.59 1.176h.005C19.476 21.06 24 16.537 24 11.009 24 5.481 19.479 0 13.95 0a9.879 9.879 0 00-9.879 9.979m8.236-14.973C6.477.365 2.82 2.967 1.087 6.339A9.863 9.863 0 0012.007 0h1.179z"/>
+  </svg>
 </a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+// Toggle Misión y Visión
+function toggleMissionVision(element) {
+  const p = element.querySelector('p');
+  const icon = element.querySelector('.material-symbols-outlined:last-of-type');
+  
+  if (p.style.maxHeight === '0px' || p.style.maxHeight === '') {
+    p.style.maxHeight = p.scrollHeight + 'px';
+    icon.style.transform = 'rotate(180deg)';
+  } else {
+    p.style.maxHeight = '0px';
+    icon.style.transform = 'rotate(0deg)';
+  }
+}
+
 // Accordion functionality
 function toggleAccordion(element) {
   const item = element.parentElement;
@@ -1085,9 +1138,35 @@ function toggleAccordion(element) {
   }
 }
 
-// Video play functionality
-function playVideo(element) {
-  alert('Video player: Esta funcionalidad puede ser reemplazada con un reproductor de video real (YouTube, Vimeo, etc.)');
+// Handle video upload
+function handleVideoUpload(event) {
+  event.stopPropagation();
+}
+
+// Display media after upload
+function displayMedia(event, cardElement) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const placeholder = cardElement.querySelector('.video-placeholder');
+    const isVideo = file.type.startsWith('video/');
+    
+    if (isVideo) {
+      placeholder.innerHTML = `
+        <video width="100%" height="100%" style="border-radius: 12px;" controls>
+          <source src="${e.target.result}" type="${file.type}">
+          Tu navegador no soporta videos.
+        </video>
+      `;
+    } else {
+      placeholder.innerHTML = `
+        <img src="${e.target.result}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" alt="Media">
+      `;
+    }
+  };
+  reader.readAsDataURL(file);
 }
 
 // Map initialization
@@ -1121,7 +1200,7 @@ window.addEventListener('load', () => {
       weight: 2,
       opacity: 1,
       fillOpacity: 0.8
-    }).bindPopup(`<strong>${loc.name}</strong><br>${loc.type}<br>EcoFluidSystem`).addTo(mapInstance);
+    }).bindPopup(`<strong>${loc.name}</strong><br>${loc.type}<br>New Technology EcoFluidSystem`).addTo(mapInstance);
   });
 });
 </script>
