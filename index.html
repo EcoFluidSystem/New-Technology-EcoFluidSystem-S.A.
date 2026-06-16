@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="light" lang="es">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -68,25 +67,13 @@
   }
   @keyframes bounce-subtle {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
   }
 
   .animate-float { animation: floatUp 0.8s ease-out; }
   .animate-slide-right { animation: slideInRight 0.8s ease-out; }
   .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
   .animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
-
-  .lang-switcher {
-    position: fixed; top: 70px; right: 2rem; z-index: 99;
-    display: flex; gap: .3rem;
-  }
-  .lang-btn {
-    background: rgba(52,168,83,.1); border: 1.5px solid #34A853;
-    color: #34A853; font-size: .7rem; font-weight: 700;
-    padding: .4rem .75rem; border-radius: 5px; cursor: pointer;
-    transition: all .2s; text-transform: uppercase; letter-spacing: .08em;
-  }
-  .lang-btn.active { background: #34A853; color: #fff; }
 
   .topbar {
     background: #15395E;
@@ -101,7 +88,7 @@
     gap: .5rem;
   }
   .topbar a { color: #BFE0F5; text-decoration: none; }
-  .topbar-left { display: flex; gap: 1.5rem; }
+  .topbar-left { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .topbar-left span { display: inline-flex; align-items: center; gap: .4rem; }
   .topbar-right { display: flex; gap: .6rem; }
   .topbar-right a {
@@ -137,7 +124,7 @@
   }
   .nav-brand { font-size: 1.15rem; font-weight: 800; color: #15395E; line-height: 1.1; }
   .nav-brand span { color: #34A853; }
-  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; margin: 0; padding: 0; }
   .nav-links a {
     font-size: .82rem; font-weight: 600; color: #2E5475;
     text-decoration: none; position: relative; padding-bottom: 3px;
@@ -158,43 +145,49 @@
   }
   .nav-cta:hover { background: #134F8C; transform: translateY(-2px); }
 
+  /* LOGO SECTION */
   .logo-section {
     background: linear-gradient(135deg, #f2f7f3 0%, #fff 100%);
-    padding: 3rem 2rem;
+    padding: 2.5rem 2rem;
     border-bottom: 1px solid #D7EAF7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .logo-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
-  .logo-box {
-    flex: 0 0 200px; height: 200px;
-    background: #fff; border: 2px dashed #D7EAF7;
-    border-radius: 16px; display: grid; place-items: center;
-    transition: all .3s;
-    position: relative; overflow: hidden;
+  .logo-upload-box {
+    width: 220px; height: 160px;
+    background: #fff;
+    border: 2px dashed #8FB8DC;
+    border-radius: 16px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: .6rem; cursor: pointer; position: relative; overflow: hidden;
+    transition: border-color .2s, box-shadow .2s;
   }
-  .logo-placeholder {
-    text-align: center; color: #8FB8DC;
-    display: flex; flex-direction: column; gap: .5rem; align-items: center;
+  .logo-upload-box:hover { border-color: #34A853; box-shadow: 0 4px 20px rgba(52,168,83,.12); }
+  .logo-upload-box input[type="file"] {
+    position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; top: 0; left: 0;
   }
-  .logo-placeholder .material-symbols-outlined { font-size: 2.5rem; opacity: .5; }
-  .logo-info h2 { font-size: 1.8rem; font-weight: 800; color: #15395E; margin-bottom: 1rem; }
-  .logo-info p { font-size: .95rem; color: #2E5475; line-height: 1.7; margin-bottom: 1rem; }
+  .logo-upload-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 14px; }
+  .logo-upload-text { font-size: .78rem; color: #8FB8DC; font-weight: 600; text-align: center; pointer-events: none; }
 
+  /* HERO */
   .hero {
     min-height: 90vh;
     background:
       linear-gradient(140deg, rgba(15,75,138,.85) 0%, rgba(46,189,114,.55) 100%),
-      url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1600&q=80') center/cover no-repeat;
+      url('') center/cover no-repeat;
     display: flex; align-items: center;
     padding: 5rem 2rem; position: relative; overflow: hidden;
   }
-  .hero::before {
-    content: '';
-    position: absolute; left: -20%; top: -20%;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,.1) 0%, transparent 70%);
+  .hero-bg-img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
   }
-  .hero-content { max-width: 680px; position: relative; z-index: 1; animation: floatUp .8s ease both; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(140deg, rgba(15,75,138,.85) 0%, rgba(46,189,114,.55) 100%);
+    z-index: 1;
+  }
+  .hero-content { max-width: 680px; position: relative; z-index: 2; animation: floatUp .8s ease both; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: .5rem;
     background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
@@ -229,7 +222,7 @@
   .btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,.12); transform: translateY(-2px); }
   .hero-stats {
     position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 1rem; z-index: 1;
+    display: flex; flex-direction: column; gap: 1rem; z-index: 2;
     animation: slideInRight .8s .3s ease both;
   }
   .stat-card {
@@ -243,6 +236,17 @@
     margin-bottom: .3rem;
   }
   .stat-card span { font-size: .72rem; color: rgba(255,255,255,.85); line-height: 1.3; display: block; }
+
+  /* HERO IMAGE UPLOAD */
+  .hero-img-upload-btn {
+    position: absolute; bottom: 1.5rem; right: 1.5rem; z-index: 10;
+    background: rgba(255,255,255,.18); border: 1.5px solid rgba(255,255,255,.4);
+    color: #fff; font-size: .75rem; font-weight: 700; padding: .5rem 1rem;
+    border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: .4rem;
+    transition: all .2s; backdrop-filter: blur(8px);
+  }
+  .hero-img-upload-btn:hover { background: rgba(255,255,255,.28); }
+  .hero-img-upload-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
   .section-pad { padding: 5rem 2rem; }
   .container { max-width: 1200px; margin: 0 auto; }
@@ -258,61 +262,48 @@
     font-size: .97rem; line-height: 1.72; color: #2E5475; max-width: 600px;
   }
 
+  /* MISSION */
   #mission { background: #f2f7f3; }
   .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .mv-card {
     background: #fff; border-radius: 16px;
-    padding: 2.5rem; border-left: 4px solid #34A853;
+    padding: 2rem; 
     box-shadow: 0 4px 24px rgba(52,168,83,.1);
     transition: all .25s;
-    animation: floatUp 0.6s ease-out backwards;
+    cursor: pointer;
   }
-  .mv-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(52,168,83,.2); }
+  .mv-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(52,168,83,.18); }
   .mv-card-icon {
     width: 48px; height: 48px; border-radius: 12px;
     background: #EAF8EF; display: grid; place-items: center;
-    color: #34A853; margin-bottom: 1.2rem;
-    transition: all .3s;
+    color: #34A853; transition: all .3s; flex-shrink: 0;
   }
-  .mv-card:hover .mv-card-icon { transform: scale(1.15) rotate(-10deg); background: #34A853; color: #fff; }
-  .mv-card h2 { font-size: 1.4rem; font-weight: 800; color: #15395E; margin-bottom: .7rem; }
-  .mv-card p { font-size: .93rem; line-height: 1.75; color: #2E5475; }
+  .mv-card:hover .mv-card-icon { transform: scale(1.1); background: #34A853; color: #fff; }
+  .mv-card h2 { font-size: 1.2rem; font-weight: 800; color: #15395E; margin: 0; }
+  .mv-card p { font-size: .93rem; line-height: 1.75; color: #2E5475; margin: 0; }
 
+  /* PRODUCTS */
   #products { background: #fff; }
   .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .product-card {
     background: #f2f7f3; border-radius: 16px;
     border: 1px solid #D7EAF7;
     overflow: hidden; transition: all .3s;
-    animation: floatUp 0.6s ease-out backwards;
   }
-  .product-card:hover { transform: translateY(-12px); box-shadow: 0 24px 56px rgba(52,168,83,.16); border-color: #34A853; }
-
+  .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(52,168,83,.14); border-color: #34A853; }
   .product-media {
     width: 100%; aspect-ratio: 16/9;
     background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);
-    position: relative; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
+    color: #3FAE6B; flex-direction: column; gap: .4rem; font-size: .72rem;
+    font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
   }
-  .product-media .media-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: .5rem;
-    color: #3FAE6B; font-size: .75rem; font-weight: 600; letter-spacing: .06em;
-    text-transform: uppercase;
-  }
-  .product-media .media-placeholder .material-symbols-outlined { font-size: 2.5rem; opacity: .5; }
+  .product-media .material-symbols-outlined { font-size: 2.2rem; opacity: .5; }
+  .product-body { padding: 1.4rem; }
+  .product-body h3 { font-size: 1.15rem; font-weight: 800; color: #15395E; margin-bottom: .3rem; }
+  .product-body p { font-size: .84rem; color: #2E5475; margin: 0; line-height: 1.55; }
 
-  .product-body { padding: 1.5rem; }
-  .product-body h3 { font-size: 1.25rem; font-weight: 800; color: #15395E; margin-bottom: .4rem; }
-  .product-body p { font-size: .85rem; color: #2E5475; margin-bottom: 1.1rem; line-height: 1.6; }
-  .product-tags { display: flex; flex-wrap: wrap; gap: .4rem; padding-top: 1rem; border-top: 1px solid #D7EAF7; }
-  .product-tag {
-    background: #fff; border: 1px solid #D7EAF7;
-    font-size: .72rem; font-weight: 700; color: #2E5475;
-    padding: .25rem .6rem; border-radius: 5px;
-    transition: all .2s;
-  }
-  .product-tag:hover { background: #34A853; color: #fff; border-color: #34A853; }
-
+  /* STATS BAR */
   .stats-bar {
     background: #15395E; padding: 3rem 2rem;
     position: relative; overflow: hidden;
@@ -320,81 +311,65 @@
   .stats-bar-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; position: relative; z-index: 1; }
   .stat-item { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 1.8rem 1.2rem; text-align: center; transition: all .25s; }
   .stat-item:hover { background: rgba(52,168,83,.18); transform: translateY(-4px); }
-  .stat-item .icon { font-size: 1.8rem; margin-bottom: .6rem; color: #6FE6A0; animation: pulse-soft 2s ease-in-out infinite; }
+  .stat-item .icon { font-size: 1.8rem; margin-bottom: .6rem; color: #6FE6A0; }
   .stat-item strong { display: block; font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: .3rem; }
   .stat-item span { font-size: .78rem; color: rgba(255,255,255,.75); line-height: 1.4; display: block; }
 
-  /* SECCIÓN RESULTADOS / CASOS DE ÉXITO */
+  /* RESULTS */
   #results { background: #f2f7f3; }
-  .results-accordion {
-    display: grid; gap: 1.5rem;
-  }
   .accordion-item {
     background: #fff; border-radius: 16px;
     border: 1px solid #D7EAF7;
     overflow: hidden; transition: all .3s;
+    margin-bottom: 1.5rem;
   }
   .accordion-header {
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.5rem 2rem; cursor: pointer; user-select: none;
-    border-bottom: 1px solid #D7EAF7;
     transition: all .2s;
   }
   .accordion-item.active .accordion-header {
     background: linear-gradient(135deg, #f0f7ff 0%, #f0fff4 100%);
-    border-bottom-color: #34A853;
+    border-bottom: 1px solid #34A853;
   }
   .accordion-header:hover { background: #f9fbfd; }
   .accordion-title {
     font-size: 1.1rem; font-weight: 800; color: #15395E;
     display: flex; align-items: center; gap: .8rem;
   }
-  .accordion-icon {
-    font-size: 1.5rem; color: #34A853; transition: transform .3s;
-  }
-  .accordion-item.active .accordion-icon {
-    transform: rotate(180deg);
-  }
-  .accordion-content {
-    max-height: 0; overflow: hidden; transition: max-height .3s ease;
-  }
-  .accordion-item.active .accordion-content {
-    max-height: 500px;
-  }
-  .accordion-body {
-    padding: 2rem; display: grid; gap: 1.5rem;
-  }
-  .video-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
-  }
+  .accordion-icon { font-size: 1.5rem; color: #34A853; transition: transform .3s; }
+  .accordion-item.active .accordion-icon { transform: rotate(180deg); }
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .accordion-item.active .accordion-content { max-height: 2000px; }
+  .accordion-body { padding: 2rem; }
+
+  .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: .8rem; }
   .video-card {
     position: relative; overflow: hidden; border-radius: 12px;
-    aspect-ratio: 16/9; background: #e0e0e0;
-    cursor: pointer; transition: all .3s;
+    aspect-ratio: 16/9; cursor: pointer; transition: all .3s;
+    background: linear-gradient(135deg, #D2EAFB 0%, #E1F5E8 100%);
   }
   .video-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(52,168,83,.2); }
   .video-placeholder {
     width: 100%; height: 100%;
-    background: linear-gradient(135deg, #D2EAFB 0%, #E1F5E8 100%);
     display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 1rem; color: #34A853;
+    flex-direction: column; gap: .8rem; color: #34A853; position: relative;
   }
-  .video-placeholder .material-symbols-outlined {
-    font-size: 3.5rem; opacity: .6;
-  }
-  .video-card p {
-    font-size: .85rem; font-weight: 600; text-align: center;
-  }
-  .single-video-grid {
-    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  .video-placeholder .material-symbols-outlined { font-size: 3rem; opacity: .6; }
+  .video-placeholder p { font-size: .82rem; font-weight: 600; text-align: center; margin: 0; color: #2E5475; }
+  .video-placeholder span.sub { font-size: .68rem; opacity: .65; }
+  .video-file-input {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
   }
 
+  /* MAP */
   #map-section { background: #fff; }
   .map-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-top: 2rem; }
   #map { height: 450px; border-radius: 16px; box-shadow: 0 12px 48px rgba(21,57,94,.16); }
   .map-info h3 { font-size: 1.3rem; font-weight: 800; color: #15395E; margin-bottom: 1.2rem; }
   .map-info p { font-size: .95rem; color: #2E5475; line-height: 1.8; margin-bottom: 1.5rem; }
 
+  /* CONTACT */
   #contact { background: #fff; }
   .contact-box {
     background: linear-gradient(135deg, #34A853 0%, #1E9E7A 50%, #1561ad 100%);
@@ -406,66 +381,136 @@
   .contact-info { position: relative; z-index: 1; }
   .contact-info h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 1rem; line-height: 1.15; }
   .contact-info p { font-size: .97rem; color: rgba(255,255,255,.88); line-height: 1.7; margin-bottom: 2rem; }
+  .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; color: white; }
+  .contact-detail .label { font-size: .7rem; opacity: .75; text-transform: uppercase; letter-spacing: .08em; }
+  .contact-detail a { color: white; text-decoration: none; font-weight: 600; }
+  .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+  .social-link {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center;
+    color: #fff; text-decoration: none; transition: all .2s; font-weight: 700; font-size: .8rem;
+  }
+  .social-link:hover { background: rgba(255,255,255,.35); transform: translateY(-2px); }
 
+  /* CONTACT FORM */
+  .contact-form-box {
+    background: #fff; border-radius: 16px; padding: 2rem; position: relative; z-index: 1;
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: .35rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label { font-size: .7rem; font-weight: 700; color: #2E5475; text-transform: uppercase; letter-spacing: .08em; }
+  .form-input {
+    width: 100%; border: 1.5px solid #D7EAF7; border-radius: 7px;
+    padding: .65rem .85rem; font-family: 'Montserrat', sans-serif;
+    font-size: .88rem; color: #15395E; background: #F7FBF9; outline: none;
+    transition: border-color .2s;
+  }
+  .form-input:focus { border-color: #34A853; }
+  textarea.form-input { resize: vertical; min-height: 100px; }
+
+  /* PHONE WITH COUNTRY CODE */
+  .phone-row { display: flex; gap: .5rem; align-items: stretch; }
+  .country-select-wrap { position: relative; flex-shrink: 0; }
+  .country-select-wrap select {
+    appearance: none; -webkit-appearance: none;
+    border: 1.5px solid #D7EAF7; border-radius: 7px;
+    padding: .65rem 1.8rem .65rem .75rem;
+    font-family: 'Montserrat', sans-serif; font-size: .82rem;
+    color: #15395E; background: #F7FBF9; outline: none; cursor: pointer;
+    height: 100%; transition: border-color .2s;
+  }
+  .country-select-wrap select:focus { border-color: #34A853; }
+  .country-select-wrap::after {
+    content: '▾'; position: absolute; right: .5rem; top: 50%; transform: translateY(-50%);
+    font-size: .7rem; color: #8FB8DC; pointer-events: none;
+  }
+  .phone-input-wrap { flex: 1; }
+
+  /* SUBMIT BUTTON */
+  .btn-submit {
+    width: 100%; background: #1561ad; color: #fff;
+    font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 700;
+    padding: .9rem; border: none; border-radius: 7px; cursor: pointer;
+    transition: all .2s; display: flex; align-items: center; justify-content: center; gap: .5rem;
+    grid-column: 1 / -1;
+  }
+  .btn-submit:hover { background: #134F8C; transform: translateY(-2px); }
+  .form-success {
+    display: none; background: #EAF8EF; border: 1.5px solid #34A853;
+    border-radius: 10px; padding: 1rem 1.2rem; margin-top: 1rem;
+    font-size: .88rem; font-weight: 600; color: #1C9F52;
+    align-items: center; gap: .6rem; grid-column: 1 / -1;
+  }
+  .form-success.show { display: flex; }
+
+  /* WHATSAPP FLOAT */
   .wa-float {
     position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 200;
-    width: 54px; height: 54px; border-radius: 50%;
+    width: 56px; height: 56px; border-radius: 50%;
     background: #25D366; display: grid; place-items: center;
     box-shadow: 0 4px 20px rgba(37,211,102,.55);
     transition: all .2s; text-decoration: none;
-    animation: bounce-subtle 2s ease-in-out infinite;
-    color: white;
-    font-weight: 800;
-    font-size: 1.2rem;
+    animation: bounce-subtle 3s ease-in-out infinite;
   }
-  .wa-float:hover { transform: scale(1.2); box-shadow: 0 12px 36px rgba(37,211,102,.75); }
+  .wa-float:hover { transform: scale(1.15); box-shadow: 0 12px 36px rgba(37,211,102,.75); animation: none; }
+  .wa-float svg { width: 30px; height: 30px; fill: white; }
 
+  /* FOOTER */
   footer { background: #15395E; padding: 4rem 2rem 2rem; }
   .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1.2fr; gap: 3rem; margin-bottom: 3rem; }
   .footer-brand { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: .7rem; }
   .footer-brand span { color: #6FE6A0; }
   .footer-desc { font-size: .85rem; line-height: 1.7; color: rgba(255,255,255,.65); margin-bottom: 1.2rem; }
   footer h4 { font-size: .8rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
-  footer ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; padding: 0; margin: 0; }
   footer ul li a { font-size: .85rem; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
   footer ul li a:hover { color: #6FE6A0; }
-
-  .social-links {
-    display: flex; gap: 1rem; margin-top: 1.5rem;
+  .footer-contact-item { display: flex; align-items: flex-start; gap: .7rem; font-size: .84rem; color: rgba(255,255,255,.65); line-height: 1.4; margin-bottom: .7rem; }
+  .footer-contact-item a { color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
+  .footer-contact-item a:hover { color: #6FE6A0; }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: .5rem;
+    font-size: .76rem; color: rgba(255,255,255,.5);
   }
-  .social-link {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center;
-    color: #fff; text-decoration: none; transition: all .2s; font-weight: 700;
-  }
-  .social-link:hover { background: #34A853; transform: translateY(-2px); }
 
+  /* RESPONSIVE */
   @media(max-width: 1024px) {
     .hero-stats { display: none; }
     .products-grid { grid-template-columns: 1fr 1fr; }
     .video-grid { grid-template-columns: 1fr; }
     .map-container { grid-template-columns: 1fr; }
-    .contact-box { grid-template-columns: 1fr; }
+    .contact-box { grid-template-columns: 1fr; padding: 2.5rem; gap: 2rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .mv-grid { grid-template-columns: 1fr; }
   }
   @media(max-width: 768px) {
     .products-grid { grid-template-columns: 1fr; }
     #map { height: 300px; }
-    .nav-links { gap: 1rem; font-size: 0.7rem; }
-    .contact-box { padding: 2rem; }
+    .nav-links { display: none; }
+    .contact-box { padding: 1.5rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: 1; }
+    .btn-submit { grid-column: 1; }
+    .form-success { grid-column: 1; }
+    .footer-grid { grid-template-columns: 1fr; }
   }
-
   .leaflet-container { border-radius: 16px; }
+
+  /* SUBSECTION LABELS */
+  .sub-section-label {
+    font-size: .9rem; font-weight: 700; color: #34A853;
+    margin-bottom: .8rem; margin-top: 1.5rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .sub-section-label::before { content: ''; width: 12px; height: 3px; background: #34A853; border-radius: 2px; display: inline-block; }
 </style>
 </head>
 <body>
-
-<!-- LANGUAGE SWITCHER -->
-<div class="lang-switcher">
-  <button class="lang-btn active" data-lang="es">ES</button>
-  <button class="lang-btn" data-lang="en">EN</button>
-</div>
 
 <!-- TOP BAR -->
 <div class="topbar">
@@ -474,8 +519,8 @@
     <span><span class="material-symbols-outlined">call</span> +593 96-320-0034</span>
   </div>
   <div class="topbar-right">
-    <a href="https://instagram.com" target="_blank" aria-label="Instagram">IG</a>
-    <a href="https://wa.me/593963200034" target="_blank" aria-label="WhatsApp">WA💬</a>
+    <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank" aria-label="Instagram" title="Instagram">IG</a>
+    <a href="https://wa.me/593963200034" target="_blank" aria-label="WhatsApp" title="WhatsApp">WA</a>
   </div>
 </div>
 
@@ -499,25 +544,26 @@
 </nav>
 
 <!-- LOGO SECTION -->
-<section id="logo" class="logo-section">
-  <div class="logo-container animate-float" style="justify-content: center;">
-    <div class="logo-box">
-      <div class="logo-placeholder">
-        <span class="material-symbols-outlined" style="font-size: 4rem;">image</span>
-        <span style="font-size: 0.9rem;">logo.png</span>
-      </div>
+<section class="logo-section">
+  <div class="logo-upload-box" id="logoBox" title="Haz clic para subir tu logo">
+    <input type="file" accept="image/*" onchange="loadLogo(event)" id="logoInput">
+    <div id="logoPlaceholder" style="display:flex; flex-direction:column; align-items:center; gap:.5rem; pointer-events:none;">
+      <span class="material-symbols-outlined" style="font-size:2.5rem; color:#8FB8DC;">add_photo_alternate</span>
+      <span class="logo-upload-text">Haz clic para<br>subir logo.png</span>
     </div>
+    <img id="logoImg" style="display:none; width:100%; height:100%; object-fit:contain; border-radius:14px;" alt="Logo EcoFluidSystem">
   </div>
 </section>
 
 <!-- HERO -->
-<section id="hero" class="hero">
+<section id="hero" style="position:relative; min-height:90vh; display:flex; align-items:center; padding:5rem 2rem; overflow:hidden;">
+  <img id="heroBgImg" src="" alt="" class="hero-bg-img" style="display:none;">
+  <div class="hero-overlay"></div>
+  <div id="heroDefaultBg" style="position:absolute; inset:0; background: linear-gradient(140deg, #0F4B8A 0%, #1E9E7A 100%); z-index:0;"></div>
   <div class="hero-content">
     <div class="hero-badge">Soluciones Ambientales</div>
     <h1>Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</h1>
-    <p>Sistemas innovadores de filtración y purificación para minería, 
-       industria y plantas de tratamiento. Garantizamos la máxima calidad 
-       del agua con equipos de última generación.</p>
+    <p>Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación.</p>
     <div class="hero-btns">
       <a class="btn-hero-primary" href="#contact">
         <span class="material-symbols-outlined">arrow_forward</span>
@@ -536,6 +582,11 @@
       <span>Asesoramiento Técnico Personalizado</span>
     </div>
   </div>
+  <label class="hero-img-upload-btn" title="Cambiar imagen de fondo">
+    <span class="material-symbols-outlined" style="font-size:1rem;">add_photo_alternate</span>
+    Cambiar imagen de fondo
+    <input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;" onchange="loadHeroBg(event)">
+  </label>
 </section>
 
 <!-- MISSION & VISION -->
@@ -544,35 +595,28 @@
     <div style="margin-bottom: 3rem;">
       <p class="section-eyebrow">Nuestra Identidad</p>
       <h2 class="section-title">Quiénes Somos</h2>
-      <p class="section-sub">New Techology EcoFluidSystem Ecuador es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.</p>
+      <p class="section-sub">New Technology EcoFluidSystem Ecuador es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.</p>
     </div>
     <div class="mv-grid">
-      <!-- MISIÓN ACORDEÓN -->
-      <div class="mv-card" style="border-left: none; padding: 2rem; cursor: pointer;" onclick="toggleMissionVision(this)">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <div class="mv-card-icon">
-              <span class="material-symbols-outlined">target</span>
-            </div>
-            <h2 style="margin: 0;">Nuestra Misión</h2>
+      <div class="mv-card" onclick="toggleMV(this)">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <div class="mv-card-icon"><span class="material-symbols-outlined">target</span></div>
+            <h2>Nuestra Misión</h2>
           </div>
-          <span class="material-symbols-outlined" style="color: #34A853; font-size: 1.8rem; transition: transform 0.3s;">expand_more</span>
+          <span class="material-symbols-outlined" style="color:#34A853; font-size:1.8rem; transition:transform .3s;" id="misionIcon">expand_more</span>
         </div>
-        <p style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; margin: 0; margin-top: 1rem;">Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable.</p>
+        <p style="max-height:0; overflow:hidden; transition:max-height .35s ease; margin-top:1rem; font-size:.93rem; line-height:1.75; color:#2E5475;">Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable.</p>
       </div>
-
-      <!-- VISIÓN ACORDEÓN -->
-      <div class="mv-card" style="border-left: none; padding: 2rem; cursor: pointer;" onclick="toggleMissionVision(this)">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <div class="mv-card-icon">
-              <span class="material-symbols-outlined">visibility</span>
-            </div>
-            <h2 style="margin: 0;">Nuestra Visión</h2>
+      <div class="mv-card" onclick="toggleMV(this)">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <div class="mv-card-icon"><span class="material-symbols-outlined">visibility</span></div>
+            <h2>Nuestra Visión</h2>
           </div>
-          <span class="material-symbols-outlined" style="color: #34A853; font-size: 1.8rem; transition: transform 0.3s;">expand_more</span>
+          <span class="material-symbols-outlined" style="color:#34A853; font-size:1.8rem; transition:transform .3s;" id="visionIcon">expand_more</span>
         </div>
-        <p style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; margin: 0; margin-top: 1rem; font-size: .93rem; line-height: 1.75; color: #2E5475;">Consolidarnos como un socio estratégico para la industria minera, petrolera y ambiental, liderando la transformación hacia una gestión sostenible del agua y los residuos mediante soluciones tecnológicas innovadoras y de alto desempeño.</p>
+        <p style="max-height:0; overflow:hidden; transition:max-height .35s ease; margin-top:1rem; font-size:.93rem; line-height:1.75; color:#2E5475;">Consolidarnos como un socio estratégico para la industria minera, petrolera y ambiental, liderando la transformación hacia una gestión sostenible del agua y los residuos mediante soluciones tecnológicas innovadoras y de alto desempeño.</p>
       </div>
     </div>
   </div>
@@ -587,198 +631,138 @@
       <p class="section-sub">Soluciones especializadas en tratamiento de aguas residuales, floculantes y coagulantes para aplicaciones industriales y ambientales.</p>
     </div>
 
-    <!-- CATEGORÍA 1: BS TECH -->
-    <div style="margin-bottom: 4rem;">
-      <div style="margin-bottom: 2rem;">
-        <h3 style="font-size: 1.5rem; font-weight: 800; color: #15395E; margin-bottom: 0.5rem;">
-          <span style="color: #34A853;">●</span> Boss Technology
-        </h3>
-        <p style="font-size: 0.95rem; color: #2E5475; line-height: 1.6;">Sistemas innovadores de filtración y tratamiento especializados para aplicaciones industriales y ambientales.</p>
-      </div>
+    <!-- BS TECH -->
+    <div style="margin-bottom: 3.5rem;">
+      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Boss Technology</h3>
+      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">Sistemas innovadores de filtración y tratamiento especializados para aplicaciones industriales y ambientales.</p>
       <div class="products-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Boss Technology</span>
-            </div>
+            <span class="material-symbols-outlined">water_drop</span>
+            <span>Boss Technology</span>
           </div>
           <div class="product-body">
-            <h3>Agri Boss</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Sistema de Filtración Avanzada</p>
+            <h3>Agri Boss (AB)</h3>
+            <p>Sistema de filtración avanzada para aplicaciones agrícolas e industriales.</p>
           </div>
         </div>
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Boss Technology</span>
-            </div>
+            <span class="material-symbols-outlined">water_drop</span>
+            <span>Boss Technology</span>
           </div>
           <div class="product-body">
-            <h3>Eco Septic</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Equipo Especializado</p>
+            <h3>Eco Septic (ES)</h3>
+            <p>Equipo especializado para tratamiento de aguas residuales domésticas e industriales.</p>
           </div>
         </div>
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Boss Technology</span>
-            </div>
+            <span class="material-symbols-outlined">water_drop</span>
+            <span>Boss Technology</span>
           </div>
           <div class="product-body">
-            <h3>Fosa Septic</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Filtración Sostenible</p>
+            <h3>Fosa Septic (FS)</h3>
+            <p>Sistema de filtración sostenible para manejo eficiente de efluentes.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- CATEGORÍA 2: FLOCULANTES -->
-    <div style="margin-bottom: 4rem;">
-      <div style="margin-bottom: 2rem;">
-        <h3 style="font-size: 1.5rem; font-weight: 800; color: #15395E; margin-bottom: 0.5rem;">
-          <span style="color: #34A853;">●</span> Floculantes
-        </h3>
-        <p style="font-size: 0.95rem; color: #2E5475; line-height: 1.6;">7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones.</p>
-      </div>
+    <!-- FLOCULANTES -->
+    <div style="margin-bottom: 3.5rem;">
+      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Floculantes</h3>
+      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones industriales y mineras.</p>
       <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Floculante No iónico</span>
-            </div>
+            <span class="material-symbols-outlined">science</span>
+            <span style="font-size:.65rem;">No Iónico</span>
           </div>
-          <div class="product-body">
-            <h3>N3218</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">No Iónico</p>
-          </div>
+          <div class="product-body"><h3>N32</h3><p>Floculante No Iónico</p></div>
         </div>
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Floculante No iónico</span>
-            </div>
+            <span class="material-symbols-outlined">science</span>
+            <span style="font-size:.65rem;">No Iónico</span>
           </div>
-          <div class="product-body">
-            <h3>N3326</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">No Iónico</p>
-          </div>
+          <div class="product-body"><h3>N24</h3><p>Floculante No Iónico</p></div>
         </div>
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Floculante No iónico</span>
-            </div>
+            <span class="material-symbols-outlined">science</span>
+            <span style="font-size:.65rem;">No Iónico</span>
           </div>
-          <div class="product-body">
-            <h3>N3415</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">No Iónico</p>
-          </div>
+          <div class="product-body"><h3>N33</h3><p>Floculante No Iónico</p></div>
         </div>
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Floculante Aniónico</span>
-            </div>
+            <span class="material-symbols-outlined">science</span>
+            <span style="font-size:.65rem;">Aniónico</span>
           </div>
-          <div class="product-body">
-            <h3>A5270</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Aniónico</p>
-          </div>
+          <div class="product-body"><h3>A53</h3><p>Floculante Aniónico</p></div>
         </div>
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Floculante Aniónico</span>
-            </div>
+            <span class="material-symbols-outlined">science</span>
+            <span style="font-size:.65rem;">Aniónico</span>
           </div>
-          <div class="product-body">
-            <h3>A5477</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Aniónico</p>
-          </div>
+          <div class="product-body"><h3>A54</h3><p>Floculante Aniónico</p></div>
         </div>
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Floculante Catiónico</span>
-            </div>
+            <span class="material-symbols-outlined">science</span>
+            <span style="font-size:.65rem;">Catiónico</span>
           </div>
-          <div class="product-body">
-            <h3>C6010</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Catiónico</p>
-          </div>
+          <div class="product-body"><h3>C60</h3><p>Floculante Catiónico</p></div>
         </div>
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Floculante Catiónico</span>
-            </div>
+            <span class="material-symbols-outlined">science</span>
+            <span style="font-size:.65rem;">Catiónico</span>
           </div>
-          <div class="product-body">
-            <h3>C6810</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Catiónico</p>
-          </div>
+          <div class="product-body"><h3>C68</h3><p>Floculante Catiónico</p></div>
         </div>
       </div>
     </div>
 
-    <!-- CATEGORÍA 3: COAGULANTES -->
+    <!-- COAGULANTES -->
     <div>
-      <div style="margin-bottom: 2rem;">
-        <h3 style="font-size: 1.5rem; font-weight: 800; color: #15395E; margin-bottom: 0.5rem;">
-          <span style="color: #34A853;">●</span> Coagulantes
-        </h3>
-        <p style="font-size: 0.95rem; color: #2E5475; line-height: 1.6;">Solución especializada para procesos de coagulación en tratamiento de aguas.</p>
-      </div>
+      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Coagulantes</h3>
+      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">Solución especializada para procesos de coagulación en tratamiento de aguas industriales y mineras.</p>
       <div class="products-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="product-card">
           <div class="product-media" style="background: linear-gradient(135deg, #FFE8E8 0%, #FFD2D2 100%);">
-            <div class="media-placeholder">
-              <span class="material-symbols-outlined">water_drop</span>
-              <span>Coagulante</span>
-            </div>
+            <span class="material-symbols-outlined">water_drop</span>
+            <span style="font-size:.65rem;">Coagulante</span>
           </div>
           <div class="product-body">
-            <h3>CEFS-01</h3>
-            <p style="font-size: 0.85rem; color: #2E5475; margin-bottom: 0.5rem;">Coagulante</p>
+            <h3>C-01</h3>
+            <p>Coagulante especializado para procesos de clarificación y tratamiento de efluentes.</p>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- STATS BAR -->
-<section id="stats" class="stats-bar">
+<section class="stats-bar">
   <div class="stats-bar-inner">
     <div class="stat-item">
-      <div class="icon">
-        <span class="material-symbols-outlined">eco</span>
-      </div>
+      <div class="icon"><span class="material-symbols-outlined">eco</span></div>
       <strong>30+</strong>
       <span>Años de Experiencia</span>
     </div>
     <div class="stat-item">
-      <div class="icon">
-        <span class="material-symbols-outlined">engineering</span>
-      </div>
+      <div class="icon"><span class="material-symbols-outlined">engineering</span></div>
       <strong>100%</strong>
       <span>Asesoramiento Técnico Integral</span>
     </div>
   </div>
 </section>
 
-<!-- RESULTADOS - CASOS DE ÉXITO -->
+<!-- RESULTADOS -->
 <section id="results" class="section-pad">
   <div class="container">
     <div style="margin-bottom: 3rem;">
@@ -787,196 +771,87 @@
       <p class="section-sub">Visualiza los resultados reales de nuestras soluciones en diferentes sectores industriales y aplicaciones ambientales.</p>
     </div>
 
-    <div class="results-accordion">
-      
-      <!-- INDUSTRIA MINERA -->
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <div class="accordion-title">
-            <span class="material-symbols-outlined" style="color: #34A853; font-size: 1.8rem;">minerals</span>
-            Industria Minera
-          </div>
-          <span class="accordion-icon material-symbols-outlined">expand_more</span>
+    <!-- INDUSTRIA MINERA -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <span class="material-symbols-outlined" style="color:#34A853; font-size:1.8rem;">minerals</span>
+          Industria Minera
         </div>
-        <div class="accordion-content">
-          <div class="accordion-body">
-            <div style="margin-bottom: 1.5rem;">
-              <h4 style="font-size: 0.95rem; font-weight: 700; color: #15395E; margin-bottom: 0.5rem;">Subsecciones</h4>
-              <p style="font-size: 0.85rem; color: #2E5475; line-height: 1.6;">Explora nuestras soluciones especializadas para diferentes procesos mineros.</p>
-            </div>
-            
-            <!-- Concentrados -->
-            <div style="margin-bottom: 2rem;">
-              <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Concentrados</h5>
-              <div class="video-grid">
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">concentrados.mp4</p>
-                  </div>
-                </div>
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">concentrados2.mp4</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <span class="accordion-icon material-symbols-outlined">expand_more</span>
+      </div>
+      <div class="accordion-content">
+        <div class="accordion-body">
+          <div class="sub-section-label">Concentrados</div>
+          <div class="video-grid">
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">concentrados_1</span></div></div>
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">concentrados_2</span></div></div>
+          </div>
 
-            <!-- Molinos Chilenos -->
-            <div style="margin-bottom: 2rem;">
-              <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Molinos Chilenos</h5>
-              <div class="video-grid">
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">molino.mp4</p>
-                  </div>
-                </div>
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">molino2.mp4</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="sub-section-label">Molinos Chilenos</div>
+          <div class="video-grid">
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">molino_1</span></div></div>
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">molino_2</span></div></div>
+          </div>
 
-            <!-- Relaves de Lixiviación -->
-            <div style="margin-bottom: 2rem;">
-              <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Relaves de Lixiviación</h5>
-              <div class="video-grid">
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">lixiviacion.mp4</p>
-                  </div>
-                </div>
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">lixiviacion2.mp4</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="sub-section-label">Relaves de Lixiviación</div>
+          <div class="video-grid">
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">lixiviacion_1</span></div></div>
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">lixiviacion_2</span></div></div>
+          </div>
 
-            <!-- Relaves de Flotación -->
-            <div>
-              <h5 style="font-size: 0.9rem; font-weight: 700; color: #34A853; margin-bottom: 1rem;">Relaves de Flotación</h5>
-              <div class="video-grid">
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">flotacion.mp4</p>
-                  </div>
-                </div>
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">flotacion2.mp4</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="sub-section-label">Relaves de Flotación</div>
+          <div class="video-grid">
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">flotacion_1</span></div></div>
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">flotacion_2</span></div></div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- PLANTAS PTAR -->
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <div class="accordion-title">
-            <span class="material-symbols-outlined" style="color: #1561ad; font-size: 1.8rem;">water</span>
-            Plantas PTAR
-          </div>
-          <span class="accordion-icon material-symbols-outlined">expand_more</span>
+    <!-- PLANTAS PTAR -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <span class="material-symbols-outlined" style="color:#1561ad; font-size:1.8rem;">water</span>
+          Plantas PTAR
         </div>
-        <div class="accordion-content">
-          <div class="accordion-body">
-            <div style="margin-bottom: 2rem;">
-              <p style="font-size: 0.9rem; color: #2E5475; line-height: 1.6; margin-bottom: 1.5rem;">Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura.</p>
-              <div class="video-grid">
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">ptar.mp4</p>
-                  </div>
-                </div>
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">ptar2.mp4</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <span class="accordion-icon material-symbols-outlined">expand_more</span>
+      </div>
+      <div class="accordion-content">
+        <div class="accordion-body">
+          <p style="font-size:.9rem; color:#2E5475; line-height:1.6; margin-bottom:1.5rem;">Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura.</p>
+          <div class="video-grid">
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">ptar_1</span></div></div>
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">ptar_2</span></div></div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- CAMALES -->
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <div class="accordion-title">
-            <span class="material-symbols-outlined" style="color: #E85D75; font-size: 1.8rem;">factory</span>
-            Camales
-          </div>
-          <span class="accordion-icon material-symbols-outlined">expand_more</span>
+    <!-- CAMALES -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-title">
+          <span class="material-symbols-outlined" style="color:#E85D75; font-size:1.8rem;">factory</span>
+          Camales
         </div>
-        <div class="accordion-content">
-          <div class="accordion-body">
-            <div style="margin-bottom: 2rem;">
-              <p style="font-size: 0.9rem; color: #2E5475; line-height: 1.6; margin-bottom: 1.5rem;">Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales.</p>
-              <div class="video-grid">
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">camal.mp4</p>
-                  </div>
-                </div>
-                <div class="video-card" onclick="handleVideoUpload(event)">
-                  <div class="video-placeholder" style="cursor: pointer; position: relative;">
-                    <input type="file" accept="video/*,image/*" style="position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="displayMedia(event, this.parentElement.parentElement)">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p>Subir Video</p>
-                    <p style="font-size: 0.7rem; opacity: 0.7;">camal2.mp4</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <span class="accordion-icon material-symbols-outlined">expand_more</span>
+      </div>
+      <div class="accordion-content">
+        <div class="accordion-body">
+          <p style="font-size:.9rem; color:#2E5475; line-height:1.6; margin-bottom:1.5rem;">Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales.</p>
+          <div class="video-grid">
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">camal_1</span></div></div>
+            <div class="video-card"><div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>Subir video / imagen</p><span class="sub">camal_2</span></div></div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- MAP SECTION -->
+<!-- MAP -->
 <section id="map-section" class="section-pad">
   <div class="container">
     <div style="margin-bottom: 2rem;">
@@ -988,7 +863,7 @@
       <div id="map"></div>
       <div class="map-info">
         <h3>Presencia en América Latina</h3>
-        <p>New Technology EcoFluidSystem S.A. proporciona soporte técnico especializado, consultoría en proyectos y suministro de productos en toda la región</p>
+        <p>New Technology EcoFluidSystem S.A. proporciona soporte técnico especializado, consultoría en proyectos y suministro de productos en toda la región, con presencia activa en Ecuador, Perú y Costa Rica.</p>
       </div>
     </div>
   </div>
@@ -998,61 +873,97 @@
 <section id="contact" class="section-pad">
   <div class="container">
     <div class="contact-box">
+      <!-- INFO LEFT -->
       <div class="contact-info">
         <h2>¿Listo para Mejorar tu Tratamiento de Aguas?</h2>
         <p>Nuestro equipo de expertos está disponible para asesorarte en la solución más adecuada para tu proyecto.</p>
-        <div style="margin-top: 2rem;">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; color: white;">
-            <span class="material-symbols-outlined" style="color: #6FE6A0;">mail</span>
-            <div>
-              <div style="font-size: 0.75rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em;">Correo</div>
-              <a href="mailto:ecofluidsystemec@gmail.com" style="color: white; text-decoration: none; font-weight: 600;">ecofluidsystemec@gmail.com</a>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; color: white;">
-            <span class="material-symbols-outlined" style="color: #6FE6A0;">phone</span>
-            <div>
-              <div style="font-size: 0.75rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em;">Teléfono</div>
-              <a href="tel:+593963200034" style="color: white; text-decoration: none; font-weight: 600;">+593 96-320-0034</a>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; color: white;">
-            <span class="material-symbols-outlined" style="color: #6FE6A0;">location_on</span>
-            <div>
-              <div style="font-size: 0.75rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em;">Ubicación</div>
-              <div>Ecuador - Disponible en toda la región</div>
-            </div>
-          </div>
-          <div class="social-links">
-            <a href="https://wa.me/593963200034" target="_blank" class="social-link" title="WhatsApp">WA</a>
-            <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank" class="social-link" title="Instagram">IG</a>
+        <div class="contact-detail">
+          <span class="material-symbols-outlined" style="color:#6FE6A0;">mail</span>
+          <div>
+            <div class="label">Correo</div>
+            <a href="mailto:ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</a>
           </div>
         </div>
+        <div class="contact-detail">
+          <span class="material-symbols-outlined" style="color:#6FE6A0;">phone</span>
+          <div>
+            <div class="label">Teléfono / WhatsApp</div>
+            <a href="tel:+593963200034">+593 96-320-0034</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="material-symbols-outlined" style="color:#6FE6A0;">location_on</span>
+          <div>
+            <div class="label">Ubicación</div>
+            <div style="color:white;">Ecuador — disponible en toda la región</div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://wa.me/593963200034" target="_blank" class="social-link" title="WhatsApp">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank" class="social-link" title="Instagram">IG</a>
+        </div>
       </div>
-      <div style="background: #fff; border-radius: 16px; padding: 2rem; position: relative; z-index: 1;">
-        <form style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <label style="font-size: 0.7rem; font-weight: 700; color: #2E5475; text-transform: uppercase; letter-spacing: 0.08em;">Nombre</label>
-            <input type="text" placeholder="Tu nombre completo" style="width: 100%; border: 1.5px solid #D7EAF7; border-radius: 7px; padding: 0.65rem 0.85rem; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #15395E; background: #F7FBF9; outline: none;">
+
+      <!-- FORM RIGHT -->
+      <div class="contact-form-box">
+        <div class="form-grid" id="contactForm">
+          <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-input" id="cf-name" placeholder="Tu nombre completo">
           </div>
-          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <label style="font-size: 0.7rem; font-weight: 700; color: #2E5475; text-transform: uppercase; letter-spacing: 0.08em;">Empresa</label>
-            <input type="text" placeholder="Nombre de tu empresa" style="width: 100%; border: 1.5px solid #D7EAF7; border-radius: 7px; padding: 0.65rem 0.85rem; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #15395E; background: #F7FBF9; outline: none;">
+          <div class="form-group">
+            <label class="form-label">Empresa</label>
+            <input type="text" class="form-input" id="cf-empresa" placeholder="Nombre de tu empresa">
           </div>
-          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <label style="font-size: 0.7rem; font-weight: 700; color: #2E5475; text-transform: uppercase; letter-spacing: 0.08em;">Email</label>
-            <input type="email" placeholder="tu@email.com" style="width: 100%; border: 1.5px solid #D7EAF7; border-radius: 7px; padding: 0.65rem 0.85rem; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #15395E; background: #F7FBF9; outline: none;">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" id="cf-email" placeholder="tu@email.com">
           </div>
-          <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-            <label style="font-size: 0.7rem; font-weight: 700; color: #2E5475; text-transform: uppercase; letter-spacing: 0.08em;">Teléfono</label>
-            <input type="tel" placeholder="+593 9XX-XXX-XXXX" style="width: 100%; border: 1.5px solid #D7EAF7; border-radius: 7px; padding: 0.65rem 0.85rem; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #15395E; background: #F7FBF9; outline: none;">
+          <div class="form-group">
+            <label class="form-label">País & Teléfono</label>
+            <div class="phone-row">
+              <div class="country-select-wrap">
+                <select id="cf-country" onchange="updatePhoneCode()">
+                  <option value="+54" data-placeholder="11-XXXX-XXXX">🇦🇷 Argentina</option>
+                  <option value="+591" data-placeholder="7XXX-XXXX">🇧🇴 Bolivia</option>
+                  <option value="+55" data-placeholder="(XX) XXXXX-XXXX">🇧🇷 Brasil</option>
+                  <option value="+56" data-placeholder="9 XXXX-XXXX">🇨🇱 Chile</option>
+                  <option value="+57" data-placeholder="3XX-XXX-XXXX">🇨🇴 Colombia</option>
+                  <option value="+506" data-placeholder="XXXX-XXXX">🇨🇷 Costa Rica</option>
+                  <option value="+593" data-placeholder="9X-XXX-XXXX" selected>🇪🇨 Ecuador</option>
+                  <option value="+503" data-placeholder="XXXX-XXXX">🇸🇻 El Salvador</option>
+                  <option value="+502" data-placeholder="XXXX-XXXX">🇬🇹 Guatemala</option>
+                  <option value="+504" data-placeholder="XXXX-XXXX">🇭🇳 Honduras</option>
+                  <option value="+52" data-placeholder="(XX) XXXX-XXXX">🇲🇽 México</option>
+                  <option value="+505" data-placeholder="XXXX-XXXX">🇳🇮 Nicaragua</option>
+                  <option value="+507" data-placeholder="XXXX-XXXX">🇵🇦 Panamá</option>
+                  <option value="+595" data-placeholder="9XX-XXX-XXX">🇵🇾 Paraguay</option>
+                  <option value="+51" data-placeholder="9XX-XXX-XXX">🇵🇪 Perú</option>
+                  <option value="+1" data-placeholder="(XXX) XXX-XXXX">🇺🇸 Estados Unidos</option>
+                  <option value="+598" data-placeholder="9X-XXX-XXX">🇺🇾 Uruguay</option>
+                  <option value="+58" data-placeholder="0XX-XXX-XXXX">🇻🇪 Venezuela</option>
+                </select>
+              </div>
+              <div class="phone-input-wrap">
+                <input type="tel" class="form-input" id="cf-phone" placeholder="9X-XXX-XXXX" style="width:100%;">
+              </div>
+            </div>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 0.35rem; grid-column: 1 / -1;">
-            <label style="font-size: 0.7rem; font-weight: 700; color: #2E5475; text-transform: uppercase; letter-spacing: 0.08em;">Mensaje</label>
-            <textarea placeholder="Cuéntanos sobre tu proyecto..." style="width: 100%; border: 1.5px solid #D7EAF7; border-radius: 7px; padding: 0.65rem 0.85rem; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #15395E; background: #F7FBF9; outline: none; resize: vertical; min-height: 100px;"></textarea>
+          <div class="form-group full">
+            <label class="form-label">Mensaje</label>
+            <textarea class="form-input" id="cf-message" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
           </div>
-          <button type="submit" style="width: 100%; background: #1561ad; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; padding: 0.9rem; border: none; border-radius: 7px; cursor: pointer; grid-column: 1 / -1; transition: all 0.2s;">Enviar Consulta</button>
-        </form>
+          <button type="button" class="btn-submit" onclick="sendWhatsApp()">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Enviar por WhatsApp
+          </button>
+          <div class="form-success" id="formSuccess">
+            <span class="material-symbols-outlined">check_circle</span>
+            ¡Mensaje enviado! Nos pondremos en contacto contigo pronto.
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1062,7 +973,7 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-brand">Eco<span>Fluid</span></div>
+      <div class="footer-brand">Eco<span>Fluid</span>System</div>
       <p class="footer-desc">Soluciones de tratamiento de aguas para la industria moderna. Compromiso con la sostenibilidad y la excelencia técnica.</p>
     </div>
     <div>
@@ -1072,138 +983,180 @@
         <li><a href="#mission">Quiénes Somos</a></li>
         <li><a href="#products">Productos</a></li>
         <li><a href="#results">Resultados</a></li>
+        <li><a href="#map-section">Ubicación</a></li>
         <li><a href="#contact">Contacto</a></li>
       </ul>
     </div>
     <div>
       <h4>Contacto</h4>
-      <div style="display: flex; flex-direction: column; gap: 0.7rem;">
-        <div style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.84rem; color: rgba(255,255,255,.65); line-height: 1.4;">
-          <span class="material-symbols-outlined" style="color: #6FE6A0; flex-shrink: 0; margin-top: 1px;">mail</span>
-          <a href="mailto:ecofluidsystemec@gmail.com" style="color: rgba(255,255,255,.65); text-decoration: none;">ecofluidsystemec@gmail.com</a>
-        </div>
-        <div style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.84rem; color: rgba(255,255,255,.65); line-height: 1.4;">
-          <span class="material-symbols-outlined" style="color: #6FE6A0; flex-shrink: 0; margin-top: 1px;">phone</span>
-          <a href="tel:+593963200034" style="color: rgba(255,255,255,.65); text-decoration: none;">+593 96-320-0034</a>
-        </div>
-        <div style="display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.84rem; color: rgba(255,255,255,.65); line-height: 1.4;">
-          <span class="material-symbols-outlined" style="color: #6FE6A0; flex-shrink: 0; margin-top: 1px;">language</span>
-          <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank" style="color: rgba(255,255,255,.65); text-decoration: none;">@ecofluidsystem</a>
-        </div>
+      <div class="footer-contact-item">
+        <span class="material-symbols-outlined" style="color:#6FE6A0; flex-shrink:0;">mail</span>
+        <a href="mailto:ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <span class="material-symbols-outlined" style="color:#6FE6A0; flex-shrink:0;">phone</span>
+        <a href="tel:+593963200034">+593 96-320-0034</a>
+      </div>
+      <div class="footer-contact-item">
+        <span class="material-symbols-outlined" style="color:#6FE6A0; flex-shrink:0;">photo_camera</span>
+        <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank">@ecofluidsystem</a>
+      </div>
+      <div class="footer-contact-item">
+        <span class="material-symbols-outlined" style="color:#6FE6A0; flex-shrink:0;">chat</span>
+        <a href="https://wa.me/593963200034" target="_blank">WhatsApp: +593 96-320-0034</a>
       </div>
     </div>
   </div>
-  <div style="max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-size: 0.76rem; color: rgba(255,255,255,.5);">
-    <p>© 2026 New Tecnology EcoFluidSystem S.A. Todos los derechos reservados.</p>
-    <p>Hecho con <span style="color: #6FE6A0;">♻</span> para el medio ambiente</p>
+  <div class="footer-bottom">
+    <p>© 2026 New Technology EcoFluidSystem S.A. Todos los derechos reservados.</p>
+    <p>Hecho con <span style="color:#6FE6A0;">♻</span> para el medio ambiente</p>
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/593963200034" class="wa-float" target="_blank" aria-label="Contactar por WhatsApp" title="Contáctanos por WhatsApp">
-  <svg style="width: 28px; height: 28px; fill: white;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-9.746 9.798c0 2.657.738 5.25 2.124 7.512L2.88 21.994l8.05-2.11a9.877 9.877 0 004.59 1.176h.005C19.476 21.06 24 16.537 24 11.009 24 5.481 19.479 0 13.95 0a9.879 9.879 0 00-9.879 9.979m8.236-14.973C6.477.365 2.82 2.967 1.087 6.339A9.863 9.863 0 0012.007 0h1.179z"/>
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/593963200034" class="wa-float" target="_blank" aria-label="Contáctanos por WhatsApp" title="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 </a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// Toggle Misión y Visión
-function toggleMissionVision(element) {
-  const p = element.querySelector('p');
-  const icon = element.querySelector('.material-symbols-outlined:last-of-type');
-  
-  if (p.style.maxHeight === '0px' || p.style.maxHeight === '') {
-    p.style.maxHeight = p.scrollHeight + 'px';
-    icon.style.transform = 'rotate(180deg)';
-  } else {
-    p.style.maxHeight = '0px';
-    icon.style.transform = 'rotate(0deg)';
-  }
-}
-
-// Accordion functionality
-function toggleAccordion(element) {
-  const item = element.parentElement;
-  const isActive = item.classList.contains('active');
-  
-  // Close all other items
-  document.querySelectorAll('.accordion-item').forEach(el => {
-    el.classList.remove('active');
-  });
-  
-  // Toggle current item
-  if (!isActive) {
-    item.classList.add('active');
-  }
-}
-
-// Handle video upload
-function handleVideoUpload(event) {
-  event.stopPropagation();
-}
-
-// Display media after upload
-function displayMedia(event, cardElement) {
+// ── LOGO UPLOAD ──
+function loadLogo(event) {
   const file = event.target.files[0];
   if (!file) return;
-  
   const reader = new FileReader();
-  reader.onload = function(e) {
-    const placeholder = cardElement.querySelector('.video-placeholder');
-    const isVideo = file.type.startsWith('video/');
-    
-    if (isVideo) {
-      placeholder.innerHTML = `
-        <video width="100%" height="100%" style="border-radius: 12px;" controls>
-          <source src="${e.target.result}" type="${file.type}">
-          Tu navegador no soporta videos.
-        </video>
-      `;
+  reader.onload = e => {
+    document.getElementById('logoImg').src = e.target.result;
+    document.getElementById('logoImg').style.display = 'block';
+    document.getElementById('logoPlaceholder').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── HERO BG UPLOAD ──
+function loadHeroBg(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById('heroBgImg');
+    img.src = e.target.result;
+    img.style.display = 'block';
+    document.getElementById('heroDefaultBg').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── MISSION / VISION TOGGLE ──
+function toggleMV(card) {
+  const p = card.querySelector('p');
+  const icon = card.querySelector('.material-symbols-outlined:last-of-type');
+  const isOpen = p.style.maxHeight && p.style.maxHeight !== '0px';
+  p.style.maxHeight = isOpen ? '0px' : p.scrollHeight + 'px';
+  icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
+// ── ACCORDION ──
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const isActive = item.classList.contains('active');
+  document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+  if (!isActive) item.classList.add('active');
+}
+
+// ── MEDIA UPLOAD IN RESULTS ──
+function loadMedia(event, input) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const card = input.closest('.video-card');
+  const reader = new FileReader();
+  reader.onload = e => {
+    if (file.type.startsWith('video/')) {
+      card.innerHTML = `<video style="width:100%;height:100%;object-fit:cover;border-radius:12px;" controls>
+        <source src="${e.target.result}" type="${file.type}">
+      </video>`;
     } else {
-      placeholder.innerHTML = `
-        <img src="${e.target.result}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" alt="Media">
-      `;
+      card.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" alt="Resultado">`;
     }
   };
   reader.readAsDataURL(file);
 }
 
-// Map initialization
+// ── UPDATE PHONE PLACEHOLDER BY COUNTRY ──
+function updatePhoneCode() {
+  const select = document.getElementById('cf-country');
+  const opt = select.options[select.selectedIndex];
+  const ph = opt.getAttribute('data-placeholder') || 'XXXXXXXXXX';
+  document.getElementById('cf-phone').placeholder = ph;
+}
+
+// ── SEND VIA WHATSAPP ──
+function sendWhatsApp() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const empresa = document.getElementById('cf-empresa').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const code    = document.getElementById('cf-country').value;
+  const phone   = document.getElementById('cf-phone').value.trim();
+  const msg     = document.getElementById('cf-message').value.trim();
+
+  if (!name || !msg) {
+    alert('Por favor ingresa tu nombre y mensaje.');
+    return;
+  }
+
+  const text = encodeURIComponent(
+    `*Consulta desde EcoFluidSystem.com*\n\n` +
+    `👤 *Nombre:* ${name}\n` +
+    (empresa ? `🏢 *Empresa:* ${empresa}\n` : '') +
+    (email   ? `📧 *Email:* ${email}\n` : '') +
+    (phone   ? `📞 *Teléfono:* ${code} ${phone}\n` : '') +
+    `\n💬 *Mensaje:*\n${msg}`
+  );
+
+  window.open(`https://wa.me/593963200034?text=${text}`, '_blank');
+
+  // Limpiar formulario
+  document.getElementById('cf-name').value = '';
+  document.getElementById('cf-empresa').value = '';
+  document.getElementById('cf-email').value = '';
+  document.getElementById('cf-phone').value = '';
+  document.getElementById('cf-message').value = '';
+
+  // Mostrar mensaje de éxito
+  document.getElementById('formSuccess').classList.add('show');
+  setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
+}
+
+// ── MAP ──
 window.addEventListener('load', () => {
-  const mapInstance = L.map('map').setView([2.5, -77], 5);
-  
+  const map = L.map('map').setView([2.5, -77], 5);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors',
-    maxZoom: 19
-  }).addTo(mapInstance);
-  
+    attribution: '© OpenStreetMap contributors', maxZoom: 19
+  }).addTo(map);
+
   const locations = [
-    { lat: 9.7489, lng: -85.5069, name: 'Costa Rica', type: 'País' },
-    { lat: -0.2202, lng: -78.5124, name: 'Quito', type: 'Ciudad - Ecuador' },
-    { lat: -3.9818, lng: -78.1206, name: 'Zamora Chinchipe', type: 'Provincia - Ecuador' },
-    { lat: -3.2682, lng: -79.9789, name: 'El Oro', type: 'Provincia - Ecuador' },
-    { lat: -3.2684, lng: -79.9784, name: 'Machala', type: 'Ciudad - Ecuador' },
-    { lat: -3.6961, lng: -79.6061, name: 'Zaruma', type: 'Ciudad - Ecuador' },
-    { lat: -3.6833, lng: -79.7319, name: 'Portovelo', type: 'Ciudad - Ecuador' },
-    { lat: -3.4583, lng: -79.2833, name: 'Ponce Enríquez', type: 'Ciudad - Ecuador' },
-    { lat: -12.0462, lng: -77.0369, name: 'Lima', type: 'Ciudad - Perú' },
-    { lat: -6.7735, lng: -79.8473, name: 'Chiclayo', type: 'Ciudad - Perú' },
-    { lat: -16.3988, lng: -71.5350, name: 'Arequipa', type: 'Ciudad - Perú' }
+    { lat: 9.7489,  lng: -85.5069, name: 'Costa Rica',      type: 'País' },
+    { lat: -0.2202, lng: -78.5124, name: 'Quito',           type: 'Ciudad – Ecuador' },
+    { lat: -3.9818, lng: -78.1206, name: 'Zamora Chinchipe',type: 'Provincia – Ecuador' },
+    { lat: -3.2682, lng: -79.9789, name: 'El Oro',          type: 'Provincia – Ecuador' },
+    { lat: -3.2684, lng: -79.9784, name: 'Machala',         type: 'Ciudad – Ecuador' },
+    { lat: -3.6961, lng: -79.6061, name: 'Zaruma',          type: 'Ciudad – Ecuador' },
+    { lat: -3.6833, lng: -79.7319, name: 'Portovelo',       type: 'Ciudad – Ecuador' },
+    { lat: -3.4583, lng: -79.2833, name: 'Ponce Enríquez',  type: 'Ciudad – Ecuador' },
+    { lat: -12.0462,lng: -77.0369, name: 'Lima',            type: 'Ciudad – Perú' },
+    { lat: -6.7735, lng: -79.8473, name: 'Chiclayo',        type: 'Ciudad – Perú' },
+    { lat: -16.3988,lng: -71.5350, name: 'Arequipa',        type: 'Ciudad – Perú' }
   ];
-  
+
   locations.forEach(loc => {
     L.circleMarker([loc.lat, loc.lng], {
-      radius: 10,
-      fillColor: '#34A853',
-      color: '#1561ad',
-      weight: 2,
-      opacity: 1,
-      fillOpacity: 0.8
-    }).bindPopup(`<strong>${loc.name}</strong><br>${loc.type}<br>New Technology EcoFluidSystem`).addTo(mapInstance);
+      radius: 10, fillColor: '#34A853', color: '#1561ad',
+      weight: 2, opacity: 1, fillOpacity: 0.8
+    }).bindPopup(`<strong>${loc.name}</strong><br>${loc.type}<br>EcoFluidSystem`).addTo(map);
   });
 });
 </script>
-
 </body>
 </html>
