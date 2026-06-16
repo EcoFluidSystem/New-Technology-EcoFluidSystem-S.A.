@@ -552,14 +552,12 @@
 </nav>
 
 <!-- LOGO SECTION -->
-<!-- 📁 GITHUB: Agregar archivo en logo.png -->
+<!-- 📁 GITHUB: Archivo logo.png cargado con éxito en la raíz -->
 <section class="logo-section">
-  <div class="logo-upload-box" id="logoBox" title="Haz clic para subir tu logo">
-    <input type="file" accept="image/*" onchange="loadLogo(event)" id="logoInput">
-    <div id="logoPlaceholder" style="display:flex; flex-direction:column; align-items:center; gap:.5rem; pointer-events:none;">
-      <span class="material-symbols-outlined" style="font-size:2.5rem; color:#8FB8DC;">add_photo_alternate</span>
-    </div>
-    <img id="logoImg" src="logo.png" style="display:none; width:100%; height:100%; object-fit:contain; border-radius:14px;" alt="EcoFluidSystem">
+  <!-- Se eliminó el botón de carga, el input de archivos y el placeholder con el icono de "más" -->
+  <div class="logo-upload-box" id="logoBox" style="cursor: default; background: transparent; border: none; padding: 0;">
+    <!-- CAMBIO: Se eliminó 'display:none' para que el logo esté siempre visible y se ajustaron dimensiones -->
+    <img id="logoImg" src="logo.png" style="display:block; max-width:200px; height:auto; object-fit:contain; border-radius:14px;" alt="EcoFluidSystem">
   </div>
 </section>
 
