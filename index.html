@@ -552,37 +552,39 @@
 </nav>
 
 <!-- LOGO SECTION -->
-<!-- 📁 GITHUB: Agregar archivo en /images/logo.png -->
+<!-- 📁 GITHUB: Agregar archivo en logo.png -->
 <section class="logo-section">
   <div class="logo-upload-box" id="logoBox" title="Haz clic para subir tu logo">
     <input type="file" accept="image/*" onchange="loadLogo(event)" id="logoInput">
     <div id="logoPlaceholder" style="display:flex; flex-direction:column; align-items:center; gap:.5rem; pointer-events:none;">
       <span class="material-symbols-outlined" style="font-size:2.5rem; color:#8FB8DC;">add_photo_alternate</span>
-      <span class="logo-upload-text">Haz clic para<br>subir logo.png</span>
     </div>
-    <img id="logoImg" src="images/logo.png" style="display:none; width:100%; height:100%; object-fit:contain; border-radius:14px;" alt="Logo EcoFluidSystem">
+    <img id="logoImg" src="logo.png" style="display:none; width:100%; height:100%; object-fit:contain; border-radius:14px;" alt="EcoFluidSystem">
   </div>
 </section>
 
 <!-- HERO -->
-<!-- 📁 GITHUB: Agregar archivo en /images/hero.jpg (imagen de fondo del hero) -->
+<!-- 📁 GITHUB: Archivo hero.jpg cargado en la raíz del proyecto -->
 <section id="hero" style="position:relative; min-height:90vh; display:flex; align-items:center; padding:5rem 2rem; overflow:hidden;">
-  <img id="heroBgImg" src="" alt="" class="hero-bg-img" style="display:none;">
-  <div class="hero-overlay"></div>
+  <!-- FONDO 1: El degradado original azul y verde se queda al fondo (z-index: 0) -->
   <div id="heroDefaultBg" style="position:absolute; inset:0; background: linear-gradient(140deg, #0F4B8A 0%, #1E9E7A 100%); z-index:0;"></div>
-  <div class="hero-content">
+  <!-- FONDO 2: Tu imagen se coloca encima con un 40% de opacidad (opacity: 0.4) para volverse translúcida -->
+  <img id="heroBgImg" src="hero.jpg" alt="Fondo tratamiento de aguas" class="hero-bg-img" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity: 0.4; z-index:1;">
+  <!-- Capa de oscurecimiento opcional (z-index: 2) por si necesitas más contraste para el texto -->
+  <div class="hero-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.1); z-index:2;"></div>
+  <!-- CONTENIDO: El texto y los botones se elevan al z-index: 3 para quedar arriba de todo -->
+  <div class="hero-content" style="position:relative; z-index:3;">
     <div class="hero-badge">Soluciones Ambientales</div>
     <h1>Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</h1>
     <p>Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación.</p>
     <div class="hero-btns">
       <a class="btn-hero-primary" href="#contact">
-        <span class="material-symbols-outlined">arrow_forward</span>
-        Solicitar Demo
+        <span class="material-symbols-outlined">arrow_forward</span> Solicitar Demo
       </a>
       <a class="btn-hero-outline" href="#products">Conocer Productos</a>
     </div>
   </div>
-  <div class="hero-stats">
+  <div class="hero-stats" style="position:relative; z-index:3;">
     <div class="stat-card">
       <strong>30+</strong>
       <span>Años de Experiencia</span>
@@ -592,11 +594,8 @@
       <span>Asesoramiento Técnico Personalizado</span>
     </div>
   </div>
-  <label class="hero-img-upload-btn" title="Cambiar imagen de fondo">
-    <span class="material-symbols-outlined" style="font-size:1rem;">add_photo_alternate</span>
-    Cambiar imagen de fondo
-    <input type="file" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;" onchange="loadHeroBg(event)">
-  </label>
+</section>
+  <!-- CAMBIO 3: Se eliminó por completo el <label> que tenía el botón de cambiar imagen -->
 </section>
 
 <!-- MISSION & VISION -->
