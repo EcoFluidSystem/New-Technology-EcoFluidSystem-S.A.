@@ -4,7 +4,7 @@
 <meta name="google-site-verification" content="Y3FMqn9XIpCsiy7sWQ5uuN_Entx6fM404tFAjoz1_cw" />
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>New Technology EcoFluidSystem S.A. | Tratamiento de Aguas</title>
+<title data-es="New Technology EcoFluidSystem S.A. | Tratamiento de Aguas" data-en="New Technology EcoFluidSystem S.A. | Water Treatment">New Technology EcoFluidSystem S.A. | Tratamiento de Aguas</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -76,6 +76,40 @@
   .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
   .animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
 
+  /* LANGUAGE SELECTOR */
+  .lang-selector {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.4rem;
+    background: rgba(255,255,255,.1);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,.2);
+  }
+
+  .lang-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #BFE0F5;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lang-btn.active {
+    background: #34A853;
+    color: #fff;
+  }
+
+  .lang-btn:hover:not(.active) {
+    color: #fff;
+  }
+
   .topbar {
     background: #15395E;
     color: #BFE0F5;
@@ -91,7 +125,7 @@
   .topbar a { color: #BFE0F5; text-decoration: none; }
   .topbar-left { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .topbar-left span { display: inline-flex; align-items: center; gap: .4rem; }
-  .topbar-right { display: flex; gap: .6rem; }
+  .topbar-right { display: flex; gap: .6rem; align-items: center; }
   .topbar-right a {
     width: 26px; height: 26px; border-radius: 50%;
     background: rgba(255,255,255,.08);
@@ -193,14 +227,14 @@
     animation: floatUp 0.8s ease-out 0.3s both;
   }
 
-  /* HERO */
+  /* HERO - MEJORADO RESPONSIVE */
 #hero, .hero {
-  min-height: 90vh;
+  min-height: 85vh;
   background:
     linear-gradient(140deg, rgba(15,75,138,.85) 0%, rgba(46,189,114,.55) 100%),
     url('') center/cover no-repeat;
   display: flex; align-items: center;
-  padding: 5rem 2rem; position: relative; overflow: hidden;
+  padding: 3rem 2rem; position: relative; overflow: visible;
 }
 .hero-bg-img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
@@ -210,7 +244,7 @@
   background: linear-gradient(140deg, rgba(15,75,138,.85) 0%, rgba(46,189,114,.55) 100%);
   z-index: 1;
 }
-.hero-content { max-width: 680px; position: relative; z-index: 3; animation: floatUp .8s ease both; }
+.hero-content { max-width: 680px; position: relative; z-index: 3; animation: floatUp .8s ease both; width: 100%; }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -248,22 +282,22 @@
 }
 .btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,.12); transform: translateY(-2px); }
 
+/* HERO STATS - MEJORADO PARA NO SUPERPONERSE */
 .hero-stats {
-  position: absolute !important; 
-  right: 1.5rem !important;
-  left: auto !important;
-  top: 50% !important; 
-  transform: translateY(-50%) !important;
-  display: flex !important; 
-  flex-direction: column !important; 
-  gap: 1rem !important; 
+  position: static !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
   z-index: 3 !important;
+  margin-top: 2rem !important;
+  width: 100% !important;
+  align-self: flex-start;
 }
 
 .stat-card {
   background: rgba(255,255,255,.16); backdrop-filter: blur(16px);
   border: 1px solid rgba(255,255,255,.25); border-radius: 14px;
-  padding: 1.1rem 1.4rem; text-align: center; min-width: 138px;
+  padding: 1.1rem 1.4rem; text-align: center; min-width: unset;
   transition: all .3s;
 }
 .stat-card strong {
@@ -529,11 +563,202 @@
   }
   .sub-section-label::before { content: ''; width: 12px; height: 3px; background: #34A853; border-radius: 2px; display: inline-block; }
 
+  /* CARRUSEL APPLE STYLE */
+  .carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .products-carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex: 1;
+    padding: 1rem 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .products-carousel::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .products-carousel::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .products-carousel::-webkit-scrollbar-thumb {
+    background: #34A853;
+    border-radius: 10px;
+  }
+
+  .carousel-arrow {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #F5F5F7;
+    color: #1d1d1f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .carousel-arrow:hover {
+    background: #E8E8ED;
+    transform: scale(1.1);
+  }
+
+  .carousel-arrow:active {
+    background: #D5D5D7;
+    transform: scale(0.95);
+  }
+
+  .apple-style {
+    flex: 0 0 calc(33.333% - 1rem);
+    min-width: 280px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center;
+    position: relative;
+  }
+
+  .apple-style:hover {
+    transform: scale(1.05) translateY(-8px);
+    z-index: 10;
+  }
+
+  .apple-style:hover .product-media {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .product-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .product-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .apple-style:hover .product-media img {
+    transform: scale(1.08);
+  }
+
+  .product-badge {
+    font-size: 0.65rem;
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: #15395e;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .apple-style:hover .product-badge {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .product-body {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .product-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  .apple-style:hover .product-body h3 {
+    color: #34a853;
+  }
+
+  .product-body p {
+    font-size: 0.85rem;
+    color: #6f6f77;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .product-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+  }
+
+  .ficha-tecnica-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #34a853;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .ficha-tecnica-link:hover {
+    gap: 10px;
+    border-bottom-color: #34a853;
+    transform: translateX(2px);
+  }
+
+  .ficha-tecnica-link span {
+    font-size: 1rem;
+  }
+
   /* ════════════════════════════════════════════════════════════════════════════════ */
   /* RESPONSIVE - TABLET (iPad y similares) - max-width: 1024px */
   /* ════════════════════════════════════════════════════════════════════════════════ */
   @media(max-width: 1024px) {
-    .hero-stats { display: none; }
+    .hero-stats { 
+      flex-direction: row !important;
+      flex-wrap: wrap;
+      width: 100% !important;
+    }
+    
+    .stat-card {
+      flex: 1;
+      min-width: 200px;
+    }
+
     .products-grid { grid-template-columns: 1fr 1fr; }
     .video-grid { grid-template-columns: 1fr; }
     .map-container { grid-template-columns: 1fr; }
@@ -543,6 +768,11 @@
     .section-pad { padding: 4rem 1.5rem; }
     .nav-inner { padding: 0 1.5rem; }
     .topbar { padding: .35rem 1.5rem; }
+
+    .apple-style {
+      flex: 0 0 calc(50% - 0.75rem);
+      min-width: 240px;
+    }
   }
 
   /* ════════════════════════════════════════════════════════════════════════════════ */
@@ -562,12 +792,21 @@
     }
     .topbar-left { gap: 1rem; width: 100%; }
     .topbar-left span { font-size: .7rem; }
-    .topbar-right { gap: .5rem; }
+    .topbar-right { gap: .5rem; width: 100%; justify-content: space-between; }
+    
+    /* Language Selector Mobile */
+    .lang-selector {
+      order: -1;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
     
     /* Navigation */
     .nav-inner { 
       padding: 0 1rem; 
       height: 60px;
+      gap: 0.5rem;
     }
     .nav-logo-icon { 
       width: 36px; 
@@ -603,8 +842,9 @@
     
     /* Hero Section */
     #hero, .hero {
+      min-height: auto;
       min-height: 70vh;
-      padding: 3rem 1rem;
+      padding: 2rem 1rem;
     }
     .hero-content { max-width: 100%; }
     .hero-badge { 
@@ -623,7 +863,23 @@
       margin-bottom: 1.5rem;
       max-width: 100%;
     }
-    .hero-btns { gap: .75rem; }
+    
+    /* Hero Stats Mobile */
+    .hero-stats {
+      flex-direction: column !important;
+      width: 100% !important;
+      margin-top: 1.5rem !important;
+    }
+    
+    .stat-card {
+      min-width: unset !important;
+      width: 100% !important;
+    }
+    
+    .hero-btns { 
+      gap: .75rem; 
+      flex-direction: column;
+    }
     .btn-hero-primary, .btn-hero-outline {
       font-size: .8rem;
       padding: .75rem 1.5rem;
@@ -656,7 +912,7 @@
     .product-body h3 { font-size: 1rem; }
     .product-body p { font-size: .8rem; }
     
-    /* Carouselas */
+    /* Carruselas */
     .carousel-wrapper { gap: .75rem; }
     .products-carousel { gap: 1rem; }
     .apple-style { 
@@ -817,6 +1073,7 @@
     /* Top Bar */
     .topbar { padding: .3rem .75rem; }
     .topbar-left span { font-size: .65rem; }
+    .topbar-right { width: 100%; }
     
     /* Nav */
     .nav-inner { 
@@ -909,6 +1166,25 @@
     footer { padding: 2rem .75rem 1rem; }
     .footer-grid { gap: 1.5rem; }
     .footer-brand { font-size: 1.1rem; }
+
+    /* Carousel Mobile */
+    .carousel-arrow {
+      display: none;
+    }
+
+    .apple-style {
+      flex: 0 0 calc(100% - 0);
+      min-width: auto;
+    }
+
+    .carousel-wrapper {
+      gap: 0;
+    }
+
+    .products-carousel {
+      gap: 1rem;
+      padding: 0.5rem 0;
+    }
   }
 
   /* ════════════════════════════════════════════════════════════════════════════════ */
@@ -942,13 +1218,17 @@
 </head>
 <body>
 
-<!-- TOP BAR -->
+<!-- TOP BAR CON SELECTOR DE IDIOMA -->
 <div class="topbar">
   <div class="topbar-left">
-    <span><span class="material-symbols-outlined">mail</span> ecofluidsystemec@gmail.com</span>
+    <span><span class="material-symbols-outlined">mail</span> <span data-es="ecofluidsystemec@gmail.com" data-en="ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</span></span>
     <span><span class="material-symbols-outlined">call</span> +593 96-320-0034</span>
   </div>
   <div class="topbar-right">
+    <div class="lang-selector">
+      <button class="lang-btn active" data-lang="es" onclick="changeLanguage('es')">ES</button>
+      <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
+    </div>
     <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank" aria-label="Instagram" title="Instagram">IG</a>
     <a href="https://wa.me/593963200034" target="_blank" aria-label="WhatsApp" title="WhatsApp">WA</a>
   </div>
@@ -959,17 +1239,17 @@
   <div class="nav-inner">
     <a class="nav-logo" href="#hero">
       <div class="nav-logo-icon">EFS</div>
-      <div class="nav-brand">Eco<span>Fluid</span></div>System</span></div>
+      <div class="nav-brand">Eco<span>Fluid</span>System</div>
     </a>
     <ul class="nav-links">
-      <li><a href="#hero">Inicio</a></li>
-      <li><a href="#mission">Quiénes Somos</a></li>
-      <li><a href="#products">Productos</a></li>
-      <li><a href="#results">Resultados</a></li>
-      <li><a href="#map-section">Ubicación</a></li>
-      <li><a href="#contact">Contacto</a></li>
+      <li><a href="#hero" data-es="Inicio" data-en="Home">Inicio</a></li>
+      <li><a href="#mission" data-es="Quiénes Somos" data-en="About Us">Quiénes Somos</a></li>
+      <li><a href="#products" data-es="Productos" data-en="Products">Productos</a></li>
+      <li><a href="#results" data-es="Resultados" data-en="Results">Resultados</a></li>
+      <li><a href="#map-section" data-es="Ubicación" data-en="Location">Ubicación</a></li>
+      <li><a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a></li>
     </ul>
-    <a class="nav-cta" href="#contact">Cotizar Ahora</a>
+    <a class="nav-cta" href="#contact" data-es="Cotizar Ahora" data-en="Quote Now">Cotizar Ahora</a>
   </div>
 </nav>
 
@@ -979,35 +1259,35 @@
     <div class="logo-upload-box" id="logoBox" style="cursor: default; background: transparent; border: none; padding: 0;">
       <img id="logoImg" src="logo.png" style="display:block; max-width:200px; height:auto; object-fit:contain; border-radius:14px;" alt="EcoFluidSystem">
     </div>
-    <!-- SLOGAN PROFESIONAL -->
-    <p class="company-slogan"> Reusar es mil veces mejor que disponer, innovación y sostenibilidad para transformar residuos en oportunidades.</p>
+    <p class="company-slogan" data-es="Reusar es mil veces mejor que disponer, innovación y sostenibilidad para transformar residuos en oportunidades." data-en="Reuse is a thousand times better than disposal, innovation and sustainability to transform waste into opportunities.">Reusar es mil veces mejor que disponer, innovación y sostenibilidad para transformar residuos en oportunidades.</p>
   </div>
 </section>
 
 <!-- HERO -->
-<section id="hero" style="position:relative; min-height:90vh; display:flex; align-items:center; padding:5rem 2rem; overflow:hidden;">
+<section id="hero" style="position:relative; display:flex; flex-direction:column; align-items:flex-start; padding:3rem 2rem; overflow:visible;">
   <div id="heroDefaultBg" style="position:absolute; inset:0; background: linear-gradient(140deg, #0F4B8A 0%, #1E9E7A 100%); z-index:0;"></div>
   <img id="heroBgImg" src="hero.jpg" alt="Fondo tratamiento de aguas" class="hero-bg-img" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity: 0.2; z-index:1;">
   <div class="hero-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.1); z-index:2;"></div>
   <div class="hero-content" style="position:relative; z-index:3;">
-    <div class="hero-badge">Soluciones Ambientales</div>
-    <h1>Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</h1>
-    <p>Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación.</p>
+    <div class="hero-badge" data-es="Soluciones Ambientales" data-en="Environmental Solutions">Soluciones Ambientales</div>
+    <h1 data-es="Tecnología <em>Avanzada</em> para el Tratamiento de Aguas" data-en="<em>Advanced</em> Technology for Water Treatment">Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</h1>
+    <p data-es="Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación." data-en="Innovative filtration and purification systems for mining, industry and treatment plants. We guarantee maximum water quality with state-of-the-art equipment.">Sistemas innovadores de filtración y purificación para minería, industria y plantas de tratamiento. Garantizamos la máxima calidad del agua con equipos de última generación.</p>
     <div class="hero-btns">
       <a class="btn-hero-primary" href="#contact">
-        <span class="material-symbols-outlined">arrow_forward</span> Solicitar Demo
+        <span class="material-symbols-outlined">arrow_forward</span> <span data-es="Solicitar Demo" data-en="Request Demo">Solicitar Demo</span>
       </a>
-      <a class="btn-hero-outline" href="#products">Conocer Productos</a>
+      <a class="btn-hero-outline" href="#products" data-es="Conocer Productos" data-en="Discover Products">Conocer Productos</a>
     </div>
   </div>
+  
   <div class="hero-stats" style="position:relative; z-index:3;">
     <div class="stat-card">
       <strong>30+</strong>
-      <span>Años de Experiencia</span>
+      <span data-es="Años de Experiencia" data-en="Years of Experience">Años de Experiencia</span>
     </div>
     <div class="stat-card">
       <strong>100%</strong>
-      <span>Asesoramiento Técnico Personalizado</span>
+      <span data-es="Asesoramiento Técnico Personalizado" data-en="Personalized Technical Support">Asesoramiento Técnico Personalizado</span>
     </div>
   </div>
 </section>
@@ -1016,48 +1296,48 @@
 <section id="mission" class="section-pad">
   <div class="container">
     <div style="margin-bottom: 3rem;">
-      <p class="section-eyebrow">Nuestra Identidad</p>
-      <h2 class="section-title">Quiénes Somos</h2>
-      <p class="section-sub">New Technology EcoFluidSystem Ecuador es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.</p>
+      <p class="section-eyebrow" data-es="Nuestra Identidad" data-en="Our Identity">Nuestra Identidad</p>
+      <h2 class="section-title" data-es="Quiénes Somos" data-en="About Us">Quiénes Somos</h2>
+      <p class="section-sub" data-es="New Technology EcoFluidSystem Ecuador es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales." data-en="New Technology EcoFluidSystem Ecuador is an Ecuadorian company specialized in comprehensive water treatment solutions for industrial sectors, mining and municipal services.">New Technology EcoFluidSystem Ecuador es una empresa ecuatoriana especializada en soluciones integrales de tratamiento de aguas para sectores industriales, minería y servicios municipales.</p>
     </div>
     <div class="mv-grid">
       <div class="mv-card" onclick="toggleMV(this)">
         <div style="display:flex; align-items:center; justify-content:space-between;">
           <div style="display:flex; align-items:center; gap:1rem;">
             <div class="mv-card-icon"><span class="material-symbols-outlined">target</span></div>
-            <h2>Nuestra Misión</h2>
+            <h2 data-es="Nuestra Misión" data-en="Our Mission">Nuestra Misión</h2>
           </div>
           <span class="material-symbols-outlined" style="color:#34A853; font-size:1.8rem; transition:transform .3s;" id="misionIcon">expand_more</span>
         </div>
-        <p style="max-height:0; overflow:hidden; transition:max-height .35s ease; margin-top:1rem; font-size:.93rem; line-height:1.75; color:#2E5475;">Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable.</p>
+        <p style="max-height:0; overflow:hidden; transition:max-height .35s ease; margin-top:1rem; font-size:.93rem; line-height:1.75; color:#2E5475;" data-es="Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable." data-en="Design and develop efficient solutions for the treatment of wastewater, slaughterhouses, sludge and mining industry effluents, including the implementation of PTAR plants and specialized systems, offering high-level technology, engineering and technical support to optimize processes and promote responsible environmental management.">Diseñar y desarrollar soluciones eficientes para el tratamiento de aguas residuales, camales, lodos y efluentes de la industria minera, incluyendo la implementación de plantas PTAR y sistemas especializados, ofreciendo tecnología, ingeniería y soporte técnico de alto nivel para optimizar procesos y promover una gestión ambiental responsable.</p>
       </div>
       <div class="mv-card" onclick="toggleMV(this)">
         <div style="display:flex; align-items:center; justify-content:space-between;">
           <div style="display:flex; align-items:center; gap:1rem;">
             <div class="mv-card-icon"><span class="material-symbols-outlined">visibility</span></div>
-            <h2>Nuestra Visión</h2>
+            <h2 data-es="Nuestra Visión" data-en="Our Vision">Nuestra Visión</h2>
           </div>
           <span class="material-symbols-outlined" style="color:#34A853; font-size:1.8rem; transition:transform .3s;" id="visionIcon">expand_more</span>
         </div>
-        <p style="max-height:0; overflow:hidden; transition:max-height .35s ease; margin-top:1rem; font-size:.93rem; line-height:1.75; color:#2E5475;">Consolidarnos como un socio estratégico para la industria minera, petrolera y ambiental, liderando la transformación hacia una gestión sostenible del agua y los residuos mediante soluciones tecnológicas innovadoras y de alto desempeño.</p>
+        <p style="max-height:0; overflow:hidden; transition:max-height .35s ease; margin-top:1rem; font-size:.93rem; line-height:1.75; color:#2E5475;" data-es="Consolidarnos como un socio estratégico para la industria minera, petrolera y ambiental, liderando la transformación hacia una gestión sostenible del agua y los residuos mediante soluciones tecnológicas innovadoras y de alto desempeño." data-en="Consolidate ourselves as a strategic partner for the mining, oil and environmental industry, leading the transformation towards sustainable water and waste management through innovative and high-performance technological solutions.">Consolidarnos como un socio estratégico para la industria minera, petrolera y ambiental, liderando la transformación hacia una gestión sostenible del agua y los residuos mediante soluciones tecnológicas innovadoras y de alto desempeño.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS SECTION - TODO EL CONTENIDO INTACTO -->
+<!-- PRODUCTS SECTION - ESTRUCTURA ORIGINAL COMPLETA -->
 <section id="products" class="section-pad">
   <div class="container">
     <div style="margin-bottom: 3rem;">
-      <p class="section-eyebrow">Catálogo Completo</p>
-      <h2 class="section-title">Nuestros Productos</h2>
-      <p class="section-sub">Soluciones especializadas en tratamiento de aguas residuales, floculantes y coagulantes para aplicaciones industriales y ambientales.</p>
+      <p class="section-eyebrow" data-es="Catálogo Completo" data-en="Complete Catalog">Catálogo Completo</p>
+      <h2 class="section-title" data-es="Nuestros Productos" data-en="Our Products">Nuestros Productos</h2>
+      <p class="section-sub" data-es="Soluciones especializadas en tratamiento de aguas residuales, floculantes y coagulantes para aplicaciones industriales y ambientales." data-en="Specialized solutions for wastewater treatment, flocculants and coagulants for industrial and environmental applications.">Soluciones especializadas en tratamiento de aguas residuales, floculantes y coagulantes para aplicaciones industriales y ambientales.</p>
     </div>
 
     <!-- BS TECH -->
     <div style="margin-bottom: 3.5rem;">
-      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Boss Technology</h3>
-      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">Sistemas innovadores de filtración y tratamiento especializados para aplicaciones industriales y ambientales.</p>
+      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> <span data-es="Boss Technology" data-en="Boss Technology">Boss Technology</span></h3>
+      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;" data-es="Sistemas innovadores de filtración y tratamiento especializados para aplicaciones industriales y ambientales." data-en="Innovative filtration and treatment systems specialized for industrial and environmental applications.">Sistemas innovadores de filtración y tratamiento especializados para aplicaciones industriales y ambientales.</p>
       
       <div class="carousel-wrapper">
         <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('bs-tech', -1)">
@@ -1072,7 +1352,7 @@
             </div>
             <div class="product-body">
               <h3>Agri Boss</h3>
-              <p>Sistema de filtración avanzada para aplicaciones agrícolas e industriales.</p>
+              <p data-es="Sistema de filtración avanzada para aplicaciones agrícolas e industriales." data-en="Advanced filtration system for agricultural and industrial applications.">Sistema de filtración avanzada para aplicaciones agrícolas e industriales.</p>
             </div>
           </div>
 
@@ -1083,7 +1363,7 @@
             </div>
             <div class="product-body">
               <h3>Eco Septic</h3>
-              <p>Equipo especializado para tratamiento de aguas residuales domésticas e industriales.</p>
+              <p data-es="Equipo especializado para tratamiento de aguas residuales domésticas e industriales." data-en="Equipment specialized for domestic and industrial wastewater treatment.">Equipo especializado para tratamiento de aguas residuales domésticas e industriales.</p>
             </div>
           </div>
 
@@ -1094,7 +1374,7 @@
             </div>
             <div class="product-body">
               <h3>Fosa Septic</h3>
-              <p>Sistema de filtración sostenible para manejo eficiente de efluentes.</p>
+              <p data-es="Sistema de filtración sostenible para manejo eficiente de efluentes." data-en="Sustainable filtration system for efficient effluent management.">Sistema de filtración sostenible para manejo eficiente de efluentes.</p>
             </div>
           </div>
         </div>
@@ -1107,8 +1387,8 @@
 
     <!-- FLOCULANTES -->
     <div style="margin-bottom: 3.5rem;">
-      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Floculantes</h3>
-      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones industriales y mineras.</p>
+      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> <span data-es="Floculantes" data-en="Flocculants">Floculantes</span></h3>
+      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;" data-es="7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones industriales y mineras." data-en="7 specialized solutions for clarification and solids separation in different industrial and mining applications.">7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones industriales y mineras.</p>
       
       <div class="carousel-wrapper">
         <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('floculantes', -1)">
@@ -1119,17 +1399,17 @@
           <div class="product-card apple-style">
             <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
               <img src="floculante_N3218.jpg" alt="Floculante N3218">
-              <span class="product-badge">No Iónico</span>
+              <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
             </div>
             <div class="product-body">
               <h3>N3218</h3>
-              <p>Floculante No Iónico</p>
+              <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
               <div class="product-links">
                 <a href="ficha_tecnica_1.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
+                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
                 </a>
                 <a href="hoja_seguridad_1.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
+                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
                 </a>
               </div>
             </div>
@@ -1138,17 +1418,17 @@
           <div class="product-card apple-style">
             <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
               <img src="floculante_N3326.jpg" alt="Floculante N3326">
-              <span class="product-badge">No Iónico</span>
+              <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
             </div>
             <div class="product-body">
               <h3>N3326</h3>
-              <p>Floculante No Iónico</p>
+              <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
               <div class="product-links">
                 <a href="ficha_tecnica_2.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
+                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
                 </a>
                 <a href="hoja_seguridad_2.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
+                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
                 </a>
               </div>
             </div>
@@ -1157,17 +1437,17 @@
           <div class="product-card apple-style">
             <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
               <img src="floculante_N3415.jpg" alt="Floculante N3415">
-              <span class="product-badge">No Iónico</span>
+              <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
             </div>
             <div class="product-body">
               <h3>N3415</h3>
-              <p>Floculante No Iónico</p>
+              <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
               <div class="product-links">
                 <a href="ficha_tecnica_3.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
+                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
                 </a>
                 <a href="hoja_seguridad_3.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
+                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
                 </a>
               </div>
             </div>
@@ -1176,17 +1456,17 @@
           <div class="product-card apple-style">
             <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
               <img src="floculante_A5270.jpg" alt="Floculante A5270">
-              <span class="product-badge">Aniónico</span>
+              <span class="product-badge" data-es="Aniónico" data-en="Anionic">Aniónico</span>
             </div>
             <div class="product-body">
               <h3>A5270</h3>
-              <p>Floculante Aniónico</p>
+              <p data-es="Floculante Aniónico" data-en="Anionic Flocculant">Floculante Aniónico</p>
               <div class="product-links">
                 <a href="ficha_tecnica_4.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
+                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
                 </a>
                 <a href="hoja_seguridad_4.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
+                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
                 </a>
               </div>
             </div>
@@ -1195,17 +1475,17 @@
           <div class="product-card apple-style">
             <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
               <img src="floculante_A5477.jpg" alt="Floculante A5477">
-              <span class="product-badge">Aniónico</span>
+              <span class="product-badge" data-es="Aniónico" data-en="Anionic">Aniónico</span>
             </div>
             <div class="product-body">
               <h3>A5477</h3>
-              <p>Floculante Aniónico</p>
+              <p data-es="Floculante Aniónico" data-en="Anionic Flocculant">Floculante Aniónico</p>
               <div class="product-links">
                 <a href="ficha_tecnica_5.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
+                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
                 </a>
                 <a href="hoja_seguridad_5.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
+                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
                 </a>
               </div>
             </div>
@@ -1214,17 +1494,17 @@
           <div class="product-card apple-style">
             <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
               <img src="floculante_C6010.jpg" alt="Floculante C6010">
-              <span class="product-badge">Catiónico</span>
+              <span class="product-badge" data-es="Catiónico" data-en="Cationic">Catiónico</span>
             </div>
             <div class="product-body">
               <h3>C6010</h3>
-              <p>Floculante Catiónico</p>
+              <p data-es="Floculante Catiónico" data-en="Cationic Flocculant">Floculante Catiónico</p>
               <div class="product-links">
                 <a href="ficha_tecnica_6.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
+                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
                 </a>
                 <a href="hoja_seguridad_6.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
+                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
                 </a>
               </div>
             </div>
@@ -1233,17 +1513,17 @@
           <div class="product-card apple-style">
             <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
               <img src="floculante_C6810.jpg" alt="Floculante C6810">
-              <span class="product-badge">Catiónico</span>
+              <span class="product-badge" data-es="Catiónico" data-en="Cationic">Catiónico</span>
             </div>
             <div class="product-body">
               <h3>C6810</h3>
-              <p>Floculante Catiónico</p>
+              <p data-es="Floculante Catiónico" data-en="Cationic Flocculant">Floculante Catiónico</p>
               <div class="product-links">
                 <a href="ficha_tecnica_7.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
+                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
                 </a>
                 <a href="hoja_seguridad_7.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
+                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
                 </a>
               </div>
             </div>
@@ -1258,8 +1538,8 @@
 
     <!-- COAGULANTES -->
     <div>
-      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Coagulantes</h3>
-      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">Solución especializada para procesos de coagulación en tratamiento de aguas industriales y mineras.</p>
+      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> <span data-es="Coagulantes" data-en="Coagulants">Coagulantes</span></h3>
+      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;" data-es="Solución especializada para procesos de coagulación en tratamiento de aguas industriales y mineras." data-en="Specialized solution for coagulation processes in industrial and mining water treatment.">Solución especializada para procesos de coagulación en tratamiento de aguas industriales y mineras.</p>
       
       <div class="carousel-wrapper">
         <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('coagulantes', -1)">
@@ -1270,14 +1550,14 @@
           <div class="product-card apple-style">
             <div class="product-media" style="background: linear-gradient(135deg, #FFE8E8 0%, #FFD2D2 100%);">
               <img src="coagulantes.jpg" alt="Coagulante CEFS-01">
-              <span class="product-badge">Coagulante</span>
+              <span class="product-badge" data-es="Coagulante" data-en="Coagulant">Coagulante</span>
             </div>
             <div class="product-body">
               <h3>CEFS-01</h3>
-              <p>Coagulante especializado para procesos de clarificación y tratamiento de efluentes.</p>
+              <p data-es="Coagulante especializado para procesos de clarificación y tratamiento de efluentes." data-en="Specialized coagulant for clarification and effluent treatment processes.">Coagulante especializado para procesos de clarificación y tratamiento de efluentes.</p>
               <div class="product-links">
                 <a href="ficha_tecnica_coagulante.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
+                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
                 </a>
               </div>
             </div>
@@ -1292,243 +1572,29 @@
   </div>
 </section>
 
-<style>
-/* Carrusel Apple-style */
-.carousel-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.products-carousel {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  flex: 1;
-  padding: 1rem 0;
-}
-
-.carousel-arrow {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: #F5F5F7;
-  color: #1d1d1f;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.carousel-arrow:hover {
-  background: #E8E8ED;
-  transform: scale(1.1);
-}
-
-.carousel-arrow:active {
-  background: #D5D5D7;
-  transform: scale(0.95);
-}
-
-/* Tarjetas estilo Apple */
-.apple-style {
-  flex: 0 0 calc(33.333% - 1rem);
-  min-width: 280px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform-origin: center;
-  position: relative;
-}
-
-.apple-style:hover {
-  transform: scale(1.05) translateY(-8px);
-  z-index: 10;
-}
-
-.apple-style:hover .product-media {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-}
-
-.product-card {
-  border-radius: 16px;
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.product-media {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.product-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.apple-style:hover .product-media img {
-  transform: scale(1.08);
-}
-
-.product-badge {
-  font-size: 0.65rem;
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 4px 8px;
-  border-radius: 6px;
-  color: #15395e;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.apple-style:hover .product-badge {
-  background: rgba(255, 255, 255, 1);
-}
-
-.product-body {
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.product-body h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1d1d1f;
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-.apple-style:hover .product-body h3 {
-  color: #34a853;
-}
-
-.product-body p {
-  font-size: 0.85rem;
-  color: #6f6f77;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.product-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 0.8rem;
-}
-
-.ficha-tecnica-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  color: #34a853;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  padding: 6px 0;
-  border-bottom: 2px solid transparent;
-}
-
-.ficha-tecnica-link:hover {
-  gap: 10px;
-  border-bottom-color: #34a853;
-  transform: translateX(2px);
-}
-
-.ficha-tecnica-link span {
-  font-size: 1rem;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .apple-style {
-    flex: 0 0 calc(50% - 0.75rem);
-    min-width: 200px;
-  }
-  
-  .carousel-arrow {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .apple-style {
-    flex: 0 0 100%;
-    min-width: auto;
-  }
-  
-  .carousel-wrapper {
-    gap: 0.75rem;
-  }
-}
-</style>
-
-<script>
-function scrollCarousel(carouselId, direction) {
-  const carousel = document.getElementById(carouselId);
-  const cardWidth = carousel.querySelector('.product-card').offsetWidth;
-  const gap = 24;
-  const scrollAmount = (cardWidth + gap) * 1.5;
-  
-  if (direction === 1) {
-    carousel.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
-    });
-  } else {
-    carousel.scrollBy({
-      left: -scrollAmount,
-      behavior: 'smooth'
-    });
-  }
-}
-</script>
-
 <!-- STATS BAR -->
 <section class="stats-bar">
   <div class="stats-bar-inner">
     <div class="stat-item">
       <div class="icon"><span class="material-symbols-outlined">eco</span></div>
       <strong>30+</strong>
-      <span>Años de Experiencia</span>
+      <span data-es="Años de Experiencia" data-en="Years of Experience">Años de Experiencia</span>
     </div>
     <div class="stat-item">
       <div class="icon"><span class="material-symbols-outlined">engineering</span></div>
       <strong>100%</strong>
-      <span>Asesoramiento Técnico Integral</span>
+      <span data-es="Asesoramiento Técnico Integral" data-en="Comprehensive Technical Support">Asesoramiento Técnico Integral</span>
     </div>
   </div>
 </section>
 
-<!-- RESULTADOS -->
+<!-- RESULTADOS - SECCIÓN COMPLETA ORIGINAL -->
 <section id="results" class="section-pad">
   <div class="container">
     <div style="margin-bottom: 3rem;">
-      <p class="section-eyebrow">Nuestro Trabajo</p>
-      <h2 class="section-title">Casos de Éxito & Resultados</h2>
-      <p class="section-sub">Visualiza los resultados reales de nuestras soluciones en diferentes sectores industriales y aplicaciones ambientales.</p>
+      <p class="section-eyebrow" data-es="Nuestro Trabajo" data-en="Our Work">Nuestro Trabajo</p>
+      <h2 class="section-title" data-es="Casos de Éxito & Resultados" data-en="Success Cases & Results">Casos de Éxito & Resultados</h2>
+      <p class="section-sub" data-es="Visualiza los resultados reales de nuestras soluciones en diferentes sectores industriales y aplicaciones ambientales." data-en="Visualize the real results of our solutions in different industrial sectors and environmental applications.">Visualiza los resultados reales de nuestras soluciones en diferentes sectores industriales y aplicaciones ambientales.</p>
     </div>
 
     <!-- INDUSTRIA MINERA -->
@@ -1536,7 +1602,7 @@ function scrollCarousel(carouselId, direction) {
       <div class="accordion-header" onclick="toggleAccordion(this)">
         <div class="accordion-title">
           <span class="material-symbols-outlined" style="color:#34A853; font-size:1.8rem;">min</span>
-          Industria Minera
+          <span data-es="Industria Minera" data-en="Mining Industry">Industria Minera</span>
         </div>
         <span class="accordion-icon material-symbols-outlined">expand_more</span>
       </div>
@@ -1545,67 +1611,45 @@ function scrollCarousel(carouselId, direction) {
           
           <!-- CONCENTRADOS -->
           <div style="margin-bottom: 2.5rem;">
-            <div class="sub-section-label">Concentrados</div>
-            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475; margin-bottom: 1rem;">
-              El proceso de concentrados en la minería requiere el tratamiento eficiente de aguas contenidas en minerales enriquecidos. Nuestros sistemas de filtración avanzada separan sólidos suspendidos y metales pesados del agua, permitiendo su reutilización en el circuito de molienda.
-            </p>
-            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475;">
-              Con la tecnología alternativa EFS y/o tecnología del equipo TRL que separa y deshidrata, logramos recuperar hasta el 90% del agua utilizada en concentración, reduciendo costos operacionales y minimizando el impacto ambiental. Nuestro equipo se adapta a diferentes densidades y granulometrías de concentrado.
-            </p>
+            <div class="sub-section-label" data-es="Concentrados" data-en="Concentrates">Concentrados</div>
+            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475; margin-bottom: 1rem;" data-es="El proceso de concentrados en la minería requiere el tratamiento eficiente de aguas contenidas en minerales enriquecidos. Nuestros sistemas de filtración avanzada separan sólidos suspendidos y metales pesados del agua, permitiendo su reutilización en el circuito de molienda." data-en="The concentrate process in mining requires efficient treatment of water contained in enriched minerals. Our advanced filtration systems separate suspended solids and heavy metals from water, allowing its reuse in the grinding circuit.">El proceso de concentrados en la minería requiere el tratamiento eficiente de aguas contenidas en minerales enriquecidos. Nuestros sistemas de filtración avanzada separan sólidos suspendidos y metales pesados del agua, permitiendo su reutilización en el circuito de molienda.</p>
+            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475;" data-es="Con la tecnología alternativa EFS y/o tecnología del equipo TRL que separa y deshidrata, logramos recuperar hasta el 90% del agua utilizada en concentración, reduciendo costos operacionales y minimizando el impacto ambiental. Nuestro equipo se adapta a diferentes densidades y granulometrías de concentrado." data-en="With alternative EFS technology and/or TRL equipment technology that separates and dehydrates, we achieve up to 90% water recovery used in concentration, reducing operational costs and minimizing environmental impact. Our equipment adapts to different densities and granulometries of concentrate.">Con la tecnología alternativa EFS y/o tecnología del equipo TRL que separa y deshidrata, logramos recuperar hasta el 90% del agua utilizada en concentración, reduciendo costos operacionales y minimizando el impacto ambiental. Nuestro equipo se adapta a diferentes densidades y granulometrías de concentrado.</p>
           </div>
 
           <!-- MOLINOS CHILENOS -->
           <div style="margin-bottom: 2.5rem;">
-            <div class="sub-section-label">Molinos Chilenos</div>
-            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475; margin-bottom: 1rem;">
-              En los molinos chilenos, el agua utilizada como medio de molienda se carga con material fino y partículas que afectan la eficiencia del proceso. Nuestras soluciones incluyen sistemas de clasificación y espesamiento especializado para mantener la calidad del agua de molida.
-            </p>
-            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475;">
-              Con nuestro equipo la recirculación de agua. Esto mejora la capacidad de molienda, reduce el consumo de agua fresca y disminuye la descarga de relaves líquidos, ya que permite su reutilización.
-            </p>
+            <div class="sub-section-label" data-es="Molinos Chilenos" data-en="Chilean Mills">Molinos Chilenos</div>
+            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475; margin-bottom: 1rem;" data-es="En los molinos chilenos, el agua utilizada como medio de molienda se carga con material fino y partículas que afectan la eficiencia del proceso. Nuestras soluciones incluyen sistemas de clasificación y espesamiento especializado para mantener la calidad del agua de molida." data-en="In Chilean mills, water used as a grinding medium is loaded with fine material and particles that affect process efficiency. Our solutions include specialized classification and thickening systems to maintain the quality of mill water.">En los molinos chilenos, el agua utilizada como medio de molienda se carga con material fino y partículas que afectan la eficiencia del proceso. Nuestras soluciones incluyen sistemas de clasificación y espesamiento especializado para mantener la calidad del agua de molida.</p>
+            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475;" data-es="Con nuestro equipo la recirculación de agua. Esto mejora la capacidad de molienda, reduce el consumo de agua fresca y disminuye la descarga de relaves líquidos, ya que permite su reutilización." data-en="With our equipment water recirculation. This improves grinding capacity, reduces fresh water consumption and decreases liquid tailings discharge by allowing reuse.">Con nuestro equipo la recirculación de agua. Esto mejora la capacidad de molienda, reduce el consumo de agua fresca y disminuye la descarga de relaves líquidos, ya que permite su reutilización.</p>
           </div>
 
           <!-- RELAVES -->
           <div>
-            <div class="sub-section-label">Relaves</div>
+            <div class="sub-section-label" data-es="Relaves" data-en="Tailings">Relaves</div>
             
             <!-- RELAVES DE LIXIVIACIÓN -->
             <div style="margin-bottom: 2rem; padding-left: 1.2rem; border-left: 3px solid #34A853;">
-              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .05em;">
-                → Relaves de Lixiviación
-              </p>
-              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475; margin-bottom: .8rem;">
-                Los relaves de lixiviación contienen ácidos residuales, soluciones salinas y metales disueltos. Nuestros sistemas de neutralización, precipitación transforman estos efluentes en agua clara y segura.
-              </p>
-              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475;">
-                Utilizamos químicos  que precipitan metales pesados y filtros de carbón activado para cumplir estándares ambientales internacionales.
-              </p>
+              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .05em;" data-es="→ Relaves de Lixiviación" data-en="→ Leaching Tailings">→ Relaves de Lixiviación</p>
+              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475; margin-bottom: .8rem;" data-es="Los relaves de lixiviación contienen ácidos residuales, soluciones salinas y metales disueltos. Nuestros sistemas de neutralización, precipitación transforman estos efluentes en agua clara y segura." data-en="Leaching tailings contain residual acids, saline solutions and dissolved metals. Our neutralization and precipitation systems transform these effluents into clear and safe water.">Los relaves de lixiviación contienen ácidos residuales, soluciones salinas y metales disueltos. Nuestros sistemas de neutralización, precipitación transforman estos efluentes en agua clara y segura.</p>
+              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475;" data-es="Utilizamos químicos  que precipitan metales pesados y filtros de carbón activado para cumplir estándares ambientales internacionales." data-en="We use chemicals that precipitate heavy metals and activated carbon filters to comply with international environmental standards.">Utilizamos químicos  que precipitan metales pesados y filtros de carbón activado para cumplir estándares ambientales internacionales.</p>
             </div>
 
             <!-- RELAVES DE FLOTACIÓN -->
             <div style="margin-bottom: 2rem; padding-left: 1.2rem; border-left: 3px solid #34A853;">
-              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .05em;">
-                → Relaves de Flotación
-              </p>
-              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475; margin-bottom: .8rem;">
-                Los relaves de flotación contienen reactivos colectores, espumantes y agua contaminada con finos minerales. Nuestras plantas de tratamiento utilizan coagulantes y floculantes para recuperar agua de calidad.
-              </p>
-              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475;">
-                El agua tratada es recirculada nuevamente a planta, reduciendo dependencia de fuentes externas y optimizando el ciclo integral del proceso.
-              </p>
+              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .05em;" data-es="→ Relaves de Flotación" data-en="→ Flotation Tailings">→ Relaves de Flotación</p>
+              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475; margin-bottom: .8rem;" data-es="Los relaves de flotación contienen reactivos colectores, espumantes y agua contaminada con finos minerales. Nuestras plantas de tratamiento utilizan coagulantes y floculantes para recuperar agua de calidad." data-en="Flotation tailings contain collector reagents, foamers and water contaminated with mineral fines. Our treatment plants use coagulants and flocculants to recover quality water.">Los relaves de flotación contienen reactivos colectores, espumantes y agua contaminada con finos minerales. Nuestras plantas de tratamiento utilizan coagulantes y floculantes para recuperar agua de calidad.</p>
+              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475;" data-es="El agua tratada es recirculada nuevamente a planta, reduciendo dependencia de fuentes externas y optimizando el ciclo integral del proceso." data-en="The treated water is recirculated back to the plant, reducing dependence on external sources and optimizing the entire process cycle.">El agua tratada es recirculada nuevamente a planta, reduciendo dependencia de fuentes externas y optimizando el ciclo integral del proceso.</p>
             </div>
 
             <!-- VIDEO PARA RELAVES -->
             <div style="margin-top: 1.8rem; padding-top: 1.8rem; border-top: 1px solid #D7EAF7;">
-              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: .05em;">
-                📺 Sistema de Tratamiento de Relaves
-              </p>
+              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: .05em;" data-es="📺 Sistema de Tratamiento de Relaves" data-en="📺 Tailings Treatment System">📺 Sistema de Tratamiento de Relaves</p>
               <div class="video-card" style="background-image: url('relaves_preview.jpg'); max-width: 600px;">
                 <div class="video-placeholder">
                   <input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)">
                   <span class="material-symbols-outlined">play_circle</span>
-                  <p>Tratamiento Integral de Relaves</p>
-                  <span class="sub" style="font-size: .68rem; opacity: .65;">Relaves de Lixiviación y Flotación</span>
+                  <p data-es="Tratamiento Integral de Relaves" data-en="Comprehensive Tailings Treatment">Tratamiento Integral de Relaves</p>
+                  <span class="sub" style="font-size: .68rem; opacity: .65;" data-es="Relaves de Lixiviación y Flotación" data-en="Leaching and Flotation Tailings">Relaves de Lixiviación y Flotación</span>
                 </div>
               </div>
             </div>
@@ -1620,13 +1664,13 @@ function scrollCarousel(carouselId, direction) {
       <div class="accordion-header" onclick="toggleAccordion(this)">
         <div class="accordion-title">
           <span class="material-symbols-outlined" style="color:#1561ad; font-size:1.8rem;">water</span>
-          Plantas PTAR
+          <span data-es="Plantas PTAR" data-en="PTAR Plants">Plantas PTAR</span>
         </div>
         <span class="accordion-icon material-symbols-outlined">expand_more</span>
       </div>
       <div class="accordion-content">
         <div class="accordion-body">
-          <p style="font-size:.9rem; color:#2E5475; line-height:1.6; margin-bottom:1.5rem;">Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura.</p>
+          <p style="font-size:.9rem; color:#2E5475; line-height:1.6; margin-bottom:1.5rem;" data-es="Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura." data-en="Our Wastewater Treatment Plant (PTAR) solutions guarantee maximum efficiency in water purification for industrial reuse and safe discharge.">Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura.</p>
           <div class="video-grid">
             <div class="video-card" style="background-image: url('ptar_1_preview.jpg');">
               <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>ptar_1</p></div>
@@ -1644,13 +1688,13 @@ function scrollCarousel(carouselId, direction) {
       <div class="accordion-header" onclick="toggleAccordion(this)">
         <div class="accordion-title">
           <span class="material-symbols-outlined" style="color:#E85D75; font-size:1.8rem;">factory</span>
-          Camales
+          <span data-es="Camales" data-en="Slaughterhouses">Camales</span>
         </div>
         <span class="accordion-icon material-symbols-outlined">expand_more</span>
       </div>
       <div class="accordion-content">
         <div class="accordion-body">
-          <p style="font-size:.9rem; color:#2E5475; line-height:1.6; margin-bottom:1.5rem;">Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales.</p>
+          <p style="font-size:.9rem; color:#2E5475; line-height:1.6; margin-bottom:1.5rem;" data-es="Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales." data-en="Specialized wastewater treatment systems for slaughterhouses, ensuring compliance with environmental regulations.">Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales.</p>
           <div class="video-grid">
             <div class="video-card" style="background-image: url('camal_1_preview.jpg');">
               <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>camal_1</p></div>
@@ -1669,15 +1713,15 @@ function scrollCarousel(carouselId, direction) {
 <section id="map-section" class="section-pad">
   <div class="container">
     <div style="margin-bottom: 2rem;">
-      <p class="section-eyebrow">Nos Encontramos En</p>
-      <h2 class="section-title">Ubicación Regional</h2>
-      <p class="section-sub">Disponibles en toda la región con servicios de consultoría y soporte técnico integral en América Latina.</p>
+      <p class="section-eyebrow" data-es="Nos Encontramos En" data-en="We Are Located In">Nos Encontramos En</p>
+      <h2 class="section-title" data-es="Ubicación Regional" data-en="Regional Location">Ubicación Regional</h2>
+      <p class="section-sub" data-es="Disponibles en toda la región con servicios de consultoría y soporte técnico integral en América Latina." data-en="Available throughout the region with consulting services and comprehensive technical support in Latin America.">Disponibles en toda la región con servicios de consultoría y soporte técnico integral en América Latina.</p>
     </div>
     <div class="map-container">
       <div id="map"></div>
       <div class="map-info">
-        <h3>Presencia en América Latina</h3>
-        <p>New Technology EcoFluidSystem S.A. proporciona soporte técnico especializado, consultoría en proyectos y suministro de productos en toda la región, con presencia activa en Ecuador, Perú y Costa Rica.</p>
+        <h3 data-es="Presencia en América Latina" data-en="Presence in Latin America">Presencia en América Latina</h3>
+        <p data-es="New Technology EcoFluidSystem S.A. proporciona soporte técnico especializado, consultoría en proyectos y suministro de productos en toda la región, con presencia activa en Ecuador, Perú y Costa Rica." data-en="New Technology EcoFluidSystem S.A. provides specialized technical support, project consulting and product supply throughout the region, with active presence in Ecuador, Peru and Costa Rica.">New Technology EcoFluidSystem S.A. proporciona soporte técnico especializado, consultoría en proyectos y suministro de productos en toda la región, con presencia activa en Ecuador, Perú y Costa Rica.</p>
       </div>
     </div>
   </div>
@@ -1689,27 +1733,27 @@ function scrollCarousel(carouselId, direction) {
     <div class="contact-box">
       <!-- INFO LEFT -->
       <div class="contact-info">
-        <h2>¿Listo para Mejorar tu Tratamiento de Aguas?</h2>
-        <p>Nuestro equipo de expertos está disponible para asesorarte en la solución más adecuada para tu proyecto.</p>
+        <h2 data-es="¿Listo para Mejorar tu Tratamiento de Aguas?" data-en="Ready to Improve Your Water Treatment?">¿Listo para Mejorar tu Tratamiento de Aguas?</h2>
+        <p data-es="Nuestro equipo de expertos está disponible para asesorarte en la solución más adecuada para tu proyecto." data-en="Our team of experts is available to advise you on the most suitable solution for your project.">Nuestro equipo de expertos está disponible para asesorarte en la solución más adecuada para tu proyecto.</p>
         <div class="contact-detail">
           <span class="material-symbols-outlined" style="color:#6FE6A0;">mail</span>
           <div>
-            <div class="label">Correo</div>
+            <div class="label" data-es="Correo" data-en="Email">Correo</div>
             <a href="mailto:ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</a>
           </div>
         </div>
         <div class="contact-detail">
           <span class="material-symbols-outlined" style="color:#6FE6A0;">phone</span>
           <div>
-            <div class="label">Teléfono / WhatsApp</div>
+            <div class="label" data-es="Teléfono / WhatsApp" data-en="Phone / WhatsApp">Teléfono / WhatsApp</div>
             <a href="tel:+593963200034">+593 96-320-0034</a>
           </div>
         </div>
         <div class="contact-detail">
           <span class="material-symbols-outlined" style="color:#6FE6A0;">location_on</span>
           <div>
-            <div class="label">Ubicación</div>
-            <div style="color:white;">Ecuador — disponible en toda la región</div>
+            <div class="label" data-es="Ubicación" data-en="Location">Ubicación</div>
+            <div style="color:white;" data-es="Ecuador — disponible en toda la región" data-en="Ecuador — available throughout the region">Ecuador — disponible en toda la región</div>
           </div>
         </div>
         <div class="social-links">
@@ -1724,19 +1768,19 @@ function scrollCarousel(carouselId, direction) {
       <div class="contact-form-box">
         <div class="form-grid" id="contactForm">
           <div class="form-group">
-            <label class="form-label">Nombre</label>
+            <label class="form-label" data-es="Nombre" data-en="Name">Nombre</label>
             <input type="text" class="form-input" id="cf-name" placeholder="Tu nombre completo">
           </div>
           <div class="form-group">
-            <label class="form-label">Empresa</label>
+            <label class="form-label" data-es="Empresa" data-en="Company">Empresa</label>
             <input type="text" class="form-input" id="cf-empresa" placeholder="Nombre de tu empresa">
           </div>
           <div class="form-group">
-            <label class="form-label">Email</label>
+            <label class="form-label" data-es="Email" data-en="Email">Email</label>
             <input type="email" class="form-input" id="cf-email" placeholder="tu@email.com">
           </div>
           <div class="form-group">
-            <label class="form-label">País & Teléfono</label>
+            <label class="form-label" data-es="País & Teléfono" data-en="Country & Phone">País & Teléfono</label>
             <div class="phone-row">
               <div class="country-select-wrap">
                 <select id="cf-country" onchange="updatePhoneCode()">
@@ -1766,16 +1810,16 @@ function scrollCarousel(carouselId, direction) {
             </div>
           </div>
           <div class="form-group full">
-            <label class="form-label">Mensaje</label>
+            <label class="form-label" data-es="Mensaje" data-en="Message">Mensaje</label>
             <textarea class="form-input" id="cf-message" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
           </div>
           <button type="button" class="btn-submit" onclick="sendWhatsApp()">
             <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Enviar por WhatsApp
+            <span data-es="Enviar por WhatsApp" data-en="Send via WhatsApp">Enviar por WhatsApp</span>
           </button>
           <div class="form-success" id="formSuccess">
             <span class="material-symbols-outlined">check_circle</span>
-            ¡Mensaje enviado! Nos pondremos en contacto contigo pronto.
+            <span data-es="¡Mensaje enviado! Nos pondremos en contacto contigo pronto." data-en="Message sent! We will contact you soon.">¡Mensaje enviado! Nos pondremos en contacto contigo pronto.</span>
           </div>
         </div>
       </div>
@@ -1787,22 +1831,22 @@ function scrollCarousel(carouselId, direction) {
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-brand">New<span>Tecnology<span>Eco<span>Fluid</span>System</div>
-      <p class="footer-desc">Soluciones de tratamiento de aguas para la industria moderna. Compromiso con la sostenibilidad y la excelencia técnica.</p>
+      <div class="footer-brand">New<span>Technology</span>Eco<span>Fluid</span>System</div>
+      <p class="footer-desc" data-es="Soluciones de tratamiento de aguas para la industria moderna. Compromiso con la sostenibilidad y la excelencia técnica." data-en="Water treatment solutions for modern industry. Commitment to sustainability and technical excellence.">Soluciones de tratamiento de aguas para la industria moderna. Compromiso con la sostenibilidad y la excelencia técnica.</p>
     </div>
     <div>
-      <h4>Navegación</h4>
+      <h4 data-es="Navegación" data-en="Navigation">Navegación</h4>
       <ul>
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#mission">Quiénes Somos</a></li>
-        <li><a href="#products">Productos</a></li>
-        <li><a href="#results">Resultados</a></li>
-        <li><a href="#map-section">Ubicación</a></li>
-        <li><a href="#contact">Contacto</a></li>
+        <li><a href="#hero" data-es="Inicio" data-en="Home">Inicio</a></li>
+        <li><a href="#mission" data-es="Quiénes Somos" data-en="About Us">Quiénes Somos</a></li>
+        <li><a href="#products" data-es="Productos" data-en="Products">Productos</a></li>
+        <li><a href="#results" data-es="Resultados" data-en="Results">Resultados</a></li>
+        <li><a href="#map-section" data-es="Ubicación" data-en="Location">Ubicación</a></li>
+        <li><a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a></li>
       </ul>
     </div>
     <div>
-      <h4>Contacto</h4>
+      <h4 data-es="Contacto" data-en="Contact">Contacto</h4>
       <div class="footer-contact-item">
         <span class="material-symbols-outlined" style="color:#6FE6A0; flex-shrink:0;">mail</span>
         <a href="mailto:ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</a>
@@ -1822,8 +1866,8 @@ function scrollCarousel(carouselId, direction) {
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 New Technology EcoFluidSystem S.A. Todos los derechos reservados.</p>
-    <p>Hecho con <span style="color:#6FE6A0;">♻</span> para el medio ambiente</p>
+    <p data-es="© 2026 New Technology EcoFluidSystem S.A. Todos los derechos reservados." data-en="© 2026 New Technology EcoFluidSystem S.A. All rights reserved.">© 2026 New Technology EcoFluidSystem S.A. Todos los derechos reservados.</p>
+    <p data-es="Hecho con <span style='color:#6FE6A0;'>♻</span> para el medio ambiente" data-en="Made with <span style='color:#6FE6A0;'>♻</span> for the environment">Hecho con <span style="color:#6FE6A0;">♻</span> para el medio ambiente</p>
   </div>
 </footer>
 
@@ -1836,6 +1880,39 @@ function scrollCarousel(carouselId, direction) {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+// ── LANGUAGE SYSTEM ──
+let currentLang = 'es';
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+  
+  // Update all translatable elements
+  document.querySelectorAll('[data-es][data-en]').forEach(element => {
+    const text = element.getAttribute(`data-${lang}`);
+    if (element.children.length === 0) {
+      element.textContent = text;
+    } else {
+      element.innerHTML = text;
+    }
+  });
+  
+  // Save preference
+  localStorage.setItem('preferredLang', lang);
+}
+
+// Load saved language on page load
+window.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('preferredLang') || 'es';
+  changeLanguage(savedLang);
+});
+
 // ── MISSION / VISION TOGGLE ──
 function toggleMV(card) {
   const p = card.querySelector('p');
@@ -1889,7 +1966,10 @@ function sendWhatsApp() {
   const msg     = document.getElementById('cf-message').value.trim();
 
   if (!name || !msg) {
-    alert('Por favor ingresa tu nombre y mensaje.');
+    const alertText = currentLang === 'es' 
+      ? 'Por favor ingresa tu nombre y mensaje.'
+      : 'Please enter your name and message.';
+    alert(alertText);
     return;
   }
 
@@ -1914,33 +1994,55 @@ function sendWhatsApp() {
   setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
 }
 
+// ── SCROLL CAROUSEL ──
+function scrollCarousel(carouselId, direction) {
+  const carousel = document.getElementById(carouselId);
+  const cardWidth = carousel.querySelector('.product-card').offsetWidth;
+  const gap = 24;
+  const scrollAmount = (cardWidth + gap) * 1.5;
+  
+  if (direction === 1) {
+    carousel.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  } else {
+    carousel.scrollBy({
+      left: -scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+}
+
 // ── MAP ──
 window.addEventListener('load', () => {
-  const map = L.map('map').setView([2.5, -77], 5);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors', maxZoom: 19
-  }).addTo(map);
+  if (document.getElementById('map')) {
+    const map = L.map('map').setView([2.5, -77], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors', maxZoom: 19
+    }).addTo(map);
 
-  const locations = [
-    { lat: 9.7489,  lng: -85.5069, name: 'Costa Rica',      type: 'País' },
-    { lat: -0.2202, lng: -78.5124, name: 'Quito',           type: 'Ciudad – Ecuador' },
-    { lat: -3.9818, lng: -78.1206, name: 'Zamora Chinchipe',type: 'Provincia – Ecuador' },
-    { lat: -3.2682, lng: -79.9789, name: 'El Oro',          type: 'Provincia – Ecuador' },
-    { lat: -3.2684, lng: -79.9784, name: 'Machala',         type: 'Ciudad – Ecuador' },
-    { lat: -3.6961, lng: -79.6061, name: 'Zaruma',          type: 'Ciudad – Ecuador' },
-    { lat: -3.6833, lng: -79.7319, name: 'Portovelo',       type: 'Ciudad – Ecuador' },
-    { lat: -3.4583, lng: -79.2833, name: 'Ponce Enríquez',  type: 'Ciudad – Ecuador' },
-    { lat: -12.0462,lng: -77.0369, name: 'Lima',            type: 'Ciudad – Perú' },
-    { lat: -6.7735, lng: -79.8473, name: 'Chiclayo',        type: 'Ciudad – Perú' },
-    { lat: -16.3988,lng: -71.5350, name: 'Arequipa',        type: 'Ciudad – Perú' }
-  ];
+    const locations = [
+      { lat: 9.7489,  lng: -85.5069, name: 'Costa Rica',      type: 'País' },
+      { lat: -0.2202, lng: -78.5124, name: 'Quito',           type: 'Ciudad – Ecuador' },
+      { lat: -3.9818, lng: -78.1206, name: 'Zamora Chinchipe',type: 'Provincia – Ecuador' },
+      { lat: -3.2682, lng: -79.9789, name: 'El Oro',          type: 'Provincia – Ecuador' },
+      { lat: -3.2684, lng: -79.9784, name: 'Machala',         type: 'Ciudad – Ecuador' },
+      { lat: -3.6961, lng: -79.6061, name: 'Zaruma',          type: 'Ciudad – Ecuador' },
+      { lat: -3.6833, lng: -79.7319, name: 'Portovelo',       type: 'Ciudad – Ecuador' },
+      { lat: -3.4583, lng: -79.2833, name: 'Ponce Enríquez',  type: 'Ciudad – Ecuador' },
+      { lat: -12.0462,lng: -77.0369, name: 'Lima',            type: 'Ciudad – Perú' },
+      { lat: -6.7735, lng: -79.8473, name: 'Chiclayo',        type: 'Ciudad – Perú' },
+      { lat: -16.3988,lng: -71.5350, name: 'Arequipa',        type: 'Ciudad – Perú' }
+    ];
 
-  locations.forEach(loc => {
-    L.circleMarker([loc.lat, loc.lng], {
-      radius: 10, fillColor: '#34A853', color: '#1561ad',
-      weight: 2, opacity: 1, fillOpacity: 0.8
-    }).bindPopup(`<strong>${loc.name}</strong><br>${loc.type}<br>New Technology EcoFluidSystem`).addTo(map);
-  });
+    locations.forEach(loc => {
+      L.circleMarker([loc.lat, loc.lng], {
+        radius: 10, fillColor: '#34A853', color: '#1561ad',
+        weight: 2, opacity: 1, fillOpacity: 0.8
+      }).bindPopup(`<strong>${loc.name}</strong><br>${loc.type}<br>New Technology EcoFluidSystem`).addTo(map);
+    });
+  }
 });
 </script>
 </body>
