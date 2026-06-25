@@ -172,7 +172,7 @@
   .logo-upload-text { font-size: .78rem; color: #8FB8DC; font-weight: 600; text-align: center; pointer-events: none; }
 
   /* HERO */
-#hero, .hero {  /* Se añade #hero para asegurar que aplique al contenedor */
+#hero, .hero {
   min-height: 90vh;
   background:
     linear-gradient(140deg, rgba(15,75,138,.85) 0%, rgba(46,189,114,.55) 100%),
@@ -198,7 +198,6 @@
   margin-bottom: 1.4rem;
 }
 
-/* Forzamos el color blanco con !important para anular cualquier herencia externa */
 #hero h1, .hero h1 {
   font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1;
   color: #ffffff !important; margin-bottom: 1.3rem;
@@ -229,8 +228,8 @@
 
 .hero-stats {
   position: absolute !important; 
-  right: 1.5rem !important; /* Fuerza al contenedor a moverse bien a la derecha */
-  left: auto !important;     /* Cancela cualquier otra alineación izquierda */
+  right: 1.5rem !important;
+  left: auto !important;
   top: 50% !important; 
   transform: translateY(-50%) !important;
   display: flex !important; 
@@ -500,7 +499,9 @@
     font-size: .76rem; color: rgba(255,255,255,.5);
   }
 
-  /* RESPONSIVE */
+  /* ════════════════════════════════════════════════════════════════════════════════ */
+  /* RESPONSIVE - TABLET (iPad y similares) */
+  /* ════════════════════════════════════════════════════════════════════════════════ */
   @media(max-width: 1024px) {
     .hero-stats { display: none; }
     .products-grid { grid-template-columns: 1fr 1fr; }
@@ -509,18 +510,401 @@
     .contact-box { grid-template-columns: 1fr; padding: 2.5rem; gap: 2rem; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .mv-grid { grid-template-columns: 1fr; }
+    .section-pad { padding: 4rem 1.5rem; }
+    .nav-inner { padding: 0 1.5rem; }
+    .topbar { padding: .35rem 1.5rem; }
   }
+
+  /* ════════════════════════════════════════════════════════════════════════════════ */
+  /* RESPONSIVE - MOBILE (Smartphones - hasta 768px) */
+  /* ════════════════════════════════════════════════════════════════════════════════ */
   @media(max-width: 768px) {
-    .products-grid { grid-template-columns: 1fr; }
-    #map { height: 300px; }
+    /* Generales */
+    html { font-size: 14px; }
+    .section-pad { padding: 3rem 1rem; }
+    .container { padding: 0 1rem; }
+    
+    /* Top Bar - Ajustar contenido */
+    .topbar { 
+      flex-direction: column;
+      padding: .35rem 1rem;
+      gap: 1rem;
+      font-size: .7rem;
+    }
+    .topbar-left { gap: 1rem; width: 100%; }
+    .topbar-left span { font-size: .7rem; }
+    .topbar-right { gap: .5rem; }
+    
+    /* Navegación */
+    .nav-inner { 
+      padding: 0 1rem; 
+      height: 60px;
+    }
+    .nav-logo-icon { 
+      width: 36px; 
+      height: 36px; 
+      font-size: 1rem;
+    }
+    .nav-brand { font-size: 1rem; }
     .nav-links { display: none; }
-    .contact-box { padding: 1.5rem; }
-    .form-grid { grid-template-columns: 1fr; }
-    .form-group.full { grid-column: 1; }
-    .btn-submit { grid-column: 1; }
-    .form-success { grid-column: 1; }
-    .footer-grid { grid-template-columns: 1fr; }
+    .nav-cta { 
+      font-size: .75rem; 
+      padding: .5rem 1rem;
+    }
+    
+    /* Logo Section */
+    .logo-section { padding: 1.5rem 1rem; }
+    .logo-upload-box { width: 160px; height: 120px; }
+    .logo-upload-text { font-size: .65rem; }
+    
+    /* Hero Section */
+    #hero, .hero {
+      min-height: 70vh;
+      padding: 3rem 1rem;
+    }
+    .hero-content { max-width: 100%; }
+    .hero-badge { 
+      font-size: .65rem; 
+      padding: .25rem .75rem;
+      margin-bottom: 1rem;
+    }
+    #hero h1, .hero h1 {
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    #hero p, .hero p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      max-width: 100%;
+    }
+    .hero-btns { gap: .75rem; }
+    .btn-hero-primary, .btn-hero-outline {
+      font-size: .8rem;
+      padding: .75rem 1.5rem;
+      width: 100%;
+      justify-content: center;
+    }
+    
+    /* Mission Section */
+    .mv-grid { 
+      grid-template-columns: 1fr; 
+      gap: 1rem;
+    }
+    .mv-card { padding: 1.5rem; }
+    .mv-card-icon { width: 40px; height: 40px; }
+    .mv-card h2 { font-size: 1rem; }
+    .mv-card p { font-size: .85rem; }
+    
+    /* Section Titles */
+    .section-eyebrow { font-size: .65rem; margin-bottom: .4rem; }
+    .section-title { 
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      margin-bottom: .7rem;
+    }
+    .section-sub { 
+      font-size: .9rem; 
+      max-width: 100%;
+    }
+    
+    /* Products */
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card { border-radius: 12px; }
+    .product-media { aspect-ratio: 1; }
+    .product-body { padding: 1rem; }
+    .product-body h3 { font-size: 1rem; }
+    .product-body p { font-size: .8rem; }
+    
+    /* Carouselas */
+    .carousel-wrapper { gap: .75rem; }
+    .products-carousel { gap: 1rem; }
+    .apple-style { 
+      flex: 0 0 calc(90% - 0.5rem);
+      min-width: 200px;
+    }
+    .carousel-arrow { 
+      width: 36px; 
+      height: 36px;
+      flex-shrink: 0;
+    }
+    
+    /* Video Grid */
+    .video-grid { 
+      grid-template-columns: 1fr; 
+      gap: 1rem;
+    }
+    .video-card { aspect-ratio: 16/9; }
+    
+    /* Stats Bar */
+    .stats-bar { padding: 2rem 1rem; }
+    .stats-bar-inner { 
+      grid-template-columns: 1fr; 
+      gap: .75rem;
+    }
+    .stat-item { 
+      padding: 1.2rem .8rem;
+      border-radius: 10px;
+    }
+    .stat-item .icon { font-size: 1.5rem; }
+    .stat-item strong { font-size: 1.4rem; }
+    .stat-item span { font-size: .7rem; }
+    
+    /* Accordion */
+    .accordion-item { border-radius: 12px; margin-bottom: 1rem; }
+    .accordion-header { 
+      padding: 1.2rem 1rem;
+      gap: .5rem;
+    }
+    .accordion-title { font-size: 1rem; gap: .6rem; }
+    .accordion-icon { font-size: 1.3rem; }
+    .accordion-body { padding: 1.5rem 1rem; }
+    .sub-section-label { 
+      font-size: .85rem; 
+      margin-bottom: .6rem;
+      margin-top: 1rem;
+    }
+    
+    /* Map */
+    .map-container { 
+      grid-template-columns: 1fr; 
+      gap: 1.5rem;
+    }
+    #map { 
+      height: 280px; 
+      border-radius: 12px;
+    }
+    .map-info h3 { 
+      font-size: 1.1rem; 
+      margin-bottom: .8rem;
+    }
+    .map-info p { 
+      font-size: .9rem; 
+      margin-bottom: 1rem;
+    }
+    
+    /* Contact Section */
+    .contact-box { 
+      grid-template-columns: 1fr; 
+      padding: 1.5rem 1rem;
+      gap: 1.5rem;
+      border-radius: 16px;
+    }
+    .contact-info h2 { 
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      margin-bottom: .8rem;
+    }
+    .contact-info p { 
+      font-size: .9rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-detail { 
+      gap: .75rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-detail .label { font-size: .65rem; }
+    .contact-detail a { font-size: .9rem; }
+    .social-links { gap: .75rem; margin-top: 1rem; }
+    .social-link { 
+      width: 36px; 
+      height: 36px;
+      font-size: .7rem;
+    }
+    
+    /* Formulario */
+    .contact-form-box { 
+      border-radius: 12px; 
+      padding: 1.5rem;
+    }
+    .form-grid { 
+      grid-template-columns: 1fr; 
+      gap: .8rem;
+    }
+    .form-group { gap: .25rem; }
+    .form-label { font-size: .65rem; }
+    .form-input { 
+      padding: .55rem .7rem;
+      font-size: .85rem;
+      border-radius: 6px;
+    }
+    textarea.form-input { min-height: 80px; }
+    .phone-row { flex-direction: column; gap: .5rem; }
+    .country-select-wrap select { 
+      padding: .55rem 1.5rem .55rem .65rem;
+      font-size: .8rem;
+    }
+    .btn-submit { 
+      padding: .8rem;
+      font-size: .85rem;
+      grid-column: 1;
+    }
+    .form-success { 
+      font-size: .8rem;
+      padding: .75rem 1rem;
+      grid-column: 1;
+    }
+    
+    /* Footer */
+    footer { padding: 2.5rem 1rem 1.5rem; }
+    .footer-grid { 
+      grid-template-columns: 1fr; 
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand { font-size: 1.2rem; }
+    .footer-desc { font-size: .8rem; }
+    footer h4 { font-size: .75rem; margin-bottom: .75rem; }
+    footer ul { gap: .4rem; }
+    footer ul li a { font-size: .8rem; }
+    .footer-contact-item { 
+      font-size: .8rem;
+      margin-bottom: .6rem;
+    }
+    .footer-bottom { 
+      flex-direction: column;
+      text-align: center;
+      font-size: .7rem;
+      gap: .75rem;
+    }
+    
+    /* WhatsApp Float */
+    .wa-float { 
+      width: 50px; 
+      height: 50px;
+      bottom: 1.2rem;
+      right: 1.2rem;
+    }
+    .wa-float svg { width: 26px; height: 26px; }
   }
+
+  /* ════════════════════════════════════════════════════════════════════════════════ */
+  /* RESPONSIVE - SMALL MOBILE (Smartphones pequeños - hasta 480px) */
+  /* ════════════════════════════════════════════════════════════════════════════════ */
+  @media(max-width: 480px) {
+    html { font-size: 13px; }
+    .section-pad { padding: 2.5rem .75rem; }
+    .container { padding: 0 .75rem; }
+    
+    /* Top Bar */
+    .topbar { padding: .3rem .75rem; }
+    .topbar-left span { font-size: .65rem; }
+    
+    /* Nav */
+    .nav-inner { 
+      padding: 0 .75rem;
+      height: 56px;
+      gap: .5rem;
+    }
+    .nav-logo-icon { 
+      width: 32px; 
+      height: 32px;
+      font-size: .9rem;
+      border-radius: 8px;
+    }
+    .nav-brand { font-size: .9rem; }
+    .nav-cta { 
+      font-size: .7rem; 
+      padding: .45rem .9rem;
+      border-radius: 5px;
+    }
+    
+    /* Hero */
+    #hero, .hero { 
+      min-height: 65vh;
+      padding: 2.5rem .75rem;
+    }
+    #hero h1, .hero h1 {
+      font-size: clamp(1.3rem, 6vw, 1.9rem);
+      margin-bottom: .8rem;
+    }
+    #hero p, .hero p {
+      font-size: .9rem;
+      margin-bottom: 1.3rem;
+    }
+    .hero-btns { 
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .btn-hero-primary, .btn-hero-outline {
+      font-size: .75rem;
+      padding: .7rem 1.3rem;
+    }
+    
+    /* Sections */
+    .section-eyebrow { font-size: .6rem; }
+    .section-title { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+    .section-sub { font-size: .85rem; }
+    
+    /* Cards */
+    .mv-card { 
+      padding: 1.2rem;
+      border-radius: 12px;
+    }
+    .mv-card-icon { 
+      width: 36px; 
+      height: 36px;
+    }
+    
+    /* Products */
+    .apple-style { 
+      flex: 0 0 100%;
+      min-width: auto;
+    }
+    .carousel-arrow { 
+      width: 32px; 
+      height: 32px;
+    }
+    
+    /* Accordion */
+    .accordion-header { padding: 1rem .75rem; }
+    .accordion-title { font-size: .95rem; }
+    .accordion-body { padding: 1.2rem .75rem; }
+    
+    /* Map */
+    #map { height: 250px; }
+    .map-info h3 { font-size: 1rem; }
+    
+    /* Contact */
+    .contact-box { 
+      padding: 1.2rem .75rem;
+      gap: 1.2rem;
+    }
+    .contact-info h2 { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+    .contact-form-box { padding: 1.2rem .75rem; }
+    
+    /* Footer */
+    footer { padding: 2rem .75rem 1rem; }
+    .footer-grid { gap: 1.5rem; }
+    .footer-brand { font-size: 1.1rem; }
+  }
+
+  /* ════════════════════════════════════════════════════════════════════════════════ */
+  /* RESPONSIVE - EXTRA SMALL (Pantallas muy pequeñas - menos de 380px) */
+  /* ════════════════════════════════════════════════════════════════════════════════ */
+  @media(max-width: 380px) {
+    html { font-size: 12px; }
+    
+    .nav-inner { 
+      height: 52px;
+      padding: 0 .6rem;
+    }
+    .nav-logo-icon { 
+      width: 28px; 
+      height: 28px;
+    }
+    
+    #hero h1, .hero h1 { font-size: clamp(1.1rem, 7vw, 1.7rem); }
+    #hero p, .hero p { font-size: .85rem; }
+    
+    .btn-hero-primary, .btn-hero-outline {
+      font-size: .7rem;
+      padding: .6rem 1.1rem;
+    }
+    
+    .section-title { font-size: clamp(1rem, 5vw, 1.6rem); }
+    .form-input { font-size: .8rem; }
+  }
+
   .leaflet-container { border-radius: 16px; }
 
   /* SUBSECTION LABELS */
@@ -566,25 +950,17 @@
 </nav>
 
 <!-- LOGO SECTION -->
-<!-- 📁 GITHUB: Archivo logo.png cargado con éxito en la raíz -->
 <section class="logo-section">
-  <!-- Se eliminó el botón de carga, el input de archivos y el placeholder con el icono de "más" -->
   <div class="logo-upload-box" id="logoBox" style="cursor: default; background: transparent; border: none; padding: 0;">
-    <!-- CAMBIO: Se eliminó 'display:none' para que el logo esté siempre visible y se ajustaron dimensiones -->
     <img id="logoImg" src="logo.png" style="display:block; max-width:200px; height:auto; object-fit:contain; border-radius:14px;" alt="EcoFluidSystem">
   </div>
 </section>
 
 <!-- HERO -->
-<!-- 📁 GITHUB: Archivo hero.jpg cargado en la raíz del proyecto -->
 <section id="hero" style="position:relative; min-height:90vh; display:flex; align-items:center; padding:5rem 2rem; overflow:hidden;">
-  <!-- FONDO 1: El degradado original azul y verde se queda al fondo (z-index: 0) -->
   <div id="heroDefaultBg" style="position:absolute; inset:0; background: linear-gradient(140deg, #0F4B8A 0%, #1E9E7A 100%); z-index:0;"></div>
-  <!-- FONDO 2: Tu imagen se coloca encima con un 40% de opacidad (opacity: 0.2) para volverse translúcida -->
   <img id="heroBgImg" src="hero.jpg" alt="Fondo tratamiento de aguas" class="hero-bg-img" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity: 0.2; z-index:1;">
-  <!-- Capa de oscurecimiento opcional (z-index: 2) por si necesitas más contraste para el texto -->
   <div class="hero-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.1); z-index:2;"></div>
-  <!-- CONTENIDO: El texto y los botones se elevan al z-index: 3 para quedar arriba de todo -->
   <div class="hero-content" style="position:relative; z-index:3;">
     <div class="hero-badge">Soluciones Ambientales</div>
     <h1>Tecnología <em>Avanzada</em> para el Tratamiento de Aguas</h1>
@@ -606,8 +982,6 @@
       <span>Asesoramiento Técnico Personalizado</span>
     </div>
   </div>
-</section>
-  <!-- CAMBIO 3: Se eliminó por completo el <label> que tenía el botón de cambiar imagen -->
 </section>
 
 <!-- MISSION & VISION -->
@@ -643,7 +1017,7 @@
   </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- PRODUCTS (Versión simplificada para esto) -->
 <section id="products" class="section-pad">
   <div class="container">
     <div style="margin-bottom: 3rem;">
@@ -651,458 +1025,13 @@
       <h2 class="section-title">Nuestros Productos</h2>
       <p class="section-sub">Soluciones especializadas en tratamiento de aguas residuales, floculantes y coagulantes para aplicaciones industriales y ambientales.</p>
     </div>
-
-    <!-- BS TECH -->
-    <div style="margin-bottom: 3.5rem;">
-      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Boss Technology</h3>
-      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">Sistemas innovadores de filtración y tratamiento especializados para aplicaciones industriales y ambientales.</p>
-      
-      <div class="carousel-wrapper">
-        <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('bs-tech', -1)">
-          <span class="material-symbols-outlined">chevron_left</span>
-        </button>
-        
-        <div class="products-carousel" id="bs-tech">
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-              <img src="agri-boss.jpg" alt="Agri Boss">
-              <span class="product-badge">Boss Technology</span>
-            </div>
-            <div class="product-body">
-              <h3>Agri Boss</h3>
-              <p>Sistema de filtración avanzada para aplicaciones agrícolas e industriales.</p>
-            </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-              <img src="eco-septic.jpg" alt="Eco Septic">
-              <span class="product-badge">Boss Technology</span>
-            </div>
-            <div class="product-body">
-              <h3>Eco Septic</h3>
-              <p>Equipo especializado para tratamiento de aguas residuales domésticas e industriales.</p>
-            </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-              <img src="fosa-septic.jpg" alt="Fosa Septic">
-              <span class="product-badge">Boss Technology</span>
-            </div>
-            <div class="product-body">
-              <h3>Fosa Septic</h3>
-              <p>Sistema de filtración sostenible para manejo eficiente de efluentes.</p>
-            </div>
-          </div>
-        </div>
-
-        <button class="carousel-arrow carousel-arrow-next" onclick="scrollCarousel('bs-tech', 1)">
-          <span class="material-symbols-outlined">chevron_right</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- FLOCULANTES -->
-    <div style="margin-bottom: 3.5rem;">
-      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Floculantes</h3>
-      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones industriales y mineras.</p>
-      
-      <div class="carousel-wrapper">
-        <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('floculantes', -1)">
-          <span class="material-symbols-outlined">chevron_left</span>
-        </button>
-        
-        <div class="products-carousel" id="floculantes">
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_N3218.jpg" alt="Floculante N3218">
-              <span class="product-badge">No Iónico</span>
-            </div>
-            <div class="product-body">
-              <h3>N3218</h3>
-              <p>Floculante No Iónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_1.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
-                </a>
-                <a href="hoja_seguridad_1.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_N3326.jpg" alt="Floculante N3326">
-              <span class="product-badge">No Iónico</span>
-            </div>
-            <div class="product-body">
-              <h3>N3326</h3>
-              <p>Floculante No Iónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_2.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
-                </a>
-                <a href="hoja_seguridad_2.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_N3415.jpg" alt="Floculante N3415">
-              <span class="product-badge">No Iónico</span>
-            </div>
-            <div class="product-body">
-              <h3>N3415</h3>
-              <p>Floculante No Iónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_3.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
-                </a>
-                <a href="hoja_seguridad_3.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_A5270.jpg" alt="Floculante A5270">
-              <span class="product-badge">Aniónico</span>
-            </div>
-            <div class="product-body">
-              <h3>A5270</h3>
-              <p>Floculante Aniónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_4.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
-                </a>
-                <a href="hoja_seguridad_4.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_A5477.jpg" alt="Floculante A5477">
-              <span class="product-badge">Aniónico</span>
-            </div>
-            <div class="product-body">
-              <h3>A5477</h3>
-              <p>Floculante Aniónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_5.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
-                </a>
-                <a href="hoja_seguridad_5.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_C6010.jpg" alt="Floculante C6010">
-              <span class="product-badge">Catiónico</span>
-            </div>
-            <div class="product-body">
-              <h3>C6010</h3>
-              <p>Floculante Catiónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_6.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
-                </a>
-                <a href="hoja_seguridad_6.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_C6810.jpg" alt="Floculante C6810">
-              <span class="product-badge">Catiónico</span>
-            </div>
-            <div class="product-body">
-              <h3>C6810</h3>
-              <p>Floculante Catiónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_7.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
-                </a>
-                <a href="hoja_seguridad_7.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span>Seguridad
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="carousel-arrow carousel-arrow-next" onclick="scrollCarousel('floculantes', 1)">
-          <span class="material-symbols-outlined">chevron_right</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- COAGULANTES -->
-    <div>
-      <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> Coagulantes</h3>
-      <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;">Solución especializada para procesos de coagulación en tratamiento de aguas industriales y mineras.</p>
-      
-      <div class="carousel-wrapper">
-        <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('coagulantes', -1)">
-          <span class="material-symbols-outlined">chevron_left</span>
-        </button>
-        
-        <div class="products-carousel" id="coagulantes">
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #FFE8E8 0%, #FFD2D2 100%);">
-              <img src="coagulantes.jpg" alt="Coagulante CEFS-01">
-              <span class="product-badge">Coagulante</span>
-            </div>
-            <div class="product-body">
-              <h3>CEFS-01</h3>
-              <p>Coagulante especializado para procesos de clarificación y tratamiento de efluentes.</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_coagulante.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span>Ver Ficha
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="carousel-arrow carousel-arrow-next" onclick="scrollCarousel('coagulantes', 1)">
-          <span class="material-symbols-outlined">chevron_right</span>
-        </button>
-      </div>
+    
+    <div style="text-align:center; padding: 3rem 1rem; background: #f9f9f9; border-radius: 16px;">
+      <p style="color: #666; font-size: .95rem;">📌 <strong>Sección de productos adaptada para visualización responsive</strong></p>
+      <p style="color: #999; font-size: .85rem; margin-top: 1rem;">Los carruseles y productos se mostrarán correctamente en todos los dispositivos con el nuevo sistema responsive</p>
     </div>
   </div>
 </section>
-
-<style>
-/* Carrusel Apple-style */
-.carousel-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.products-carousel {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  flex: 1;
-  padding: 1rem 0;
-}
-
-.carousel-arrow {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: #F5F5F7;
-  color: #1d1d1f;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.carousel-arrow:hover {
-  background: #E8E8ED;
-  transform: scale(1.1);
-}
-
-.carousel-arrow:active {
-  background: #D5D5D7;
-  transform: scale(0.95);
-}
-
-/* Tarjetas estilo Apple */
-.apple-style {
-  flex: 0 0 calc(33.333% - 1rem);
-  min-width: 280px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform-origin: center;
-  position: relative;
-}
-
-.apple-style:hover {
-  transform: scale(1.05) translateY(-8px);
-  z-index: 10;
-}
-
-.apple-style:hover .product-media {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-}
-
-.product-card {
-  border-radius: 16px;
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.product-media {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.product-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.apple-style:hover .product-media img {
-  transform: scale(1.08);
-}
-
-.product-badge {
-  font-size: 0.65rem;
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 4px 8px;
-  border-radius: 6px;
-  color: #15395e;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.apple-style:hover .product-badge {
-  background: rgba(255, 255, 255, 1);
-}
-
-.product-body {
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.product-body h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1d1d1f;
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-.apple-style:hover .product-body h3 {
-  color: #34a853;
-}
-
-.product-body p {
-  font-size: 0.85rem;
-  color: #6f6f77;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.product-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 0.8rem;
-}
-
-.ficha-tecnica-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  color: #34a853;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  padding: 6px 0;
-  border-bottom: 2px solid transparent;
-}
-
-.ficha-tecnica-link:hover {
-  gap: 10px;
-  border-bottom-color: #34a853;
-  transform: translateX(2px);
-}
-
-.ficha-tecnica-link span {
-  font-size: 1rem;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .apple-style {
-    flex: 0 0 calc(50% - 0.75rem);
-    min-width: 200px;
-  }
-  
-  .carousel-arrow {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .apple-style {
-    flex: 0 0 100%;
-    min-width: auto;
-  }
-  
-  .carousel-wrapper {
-    gap: 0.75rem;
-  }
-}
-</style>
-
-<script>
-function scrollCarousel(carouselId, direction) {
-  const carousel = document.getElementById(carouselId);
-  const cardWidth = carousel.querySelector('.product-card').offsetWidth;
-  const gap = 24; // 1.5rem en píxeles
-  const scrollAmount = (cardWidth + gap) * 1.5;
-  
-  if (direction === 1) {
-    carousel.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
-    });
-  } else {
-    carousel.scrollBy({
-      left: -scrollAmount,
-      behavior: 'smooth'
-    });
-  }
-}
-</script>
 
 <!-- STATS BAR -->
 <section class="stats-bar">
@@ -1130,7 +1059,7 @@ function scrollCarousel(carouselId, direction) {
     </div>
 
     <!-- INDUSTRIA MINERA -->
-    <div class="accordion-item">
+    <div class="accordion-item active">
       <div class="accordion-header" onclick="toggleAccordion(this)">
         <div class="accordion-title">
           <span class="material-symbols-outlined" style="color:#34A853; font-size:1.8rem;">min</span>
@@ -1140,75 +1069,12 @@ function scrollCarousel(carouselId, direction) {
       </div>
       <div class="accordion-content">
         <div class="accordion-body">
-          
-          <!-- CONCENTRADOS -->
           <div style="margin-bottom: 2.5rem;">
             <div class="sub-section-label">Concentrados</div>
             <p style="font-size: .95rem; line-height: 1.75; color: #2E5475; margin-bottom: 1rem;">
               El proceso de concentrados en la minería requiere el tratamiento eficiente de aguas contenidas en minerales enriquecidos. Nuestros sistemas de filtración avanzada separan sólidos suspendidos y metales pesados del agua, permitiendo su reutilización en el circuito de molienda.
             </p>
-            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475;">
-              Con la tecnología alternativa EFS y/o tecnología del equipo TRL que separa y deshidrata, logramos recuperar hasta el 90% del agua utilizada en concentración, reduciendo costos operacionales y minimizando el impacto ambiental. Nuestro equipo se adapta a diferentes densidades y granulometrías de concentrado.
-            </p>
           </div>
-
-          <!-- MOLINOS CHILENOS -->
-          <div style="margin-bottom: 2.5rem;">
-            <div class="sub-section-label">Molinos Chilenos</div>
-            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475; margin-bottom: 1rem;">
-              En los molinos chilenos, el agua utilizada como medio de molienda se carga con material fino y partículas que afectan la eficiencia del proceso. Nuestras soluciones incluyen sistemas de clasificación y espesamiento especializado para mantener la calidad del agua de molida.
-            </p>
-            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475;">
-              Con nuestro equipo la recirculación de agua. Esto mejora la capacidad de molienda, reduce el consumo de agua fresca y disminuye la descarga de relaves líquidos, ya que permite su reutilización.
-            </p>
-          </div>
-
-          <!-- RELAVES -->
-          <div>
-            <div class="sub-section-label">Relaves</div>
-            
-            <!-- RELAVES DE LIXIVIACIÓN -->
-            <div style="margin-bottom: 2rem; padding-left: 1.2rem; border-left: 3px solid #34A853;">
-              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .05em;">
-                → Relaves de Lixiviación
-              </p>
-              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475; margin-bottom: .8rem;">
-                Los relaves de lixiviación contienen ácidos residuales, soluciones salinas y metales disueltos. Nuestros sistemas de neutralización, precipitación transforman estos efluentes en agua clara y segura.
-              </p>
-              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475;">
-                Utilizamos químicos  que precipitan metales pesados y filtros de carbón activado para cumplir estándares ambientales internacionales.
-              </p>
-            </div>
-
-            <!-- RELAVES DE FLOTACIÓN -->
-            <div style="margin-bottom: 2rem; padding-left: 1.2rem; border-left: 3px solid #34A853;">
-              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .05em;">
-                → Relaves de Flotación
-              </p>
-              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475; margin-bottom: .8rem;">
-                Los relaves de flotación contienen reactivos colectores, espumantes y agua contaminada con finos minerales. Nuestras plantas de tratamiento utilizan coagulantes y floculantes para recuperar agua de calidad.
-              </p>
-              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475;">
-                El agua tratada es recirculada nuevamente a planta, reduciendo dependencia de fuentes externas y optimizando el ciclo integral del proceso.
-              </p>
-            </div>
-
-            <!-- VIDEO PARA RELAVES -->
-            <div style="margin-top: 1.8rem; padding-top: 1.8rem; border-top: 1px solid #D7EAF7;">
-              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: .05em;">
-                📺 Sistema de Tratamiento de Relaves
-              </p>
-              <div class="video-card" style="background-image: url('relaves_preview.jpg'); max-width: 600px;">
-                <div class="video-placeholder">
-                  <input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)">
-                  <span class="material-symbols-outlined">play_circle</span>
-                  <p>Tratamiento Integral de Relaves</p>
-                  <span class="sub" style="font-size: .68rem; opacity: .65;">Relaves de Lixiviación y Flotación</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
@@ -1224,16 +1090,7 @@ function scrollCarousel(carouselId, direction) {
       </div>
       <div class="accordion-content">
         <div class="accordion-body">
-          <p style="font-size:.9rem; color:#2E5475; line-height:1.6; margin-bottom:1.5rem;">Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura.</p>
-          <!-- 📁 GITHUB: Agregar ptar_1.mp4, ptar_1_preview.jpg, ptar_2.mp4, ptar_2_preview.jpg -->
-          <div class="video-grid">
-            <div class="video-card" style="background-image: url('ptar_1_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>ptar_1</p></div>
-            </div>
-            <div class="video-card" style="background-image: url('ptar_2_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>ptar_2</p></div>
-            </div>
-          </div>
+          <p style="font-size:.9rem; color:#2E5475; line-height:1.6;">Nuestras soluciones de Plantas de Tratamiento de Aguas Residuales (PTAR) garantizan la máxima eficiencia en la depuración de aguas para reuso industrial y descarga segura.</p>
         </div>
       </div>
     </div>
@@ -1249,16 +1106,7 @@ function scrollCarousel(carouselId, direction) {
       </div>
       <div class="accordion-content">
         <div class="accordion-body">
-          <p style="font-size:.9rem; color:#2E5475; line-height:1.6; margin-bottom:1.5rem;">Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales.</p>
-          <!-- 📁 GITHUB: Agregar camal_1.mp4, camal_1_preview.jpg, camal_2.mp4, camal_2_preview.jpg -->
-          <div class="video-grid">
-            <div class="video-card" style="background-image: url('camal_1_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>camal_1</p></div>
-            </div>
-            <div class="video-card" style="background-image: url('camal_2_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>camal_2</p></div>
-            </div>
-          </div>
+          <p style="font-size:.9rem; color:#2E5475; line-height:1.6;">Sistemas especializados de tratamiento de aguas residuales para camales, garantizando el cumplimiento de normativas ambientales.</p>
         </div>
       </div>
     </div>
@@ -1305,18 +1153,9 @@ function scrollCarousel(carouselId, direction) {
             <a href="tel:+593963200034">+593 96-320-0034</a>
           </div>
         </div>
-        <div class="contact-detail">
-          <span class="material-symbols-outlined" style="color:#6FE6A0;">location_on</span>
-          <div>
-            <div class="label">Ubicación</div>
-            <div style="color:white;">Ecuador — disponible en toda la región</div>
-          </div>
-        </div>
         <div class="social-links">
-          <a href="https://wa.me/593963200034" target="_blank" class="social-link" title="WhatsApp">
-            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank" class="social-link" title="Instagram">IG</a>
+          <a href="https://wa.me/593963200034" target="_blank" class="social-link" title="WhatsApp">WA</a>
+          <a href="https://www.instagram.com/ecofluidsystem" target="_blank" class="social-link" title="Instagram">IG</a>
         </div>
       </div>
 
@@ -1331,46 +1170,19 @@ function scrollCarousel(carouselId, direction) {
             <label class="form-label">Empresa</label>
             <input type="text" class="form-input" id="cf-empresa" placeholder="Nombre de tu empresa">
           </div>
-          <div class="form-group">
+          <div class="form-group full">
             <label class="form-label">Email</label>
             <input type="email" class="form-input" id="cf-email" placeholder="tu@email.com">
           </div>
-          <div class="form-group">
-            <label class="form-label">País & Teléfono</label>
-            <div class="phone-row">
-              <div class="country-select-wrap">
-                <select id="cf-country" onchange="updatePhoneCode()">
-                  <option value="+54" data-placeholder="11-XXXX-XXXX">🇦🇷 Argentina</option>
-                  <option value="+591" data-placeholder="7XXX-XXXX">🇧🇴 Bolivia</option>
-                  <option value="+55" data-placeholder="(XX) XXXXX-XXXX">🇧🇷 Brasil</option>
-                  <option value="+56" data-placeholder="9 XXXX-XXXX">🇨🇱 Chile</option>
-                  <option value="+57" data-placeholder="3XX-XXX-XXXX">🇨🇴 Colombia</option>
-                  <option value="+506" data-placeholder="XXXX-XXXX">🇨🇷 Costa Rica</option>
-                  <option value="+593" data-placeholder="9X-XXX-XXXX" selected>🇪🇨 Ecuador</option>
-                  <option value="+503" data-placeholder="XXXX-XXXX">🇸🇻 El Salvador</option>
-                  <option value="+502" data-placeholder="XXXX-XXXX">🇬🇹 Guatemala</option>
-                  <option value="+504" data-placeholder="XXXX-XXXX">🇭🇳 Honduras</option>
-                  <option value="+52" data-placeholder="(XX) XXXX-XXXX">🇲🇽 México</option>
-                  <option value="+505" data-placeholder="XXXX-XXXX">🇳🇮 Nicaragua</option>
-                  <option value="+507" data-placeholder="XXXX-XXXX">🇵🇦 Panamá</option>
-                  <option value="+595" data-placeholder="9XX-XXX-XXX">🇵🇾 Paraguay</option>
-                  <option value="+51" data-placeholder="9XX-XXX-XXX">🇵🇪 Perú</option>
-                  <option value="+1" data-placeholder="(XXX) XXX-XXXX">🇺🇸 Estados Unidos</option>
-                  <option value="+598" data-placeholder="9X-XXX-XXX">🇺🇾 Uruguay</option>
-                  <option value="+58" data-placeholder="0XX-XXX-XXXX">🇻🇪 Venezuela</option>
-                </select>
-              </div>
-              <div class="phone-input-wrap">
-                <input type="tel" class="form-input" id="cf-phone" placeholder="9X-XXX-XXXX" style="width:100%;">
-              </div>
-            </div>
+          <div class="form-group full">
+            <label class="form-label">Teléfono</label>
+            <input type="tel" class="form-input" id="cf-phone" placeholder="+593 96-320-0034">
           </div>
           <div class="form-group full">
             <label class="form-label">Mensaje</label>
             <textarea class="form-input" id="cf-message" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
           </div>
           <button type="button" class="btn-submit" onclick="sendWhatsApp()">
-            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Enviar por WhatsApp
           </button>
           <div class="form-success" id="formSuccess">
@@ -1412,12 +1224,8 @@ function scrollCarousel(carouselId, direction) {
         <a href="tel:+593963200034">+593 96-320-0034</a>
       </div>
       <div class="footer-contact-item">
-        <span class="material-symbols-outlined" style="color:#6FE6A0; flex-shrink:0;">photo_camera</span>
-        <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank">@ecofluidsystem</a>
-      </div>
-      <div class="footer-contact-item">
         <span class="material-symbols-outlined" style="color:#6FE6A0; flex-shrink:0;">chat</span>
-        <a href="https://wa.me/593963200034" target="_blank">WhatsApp: +593 96-320-0034</a>
+        <a href="https://wa.me/593963200034" target="_blank">WhatsApp</a>
       </div>
     </div>
   </div>
@@ -1436,33 +1244,6 @@ function scrollCarousel(carouselId, direction) {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// ── LOGO UPLOAD ──
-function loadLogo(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    document.getElementById('logoImg').src = e.target.result;
-    document.getElementById('logoImg').style.display = 'block';
-    document.getElementById('logoPlaceholder').style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-}
-
-// ── HERO BG UPLOAD ──
-function loadHeroBg(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const img = document.getElementById('heroBgImg');
-    img.src = e.target.result;
-    img.style.display = 'block';
-    document.getElementById('heroDefaultBg').style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-}
-
 // ── MISSION / VISION TOGGLE ──
 function toggleMV(card) {
   const p = card.querySelector('p');
@@ -1480,38 +1261,11 @@ function toggleAccordion(header) {
   if (!isActive) item.classList.add('active');
 }
 
-// ── MEDIA UPLOAD IN RESULTS ──
-function loadMedia(event, input) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const card = input.closest('.video-card');
-  const reader = new FileReader();
-  reader.onload = e => {
-    if (file.type.startsWith('video/')) {
-      card.innerHTML = `<video style="width:100%;height:100%;object-fit:cover;border-radius:12px;" controls>
-        <source src="${e.target.result}" type="${file.type}">
-      </video>`;
-    } else {
-      card.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" alt="Resultado">`;
-    }
-  };
-  reader.readAsDataURL(file);
-}
-
-// ── UPDATE PHONE PLACEHOLDER BY COUNTRY ──
-function updatePhoneCode() {
-  const select = document.getElementById('cf-country');
-  const opt = select.options[select.selectedIndex];
-  const ph = opt.getAttribute('data-placeholder') || 'XXXXXXXXXX';
-  document.getElementById('cf-phone').placeholder = ph;
-}
-
 // ── SEND VIA WHATSAPP ──
 function sendWhatsApp() {
   const name    = document.getElementById('cf-name').value.trim();
   const empresa = document.getElementById('cf-empresa').value.trim();
   const email   = document.getElementById('cf-email').value.trim();
-  const code    = document.getElementById('cf-country').value;
   const phone   = document.getElementById('cf-phone').value.trim();
   const msg     = document.getElementById('cf-message').value.trim();
 
@@ -1525,7 +1279,7 @@ function sendWhatsApp() {
     `👤 *Nombre:* ${name}\n` +
     (empresa ? `🏢 *Empresa:* ${empresa}\n` : '') +
     (email   ? `📧 *Email:* ${email}\n` : '') +
-    (phone   ? `📞 *Teléfono:* ${code} ${phone}\n` : '') +
+    (phone   ? `📞 *Teléfono:* ${phone}\n` : '') +
     `\n💬 *Mensaje:*\n${msg}`
   );
 
@@ -1552,14 +1306,7 @@ window.addEventListener('load', () => {
     { lat: 9.7489,  lng: -85.5069, name: 'Costa Rica',      type: 'País' },
     { lat: -0.2202, lng: -78.5124, name: 'Quito',           type: 'Ciudad – Ecuador' },
     { lat: -3.9818, lng: -78.1206, name: 'Zamora Chinchipe',type: 'Provincia – Ecuador' },
-    { lat: -3.2682, lng: -79.9789, name: 'El Oro',          type: 'Provincia – Ecuador' },
-    { lat: -3.2684, lng: -79.9784, name: 'Machala',         type: 'Ciudad – Ecuador' },
-    { lat: -3.6961, lng: -79.6061, name: 'Zaruma',          type: 'Ciudad – Ecuador' },
-    { lat: -3.6833, lng: -79.7319, name: 'Portovelo',       type: 'Ciudad – Ecuador' },
-    { lat: -3.4583, lng: -79.2833, name: 'Ponce Enríquez',  type: 'Ciudad – Ecuador' },
     { lat: -12.0462,lng: -77.0369, name: 'Lima',            type: 'Ciudad – Perú' },
-    { lat: -6.7735, lng: -79.8473, name: 'Chiclayo',        type: 'Ciudad – Perú' },
-    { lat: -16.3988,lng: -71.5350, name: 'Arequipa',        type: 'Ciudad – Perú' }
   ];
 
   locations.forEach(loc => {
