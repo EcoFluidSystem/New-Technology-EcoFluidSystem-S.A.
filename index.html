@@ -1140,49 +1140,75 @@ function scrollCarousel(carouselId, direction) {
       </div>
       <div class="accordion-content">
         <div class="accordion-body">
-          <div class="sub-section-label">Concentrados</div>
-          <!-- 📁 GITHUB: Agregar concentrados_1.mp4, concentrados_1_preview.jpg, concentrados_2.mp4, concentrados_2_preview.jpg -->
-          <div class="video-grid">
-            <div class="video-card" style="background-image: url('concentrados_1_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>concentrados_1</p></div>
+          
+          <!-- CONCENTRADOS -->
+          <div style="margin-bottom: 2.5rem;">
+            <div class="sub-section-label">Concentrados</div>
+            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475; margin-bottom: 1rem;">
+              El proceso de concentrados en la minería requiere el tratamiento eficiente de aguas contenidas en minerales enriquecidos. Nuestros sistemas de filtración avanzada separan sólidos suspendidos y metales pesados del agua, permitiendo su reutilización en el circuito de molienda.
+            </p>
+            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475;">
+              Con tecnología de separadores de alta densidad y filtros de presión, logramos recuperar hasta el 95% del agua utilizada en concentración, reduciendo costos operacionales y minimizando el impacto ambiental. Nuestro equipo se adapta a diferentes densidades y granulometrías de concentrado.
+            </p>
+          </div>
+
+          <!-- MOLINOS CHILENOS -->
+          <div style="margin-bottom: 2.5rem;">
+            <div class="sub-section-label">Molinos Chilenos</div>
+            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475; margin-bottom: 1rem;">
+              En los molinos chilenos, el agua utilizada como medio de molienda se carga con material fino y partículas que afectan la eficiencia del proceso. Nuestras soluciones incluyen sistemas de clasificación y espesamiento especializado para mantener la calidad del agua de molida.
+            </p>
+            <p style="font-size: .95rem; line-height: 1.75; color: #2E5475;">
+              Implementamos ciclones de alta capacidad, espesadores lamulares y filtros de vacío que optimizan la recirculación de agua. Esto mejora la capacidad de molienda, reduce el consumo de agua fresca y disminuye la descarga de relaves líquidos.
+            </p>
+          </div>
+
+          <!-- RELAVES -->
+          <div>
+            <div class="sub-section-label">Relaves</div>
+            
+            <!-- RELAVES DE LIXIVIACIÓN -->
+            <div style="margin-bottom: 2rem; padding-left: 1.2rem; border-left: 3px solid #34A853;">
+              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .05em;">
+                → Relaves de Lixiviación
+              </p>
+              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475; margin-bottom: .8rem;">
+                Los relaves de lixiviación contienen ácidos residuales, soluciones salinas y metales disueltos. Nuestros sistemas de neutralización, precipitación y oxidación-reducción transforman estos efluentes en agua clara y segura.
+              </p>
+              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475;">
+                Utilizamos reactores con control automático de pH, precipitadores de metales pesados y filtros de carbón activado para cumplir estándares ambientales internacionales.
+              </p>
             </div>
-            <div class="video-card" style="background-image: url('concentrados_2_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>concentrados_2</p></div>
+
+            <!-- RELAVES DE FLOTACIÓN -->
+            <div style="margin-bottom: 2rem; padding-left: 1.2rem; border-left: 3px solid #34A853;">
+              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .05em;">
+                → Relaves de Flotación
+              </p>
+              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475; margin-bottom: .8rem;">
+                Los relaves de flotación contienen reactivos colectores, espumantes y agua contaminada con finos minerales. Nuestras plantas de tratamiento utilizan espesamiento selectivo, flotación inversa y coagulación para recuperar agua de calidad.
+              </p>
+              <p style="font-size: .93rem; line-height: 1.7; color: #2E5475;">
+                El agua tratada es recirculada nuevamente a planta, reduciendo dependencia de fuentes externas y optimizando el ciclo integral del proceso.
+              </p>
+            </div>
+
+            <!-- VIDEO PARA RELAVES -->
+            <div style="margin-top: 1.8rem; padding-top: 1.8rem; border-top: 1px solid #D7EAF7;">
+              <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: .05em;">
+                📺 Sistema de Tratamiento de Relaves
+              </p>
+              <div class="video-card" style="background-image: url('relaves_preview.jpg'); max-width: 600px;">
+                <div class="video-placeholder">
+                  <input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)">
+                  <span class="material-symbols-outlined">play_circle</span>
+                  <p>Tratamiento Integral de Relaves</p>
+                  <span class="sub" style="font-size: .68rem; opacity: .65;">Relaves de Lixiviación y Flotación</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="sub-section-label">Molinos Chilenos</div>
-          <!-- 📁 GITHUB: Agregar molino_1.mp4, molino_1_preview.jpg, molino_2.mp4, molino_2_preview.jpg -->
-          <div class="video-grid">
-            <div class="video-card" style="background-image: url('molino_1_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>molino_1</p></div>
-            </div>
-            <div class="video-card" style="background-image: url('molino_2_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>molino_2</p></div>
-            </div>
-          </div>
-
-          <div class="sub-section-label">Relaves de Lixiviación</div>
-          <!-- 📁 GITHUB: Agregar lixiviacion_1.mp4, lixiviacion_1_preview.jpg, lixiviacion_2.mp4, lixiviacion_2_preview.jpg -->
-          <div class="video-grid">
-            <div class="video-card" style="background-image: url('lixiviacion_1_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>lixiviacion_1</p></div>
-            </div>
-            <div class="video-card" style="background-image: url('lixiviacion_2_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>lixiviacion_2</p></div>
-            </div>
-          </div>
-
-          <div class="sub-section-label">Relaves de Flotación</div>
-          <!-- 📁 GITHUB: Agregar flotacion_1.mp4, flotacion_1_preview.jpg, flotacion_2.mp4, flotacion_2_preview.jpg -->
-          <div class="video-grid">
-            <div class="video-card" style="background-image: url('flotacion_1_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>flotacion_1</p></div>
-            </div>
-            <div class="video-card" style="background-image: url('flotacion_2_preview.jpg');">
-              <div class="video-placeholder"><input type="file" accept="video/*,image/*" class="video-file-input" onchange="loadMedia(event,this)"><span class="material-symbols-outlined">play_circle</span><p>flotacion_2</p></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
