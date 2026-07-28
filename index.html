@@ -1973,6 +1973,7 @@
   </div>
 </section>
 
+
 <!-- RESULTADOS -->
 <section id="results" class="section-pad">
   <div class="container">
@@ -1997,13 +1998,14 @@
           </div>
           <h3 class="result-card-title" data-es="Industria Minera" data-en="Mining Industry">Industria Minera</h3>
           <p class="result-card-desc" data-es="Recuperación de agua en concentrados, molinos chilenos y relaves de lixiviación y flotación, con hasta 90% de eficiencia." data-en="Water recovery in concentrates, Chilean mills, and leaching/flotation tailings, with up to 90% efficiency.">Recuperación de agua en concentrados, molinos chilenos y relaves de lixiviación y flotación, con hasta 90% de eficiencia.</p>
-          <button class="result-card-btn">
+          <button class="result-card-btn" type="button">
             <span data-es="Ver Resultados" data-en="See Results">Ver Resultados</span>
             <span class="material-symbols-outlined">expand_more</span>
           </button>
         </div>
       </div>
-      <div class="result-detail" id="detail-mineria">
+
+      <div class="result-detail" id="detail-mineria" style="display: none;">
         <div class="result-detail-inner">
 
           <div style="margin-bottom: 2.5rem;">
@@ -2036,37 +2038,38 @@
             <div style="margin-top: 1.8rem; padding-top: 1.8rem; border-top: 1px solid #D7EAF7;">
               <p style="font-size: .88rem; font-weight: 700; color: #34A853; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: .05em;" data-es="Sistema de Tratamiento de Relaves" data-en="Tailings Treatment System">Sistema de Tratamiento de Relaves</p>
           
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-              
-              <a href="https://www.youtube.com/watch?si=kJA9AyhgpJHqcVu5&v=ic2QcfCRVvY&feature=youtu.be" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-                <div class="video-card" style="background-image: url('relaves_preview.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; aspect-ratio: 16 / 9; cursor: pointer;">
-                  <div class="video-placeholder">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p data-es="Tratamiento Integral de Relaves" data-en="Comprehensive Tailings Treatment">Tratamiento Integral de Relaves</p>
-                    <span class="sub" style="font-size: .68rem; opacity: .65;" data-es="Relaves de Lixiviación y Flotación" data-en="Leaching and Flotation Tailings">Relaves de Lixiviación y Flotación</span>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                
+                <a href="https://www.youtube.com/watch?si=kJA9AyhgpJHqcVu5&v=ic2QcfCRVvY&feature=youtu.be" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: block;">
+                  <div class="video-card" style="background-image: url('relaves_preview.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; aspect-ratio: 16 / 9; cursor: pointer;">
+                    <div class="video-placeholder">
+                      <span class="material-symbols-outlined">play_circle</span>
+                      <p data-es="Tratamiento Integral de Relaves" data-en="Comprehensive Tailings Treatment">Tratamiento Integral de Relaves</p>
+                      <span class="sub" style="font-size: .68rem; opacity: .65;" data-es="Relaves de Lixiviación y Flotación" data-en="Leaching and Flotation Tailings">Relaves de Lixiviación y Flotación</span>
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
 
-              <a href="AQUÍ_VA_EL_LINK_DEL_VIDEO_MIN_2" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-                <div class="video-card" style="background-image: url('relaves_2_preview.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; aspect-ratio: 16 / 9; cursor: pointer;">
-                  <div class="video-placeholder">
-                    <span class="material-symbols-outlined">play_circle</span>
-                    <p data-es="Tratamiento Integral de Relaves" data-en="Comprehensive Tailings Treatment">Tratamiento Integral de Relaves</p>
-                    <span class="sub" style="font-size: .68rem; opacity: .65;" data-es="Relaves de Lixiviación y Flotación" data-en="Leaching and Flotation Tailings">Relaves de Lixiviación y Flotación</span>
+                <a href="AQUÍ_VA_EL_LINK_DEL_VIDEO_MIN_2" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: block;">
+                  <div class="video-card" style="background-image: url('relaves_2_preview.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; aspect-ratio: 16 / 9; cursor: pointer;">
+                    <div class="video-placeholder">
+                      <span class="material-symbols-outlined">play_circle</span>
+                      <p data-es="Tratamiento Integral de Relaves" data-en="Comprehensive Tailings Treatment">Tratamiento Integral de Relaves</p>
+                      <span class="sub" style="font-size: .68rem; opacity: .65;" data-es="Relaves de Lixiviación y Flotación" data-en="Leaching and Flotation Tailings">Relaves de Lixiviación y Flotación</span>
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
 
+              </div>
+
+              <div class="results-media-grid">
+                <div class="results-media-item"><img src="mineria_foto_1.jpg" alt="Concentrados" onerror="this.parentElement.style.background='linear-gradient(135deg,#7A5230,#B98450)'"></div>
+                <div class="results-media-item"><img src="mineria_foto_2.jpg" alt="Molienda" onerror="this.parentElement.style.background='linear-gradient(135deg,#5C3D24,#9C6B3E)'"></div>
+                <div class="results-media-item"><img src="mineria_foto_3.jpg" alt="Relaves" onerror="this.parentElement.style.background='linear-gradient(135deg,#3C2A1E,#7A5230)'"></div>
+              </div>
             </div>
 
-            <div class="results-media-grid">
-              <div class="results-media-item"><img src="mineria_foto_1.jpg" alt="Concentrados" onerror="this.parentElement.style.background='linear-gradient(135deg,#7A5230,#B98450)'"></div>
-              <div class="results-media-item"><img src="mineria_foto_2.jpg" alt="Molienda" onerror="this.parentElement.style.background='linear-gradient(135deg,#5C3D24,#9C6B3E)'"></div>
-              <div class="results-media-item"><img src="mineria_foto_3.jpg" alt="Relaves" onerror="this.parentElement.style.background='linear-gradient(135deg,#3C2A1E,#7A5230)'"></div>
-            </div>
           </div>
-
         </div>
       </div>
 
@@ -2096,7 +2099,7 @@
 
           <div class="sub-section-label" data-es="Videos de Planta" data-en="Plant Videos">Videos de Planta</div>
           <div class="video-grid">
-            <a href="https://www.youtube.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: block;">
+            <a href="AQUÍ_VA_EL_LINK_DEL_VIDEO_PTAR_1" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: block;">
               <div class="video-card" style="background-image: url('ptar_1_preview.jpg'); cursor: pointer;">
                 <div class="video-placeholder">
                   <span class="material-symbols-outlined">play_circle</span>
@@ -2104,7 +2107,7 @@
                 </div>
               </div>
             </a>
-            <a href="https://www.youtube.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: block;">
+            <a href="AQUÍ_VA_EL_LINK_DEL_VIDEO_PTAR_2" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: block;">
               <div class="video-card" style="background-image: url('ptar_2_preview.jpg'); cursor: pointer;">
                 <div class="video-placeholder">
                   <span class="material-symbols-outlined">play_circle</span>
@@ -2149,22 +2152,18 @@
 
           <div class="sub-section-label" data-es="Videos de Camal" data-en="Slaughterhouse Videos">Videos de Camal</div>
           <div class="video-grid">
-            <a href="https://www.youtube.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: block;">
-              <div class="video-card" style="background-image: url('camal_1_preview.jpg'); cursor: pointer;">
-                <div class="video-placeholder">
-                  <span class="material-symbols-outlined">play_circle</span>
-                  <p>camal_1</p>
-                </div>
+            <div class="video-card" style="background-image: url('camal_1_preview.jpg');">
+              <div class="video-placeholder">
+                <span class="material-symbols-outlined">play_circle</span>
+                <p>camal_1</p>
               </div>
-            </a>
-            <a href="https://www.youtube.com" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; display: block;">
-              <div class="video-card" style="background-image: url('camal_2_preview.jpg'); cursor: pointer;">
-                <div class="video-placeholder">
-                  <span class="material-symbols-outlined">play_circle</span>
-                  <p>camal_2</p>
-                </div>
+            </div>
+            <div class="video-card" style="background-image: url('camal_2_preview.jpg');">
+              <div class="video-placeholder">
+                <span class="material-symbols-outlined">play_circle</span>
+                <p>camal_2</p>
               </div>
-            </a>
+            </div>
           </div>
 
           <div class="sub-section-label" data-es="Galería Camales" data-en="Slaughterhouse Gallery">Galería Camales</div>
@@ -2175,6 +2174,11 @@
           </div>
         </div>
       </div>
+
+    </div>
+  </div>
+</section>
+
 
     <!-- ═════════ GALERÍA GENERAL DE RESULTADOS (más fotos) ═════════ -->
     <div class="results-gallery">
