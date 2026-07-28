@@ -158,6 +158,7 @@
   .topbar a:hover { color: #6FE6A0; }
   .topbar-left { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .topbar-left span { display: inline-flex; align-items: center; gap: .4rem; }
+  .topbar-left a.topbar-mail-link { display: inline-flex; align-items: center; gap: .4rem; }
   .topbar-right { display: flex; gap: .6rem; align-items: center; }
   .topbar-right a {
     width: 26px; height: 26px; border-radius: 50%;
@@ -170,6 +171,22 @@
     color: #fff;
     transform: translateY(-3px);
     box-shadow: 0 8px 16px rgba(52, 168, 83, 0.3);
+  }
+  .topbar-right a.topbar-call-btn {
+    background: #1561ad;
+    color: #fff;
+  }
+  .topbar-right a.topbar-call-btn:hover {
+    background: #134F8C;
+    box-shadow: 0 8px 16px rgba(21, 97, 173, 0.4);
+  }
+  .topbar-right a.topbar-wa-btn {
+    background: #25D366;
+    color: #fff;
+  }
+  .topbar-right a.topbar-wa-btn:hover {
+    background: #20BA5A;
+    box-shadow: 0 8px 16px rgba(37, 211, 102, 0.4);
   }
 
   nav.main-nav {
@@ -494,9 +511,17 @@
   }
 
   #mission { 
-    background: linear-gradient(180deg, #f2f7f3 0%, #fff 100%);
     position: relative;
+    overflow: hidden;
   }
+  #mission-bg-img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
+  }
+  #mission .mission-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(242,247,243,.94) 0%, rgba(255,255,255,.96) 100%);
+  }
+  #mission .container { position: relative; z-index: 2; }
   .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .mv-card {
     background: #fff; border-radius: 16px;
@@ -539,6 +564,90 @@
   .mv-card p { font-size: .93rem; line-height: 1.75; color: #2E5475; margin: 0; }
 
   #products { background: #fff; position: relative; }
+
+  /* ═══════════════════════════════════════════════════════════════ */
+  /* PRODUCT SHOWCASE - single large product with arrow navigation */
+  /* ═══════════════════════════════════════════════════════════════ */
+  .product-showcase {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  .showcase-arrow {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #F5F5F7, #E8E8ED);
+    color: #15395E;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  .showcase-arrow:hover {
+    background: linear-gradient(135deg, #34A853, #1561ad);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(52, 168, 83, 0.3);
+  }
+  .showcase-arrow:active { transform: scale(0.95); }
+
+  .showcase-stage {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #f2f7f3;
+    border: 1px solid #D7EAF7;
+    box-shadow: 0 12px 40px rgba(21, 57, 94, 0.1);
+  }
+  .showcase-track {
+    display: flex;
+    transition: transform .5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .showcase-slide {
+    flex: 0 0 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    min-height: 340px;
+  }
+  .showcase-media {
+    position: relative;
+    background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .showcase-media img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .showcase-media .product-badge {
+    position: absolute; bottom: 1rem; left: 1rem;
+  }
+  .showcase-info {
+    padding: 2.4rem 2.2rem;
+    display: flex; flex-direction: column; justify-content: center; gap: .8rem;
+  }
+  .showcase-info h3 { font-size: 1.6rem; font-weight: 800; color: #15395E; margin: 0; }
+  .showcase-info p { font-size: .95rem; color: #2E5475; line-height: 1.65; margin: 0; }
+  .showcase-info .product-links { margin-top: .6rem; display: flex; flex-direction: column; gap: .5rem; }
+
+  .showcase-dots {
+    display: flex; justify-content: center; gap: .5rem; margin-top: 1.1rem;
+  }
+  .showcase-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #D7EAF7; border: none; cursor: pointer; padding: 0;
+    transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .showcase-dot.active { background: linear-gradient(135deg, #34A853, #1561ad); width: 26px; border-radius: 5px; }
+
   .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .product-card {
     background: #f2f7f3; border-radius: 16px;
@@ -1042,161 +1151,6 @@
     animation: slideInLeft 0.4s ease-out;
   }
 
-  .carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .products-carousel {
-    display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    flex: 1;
-    padding: 1rem 0;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .products-carousel::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .products-carousel::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-
-  .products-carousel::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #34A853, #1561ad);
-    border-radius: 10px;
-    transition: all 0.3s;
-  }
-
-  .carousel-arrow {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: linear-gradient(135deg, #F5F5F7, #E8E8ED);
-    color: #1d1d1f;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  }
-
-  .carousel-arrow:hover {
-    background: linear-gradient(135deg, #E8E8ED, #D5D5D7);
-    transform: scale(1.15);
-    box-shadow: 0 8px 24px rgba(52, 168, 83, 0.2);
-  }
-
-  .carousel-arrow:active {
-    background: #D5D5D7;
-    transform: scale(0.95);
-  }
-
-  .apple-style {
-    flex: 0 0 calc(33.333% - 1rem);
-    min-width: 280px;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform-origin: center;
-    position: relative;
-  }
-
-  .apple-style:hover {
-    transform: scale(1.08) translateY(-12px);
-    z-index: 10;
-  }
-
-  .apple-style:hover .product-media {
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
-  }
-
-  .product-badge {
-    font-size: 0.65rem;
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 4px 8px;
-    border-radius: 6px;
-    color: #15395e;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .apple-style:hover .product-badge {
-    background: rgba(255, 255, 255, 1);
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  }
-
-  .product-body {
-    padding: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .product-body h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #1d1d1f;
-    margin: 0;
-    transition: color 0.3s ease;
-  }
-
-  .apple-style:hover .product-body h3 {
-    color: #34a853;
-  }
-
-  .product-body p {
-    font-size: 0.85rem;
-    color: #6f6f77;
-    margin: 0;
-    line-height: 1.4;
-  }
-
-  .product-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-top: 0.8rem;
-  }
-
-  .ficha-tecnica-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.8rem;
-    color: #34a853;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    padding: 6px 0;
-    border-bottom: 2px solid transparent;
-  }
-
-  .ficha-tecnica-link:hover {
-    gap: 10px;
-    border-bottom-color: #34a853;
-    transform: translateX(2px);
-  }
-
-  .ficha-tecnica-link span {
-    font-size: 1rem;
-  }
-
   @media(max-width: 1024px) {
     .hero-stats { 
       flex-direction: row !important;
@@ -1219,10 +1173,8 @@
     .nav-inner { padding: 0 1.5rem; }
     .topbar { padding: .35rem 1.5rem; }
 
-    .apple-style {
-      flex: 0 0 calc(50% - 0.75rem);
-      min-width: 240px;
-    }
+    .showcase-slide { grid-template-columns: 1fr; }
+    .showcase-media { min-height: 220px; }
 
     .results-media-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1352,17 +1304,11 @@
     .product-body h3 { font-size: 1rem; }
     .product-body p { font-size: .8rem; }
     
-    .carousel-wrapper { gap: .75rem; }
-    .products-carousel { gap: 1rem; }
-    .apple-style { 
-      flex: 0 0 calc(90% - 0.5rem);
-      min-width: 200px;
-    }
-    .carousel-arrow { 
-      width: 36px; 
-      height: 36px;
-      flex-shrink: 0;
-    }
+    .showcase-slide { min-height: auto; }
+    .showcase-media { min-height: 200px; }
+    .showcase-info { padding: 1.5rem 1.2rem; }
+    .showcase-info h3 { font-size: 1.25rem; }
+    .showcase-arrow { width: 40px; height: 40px; font-size: 1.1rem; }
     
     .video-grid { grid-template-columns: 1fr; gap: 1rem; }
     .video-card { aspect-ratio: 16/9; }
@@ -1597,23 +1543,8 @@
     .footer-grid { gap: 1.5rem; }
     .footer-brand { font-size: 1.1rem; }
 
-    .carousel-arrow {
-      display: none;
-    }
-
-    .apple-style {
-      flex: 0 0 calc(100% - 0);
-      min-width: auto;
-    }
-
-    .carousel-wrapper {
-      gap: 0;
-    }
-
-    .products-carousel {
-      gap: 1rem;
-      padding: 0.5rem 0;
-    }
+    .showcase-arrow { display: none; }
+    .product-showcase { gap: 0; }
   }
 
   @media(max-width: 380px) {
@@ -1646,7 +1577,7 @@
 
 <div class="topbar">
   <div class="topbar-left">
-    <span><span class="material-symbols-outlined">mail</span> <span data-es="ecofluidsystemec@gmail.com" data-en="ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</span></span>
+    <a class="topbar-mail-link" href="mailto:ecofluidsystemec@gmail.com"><span class="material-symbols-outlined">mail</span> <span data-es="ecofluidsystemec@gmail.com" data-en="ecofluidsystemec@gmail.com">ecofluidsystemec@gmail.com</span></a>
     <span><span class="material-symbols-outlined">call</span> +593 96-320-0034</span>
   </div>
   <div class="topbar-right">
@@ -1655,7 +1586,12 @@
       <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">EN</button>
     </div>
     <a href="https://www.instagram.com/ecofluidsystem?igsh=MXdiZXhlMmtsazZ0Yw%3D%3D&utm_source=qr" target="_blank" aria-label="Instagram" title="Instagram">IG</a>
-    <a href="https://wa.me/593963200034" target="_blank" aria-label="WhatsApp" title="WhatsApp">WA</a>
+    <a href="tel:+593963200034" class="topbar-call-btn" aria-label="Llamar" title="Llamar">
+      <span class="material-symbols-outlined" style="font-size:1rem;">call</span>
+    </a>
+    <a href="https://wa.me/593963200034" target="_blank" class="topbar-wa-btn" aria-label="WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
   </div>
 </div>
 
@@ -1715,6 +1651,8 @@
 </section>
 
 <section id="mission" class="section-pad">
+  <img id="mission-bg-img" src="mission-bg.jpg" alt="Fondo Quiénes Somos" onerror="this.style.display='none'">
+  <div class="mission-overlay"></div>
   <div class="container">
     <div style="margin-bottom: 3rem;">
       <p class="section-eyebrow" data-es="Nuestra Identidad" data-en="Our Identity">Nuestra Identidad</p>
@@ -1757,234 +1695,235 @@
     <div style="margin-bottom: 3.5rem;">
       <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> <span data-es="Boss Technology" data-en="Boss Technology">Boss Technology</span></h3>
       <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;" data-es="Sistemas innovadores de filtración y tratamiento especializados para aplicaciones industriales y ambientales." data-en="Innovative filtration and treatment systems specialized for industrial and environmental applications.">Sistemas innovadores de filtración y tratamiento especializados para aplicaciones industriales y ambientales.</p>
-      
-      <div class="carousel-wrapper">
-        <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('bs-tech', -1)">
+
+      <div class="product-showcase">
+        <button class="showcase-arrow" onclick="showcasePrev('bs-tech')" aria-label="Anterior">
           <span class="material-symbols-outlined">chevron_left</span>
         </button>
-        
-        <div class="products-carousel" id="bs-tech">
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-              <img src="agri-boss.jpg" alt="Agri Boss">
-              <span class="product-badge">Boss Technology</span>
-            </div>
-            <div class="product-body">
-              <h3>Agri Boss</h3>
-              <p data-es="Sistema de filtración avanzada para aplicaciones agrícolas e industriales." data-en="Advanced filtration system for agricultural and industrial applications.">Sistema de filtración avanzada para aplicaciones agrícolas e industriales.</p>
-            </div>
-          </div>
 
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-              <img src="eco-septic.jpg" alt="Eco Septic">
-              <span class="product-badge">Boss Technology</span>
+        <div class="showcase-stage">
+          <div class="showcase-track" id="bs-tech-track">
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="agri-boss.jpg" alt="Agri Boss">
+                <span class="product-badge">Boss Technology</span>
+              </div>
+              <div class="showcase-info">
+                <h3>Agri Boss</h3>
+                <p data-es="Sistema de filtración avanzada para aplicaciones agrícolas e industriales." data-en="Advanced filtration system for agricultural and industrial applications.">Sistema de filtración avanzada para aplicaciones agrícolas e industriales.</p>
+              </div>
             </div>
-            <div class="product-body">
-              <h3>Eco Septic</h3>
-              <p data-es="Equipo especializado para tratamiento de aguas residuales domésticas e industriales." data-en="Equipment specialized for domestic and industrial wastewater treatment.">Equipo especializado para tratamiento de aguas residuales domésticas e industriales.</p>
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="eco-septic.jpg" alt="Eco Septic">
+                <span class="product-badge">Boss Technology</span>
+              </div>
+              <div class="showcase-info">
+                <h3>Eco Septic</h3>
+                <p data-es="Equipo especializado para tratamiento de aguas residuales domésticas e industriales." data-en="Equipment specialized for domestic and industrial wastewater treatment.">Equipo especializado para tratamiento de aguas residuales domésticas e industriales.</p>
+              </div>
             </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #E1F5E8 0%, #D2EAFB 100%);">
-              <img src="fosa-septic.jpg" alt="Fosa Septic">
-              <span class="product-badge">Boss Technology</span>
-            </div>
-            <div class="product-body">
-              <h3>Fosa Septic</h3>
-              <p data-es="Sistema de filtración sostenible para manejo eficiente de efluentes." data-en="Sustainable filtration system for efficient effluent management.">Sistema de filtración sostenible para manejo eficiente de efluentes.</p>
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="fosa-septic.jpg" alt="Fosa Septic">
+                <span class="product-badge">Boss Technology</span>
+              </div>
+              <div class="showcase-info">
+                <h3>Fosa Septic</h3>
+                <p data-es="Sistema de filtración sostenible para manejo eficiente de efluentes." data-en="Sustainable filtration system for efficient effluent management.">Sistema de filtración sostenible para manejo eficiente de efluentes.</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <button class="carousel-arrow carousel-arrow-next" onclick="scrollCarousel('bs-tech', 1)">
+        <button class="showcase-arrow" onclick="showcaseNext('bs-tech')" aria-label="Siguiente">
           <span class="material-symbols-outlined">chevron_right</span>
         </button>
       </div>
+      <div class="showcase-dots" id="bs-tech-dots"></div>
     </div>
 
     <div style="margin-bottom: 3.5rem;">
       <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> <span data-es="Floculantes" data-en="Flocculants">Floculantes</span></h3>
       <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;" data-es="7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones industriales y mineras." data-en="7 specialized solutions for clarification and solids separation in different industrial and mining applications.">7 soluciones especializadas para clarificación y separación de sólidos en diferentes aplicaciones industriales y mineras.</p>
-      
-      <div class="carousel-wrapper">
-        <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('floculantes', -1)">
+
+      <div class="product-showcase">
+        <button class="showcase-arrow" onclick="showcasePrev('floculantes')" aria-label="Anterior">
           <span class="material-symbols-outlined">chevron_left</span>
         </button>
-        
-        <div class="products-carousel" id="floculantes">
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_N3218.jpg" alt="Floculante N3218">
-              <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
-            </div>
-            <div class="product-body">
-              <h3>N3218</h3>
-              <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_1.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
-                </a>
-                <a href="hoja_seguridad_1.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
-                </a>
+
+        <div class="showcase-stage">
+          <div class="showcase-track" id="floculantes-track">
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="floculante_N3218.jpg" alt="Floculante N3218">
+                <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
+              </div>
+              <div class="showcase-info">
+                <h3>N3218</h3>
+                <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
+                <div class="product-links">
+                  <a href="ficha_tecnica_1.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
+                  </a>
+                  <a href="hoja_seguridad_1.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_N3326.jpg" alt="Floculante N3326">
-              <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
-            </div>
-            <div class="product-body">
-              <h3>N3326</h3>
-              <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_2.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
-                </a>
-                <a href="hoja_seguridad_2.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
-                </a>
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="floculante_N3326.jpg" alt="Floculante N3326">
+                <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
+              </div>
+              <div class="showcase-info">
+                <h3>N3326</h3>
+                <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
+                <div class="product-links">
+                  <a href="ficha_tecnica_2.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
+                  </a>
+                  <a href="hoja_seguridad_2.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_N3415.jpg" alt="Floculante N3415">
-              <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
-            </div>
-            <div class="product-body">
-              <h3>N3415</h3>
-              <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_3.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
-                </a>
-                <a href="hoja_seguridad_3.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
-                </a>
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="floculante_N3415.jpg" alt="Floculante N3415">
+                <span class="product-badge" data-es="No Iónico" data-en="Non-ionic">No Iónico</span>
+              </div>
+              <div class="showcase-info">
+                <h3>N3415</h3>
+                <p data-es="Floculante No Iónico" data-en="Non-ionic Flocculant">Floculante No Iónico</p>
+                <div class="product-links">
+                  <a href="ficha_tecnica_3.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
+                  </a>
+                  <a href="hoja_seguridad_3.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_A5270.jpg" alt="Floculante A5270">
-              <span class="product-badge" data-es="Aniónico" data-en="Anionic">Aniónico</span>
-            </div>
-            <div class="product-body">
-              <h3>A5270</h3>
-              <p data-es="Floculante Aniónico" data-en="Anionic Flocculant">Floculante Aniónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_4.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
-                </a>
-                <a href="hoja_seguridad_4.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
-                </a>
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="floculante_A5270.jpg" alt="Floculante A5270">
+                <span class="product-badge" data-es="Aniónico" data-en="Anionic">Aniónico</span>
+              </div>
+              <div class="showcase-info">
+                <h3>A5270</h3>
+                <p data-es="Floculante Aniónico" data-en="Anionic Flocculant">Floculante Aniónico</p>
+                <div class="product-links">
+                  <a href="ficha_tecnica_4.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
+                  </a>
+                  <a href="hoja_seguridad_4.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_A5477.jpg" alt="Floculante A5477">
-              <span class="product-badge" data-es="Aniónico" data-en="Anionic">Aniónico</span>
-            </div>
-            <div class="product-body">
-              <h3>A5477</h3>
-              <p data-es="Floculante Aniónico" data-en="Anionic Flocculant">Floculante Aniónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_5.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
-                </a>
-                <a href="hoja_seguridad_5.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
-                </a>
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="floculante_A5477.jpg" alt="Floculante A5477">
+                <span class="product-badge" data-es="Aniónico" data-en="Anionic">Aniónico</span>
+              </div>
+              <div class="showcase-info">
+                <h3>A5477</h3>
+                <p data-es="Floculante Aniónico" data-en="Anionic Flocculant">Floculante Aniónico</p>
+                <div class="product-links">
+                  <a href="ficha_tecnica_5.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
+                  </a>
+                  <a href="hoja_seguridad_5.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_C6010.jpg" alt="Floculante C6010">
-              <span class="product-badge" data-es="Catiónico" data-en="Cationic">Catiónico</span>
-            </div>
-            <div class="product-body">
-              <h3>C6010</h3>
-              <p data-es="Floculante Catiónico" data-en="Cationic Flocculant">Floculante Catiónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_6.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
-                </a>
-                <a href="hoja_seguridad_6.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
-                </a>
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="floculante_C6010.jpg" alt="Floculante C6010">
+                <span class="product-badge" data-es="Catiónico" data-en="Cationic">Catiónico</span>
+              </div>
+              <div class="showcase-info">
+                <h3>C6010</h3>
+                <p data-es="Floculante Catiónico" data-en="Cationic Flocculant">Floculante Catiónico</p>
+                <div class="product-links">
+                  <a href="ficha_tecnica_6.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
+                  </a>
+                  <a href="hoja_seguridad_6.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #F0E8FF 0%, #E8F5FF 100%);">
-              <img src="floculante_C6810.jpg" alt="Floculante C6810">
-              <span class="product-badge" data-es="Catiónico" data-en="Cationic">Catiónico</span>
-            </div>
-            <div class="product-body">
-              <h3>C6810</h3>
-              <p data-es="Floculante Catiónico" data-en="Cationic Flocculant">Floculante Catiónico</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_7.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
-                </a>
-                <a href="hoja_seguridad_7.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
-                </a>
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="floculante_C6810.jpg" alt="Floculante C6810">
+                <span class="product-badge" data-es="Catiónico" data-en="Cationic">Catiónico</span>
+              </div>
+              <div class="showcase-info">
+                <h3>C6810</h3>
+                <p data-es="Floculante Catiónico" data-en="Cationic Flocculant">Floculante Catiónico</p>
+                <div class="product-links">
+                  <a href="ficha_tecnica_7.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
+                  </a>
+                  <a href="hoja_seguridad_7.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">shield</span><span data-es="Seguridad" data-en="Safety">Seguridad</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <button class="carousel-arrow carousel-arrow-next" onclick="scrollCarousel('floculantes', 1)">
+        <button class="showcase-arrow" onclick="showcaseNext('floculantes')" aria-label="Siguiente">
           <span class="material-symbols-outlined">chevron_right</span>
         </button>
       </div>
+      <div class="showcase-dots" id="floculantes-dots"></div>
     </div>
 
     <div>
       <h3 style="font-size:1.4rem; font-weight:800; color:#15395E; margin-bottom:.4rem;"><span style="color:#34A853;">●</span> <span data-es="Coagulantes" data-en="Coagulants">Coagulantes</span></h3>
       <p style="font-size:.9rem; color:#2E5475; margin-bottom:1.5rem; line-height:1.6;" data-es="Solución especializada para procesos de coagulación en tratamiento de aguas industriales y mineras." data-en="Specialized solution for coagulation processes in industrial and mining water treatment.">Solución especializada para procesos de coagulación en tratamiento de aguas industriales y mineras.</p>
-      
-      <div class="carousel-wrapper">
-        <button class="carousel-arrow carousel-arrow-prev" onclick="scrollCarousel('coagulantes', -1)">
+
+      <div class="product-showcase">
+        <button class="showcase-arrow" onclick="showcasePrev('coagulantes')" aria-label="Anterior">
           <span class="material-symbols-outlined">chevron_left</span>
         </button>
-        
-        <div class="products-carousel" id="coagulantes">
-          <div class="product-card apple-style">
-            <div class="product-media" style="background: linear-gradient(135deg, #FFE8E8 0%, #FFD2D2 100%);">
-              <img src="coagulantes.jpg" alt="Coagulante CEFS-01">
-              <span class="product-badge" data-es="Coagulante" data-en="Coagulant">Coagulante</span>
-            </div>
-            <div class="product-body">
-              <h3>CEFS-01</h3>
-              <p data-es="Coagulante especializado para procesos de clarificación y tratamiento de efluentes." data-en="Specialized coagulant for clarification and effluent treatment processes.">Coagulante especializado para procesos de clarificación y tratamiento de efluentes.</p>
-              <div class="product-links">
-                <a href="ficha_tecnica_coagulante.pdf" target="_blank" class="ficha-tecnica-link">
-                  <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
-                </a>
+
+        <div class="showcase-stage">
+          <div class="showcase-track" id="coagulantes-track">
+            <div class="showcase-slide">
+              <div class="showcase-media">
+                <img src="coagulantes.jpg" alt="Coagulante CEFS-01">
+                <span class="product-badge" data-es="Coagulante" data-en="Coagulant">Coagulante</span>
+              </div>
+              <div class="showcase-info">
+                <h3>CEFS-01</h3>
+                <p data-es="Coagulante especializado para procesos de clarificación y tratamiento de efluentes." data-en="Specialized coagulant for clarification and effluent treatment processes.">Coagulante especializado para procesos de clarificación y tratamiento de efluentes.</p>
+                <div class="product-links">
+                  <a href="ficha_tecnica_coagulante.pdf" target="_blank" class="ficha-tecnica-link">
+                    <span class="material-symbols-outlined">description</span><span data-es="Ver Ficha" data-en="View Sheet">Ver Ficha</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <button class="carousel-arrow carousel-arrow-next" onclick="scrollCarousel('coagulantes', 1)">
+        <button class="showcase-arrow" onclick="showcaseNext('coagulantes')" aria-label="Siguiente">
           <span class="material-symbols-outlined">chevron_right</span>
         </button>
       </div>
+      <div class="showcase-dots" id="coagulantes-dots"></div>
     </div>
   </div>
 </section>
@@ -2431,6 +2370,7 @@ function changeLanguage(lang) {
 window.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('preferredLang') || 'es';
   changeLanguage(savedLang);
+  initShowcases();
 });
 
 function toggleMV(card) {
@@ -2529,23 +2469,60 @@ function sendWhatsApp() {
   setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
 }
 
-function scrollCarousel(carouselId, direction) {
-  const carousel = document.getElementById(carouselId);
-  const cardWidth = carousel.querySelector('.product-card').offsetWidth;
-  const gap = 24;
-  const scrollAmount = (cardWidth + gap) * 1.5;
-  
-  if (direction === 1) {
-    carousel.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
-    });
-  } else {
-    carousel.scrollBy({
-      left: -scrollAmount,
-      behavior: 'smooth'
+// ── PRODUCT SHOWCASE (single large product with arrows) ──
+const showcaseState = {};
+
+function initShowcases() {
+  document.querySelectorAll('.showcase-track').forEach(track => {
+    const id = track.id.replace('-track', '');
+    const slides = track.querySelectorAll('.showcase-slide').length;
+    showcaseState[id] = 0;
+    const dotsWrap = document.getElementById(id + '-dots');
+    if (dotsWrap) {
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < slides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'showcase-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Ir al producto ' + (i + 1));
+        dot.onclick = () => showcaseGoTo(id, i);
+        dotsWrap.appendChild(dot);
+      }
+    }
+    updateShowcase(id);
+  });
+}
+
+function updateShowcase(id) {
+  const track = document.getElementById(id + '-track');
+  if (!track) return;
+  const total = track.querySelectorAll('.showcase-slide').length;
+  const index = showcaseState[id];
+  track.style.transform = `translateX(-${index * 100}%)`;
+  const dotsWrap = document.getElementById(id + '-dots');
+  if (dotsWrap) {
+    dotsWrap.querySelectorAll('.showcase-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
     });
   }
+}
+
+function showcaseNext(id) {
+  const track = document.getElementById(id + '-track');
+  const total = track.querySelectorAll('.showcase-slide').length;
+  showcaseState[id] = (showcaseState[id] + 1) % total;
+  updateShowcase(id);
+}
+
+function showcasePrev(id) {
+  const track = document.getElementById(id + '-track');
+  const total = track.querySelectorAll('.showcase-slide').length;
+  showcaseState[id] = (showcaseState[id] - 1 + total) % total;
+  updateShowcase(id);
+}
+
+function showcaseGoTo(id, index) {
+  showcaseState[id] = index;
+  updateShowcase(id);
 }
 
 window.addEventListener('load', () => {
